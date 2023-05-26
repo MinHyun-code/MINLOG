@@ -9,4 +9,9 @@ public class BoardController {
 	public String board() { 
 		return "board/board"; 
 	}
+
+	@GetMapping("/board/detail")
+	public String boardDetail() { 
+		return "board/board_detail"; 
+	}
 }
