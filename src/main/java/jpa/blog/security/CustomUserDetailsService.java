@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import jpa.blog.dto.UserDto;
 import jpa.blog.entity.User;
 import jpa.blog.entity.UserRepository;
 import lombok.RequiredArgsConstructor;

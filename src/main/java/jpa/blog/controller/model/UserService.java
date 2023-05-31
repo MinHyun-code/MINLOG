@@ -27,10 +27,9 @@ public class UserService {
 	private final BCryptPasswordEncoder encoder;
 																																										
 	@Transactional
-	public Long join(UserDto dto) {
+	public void join(UserDto dto) {
 		dto.setUserPw(encoder.encode(dto.getUserPw()));
-		
-		return userRepository.save(dto.toEntity().getUserId());
+		userRepository.save(dto.toEntity());
 	}
 	
     public List<UserResponseDto> findAll() {

@@ -18,7 +18,7 @@
     </svg>
 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (light)">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" onclick="tempJoin()" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (light)">
         <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#sun-fill"></use></svg>
         <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
       </button>
@@ -71,7 +71,7 @@
 
 <script type="text/javascript">
 
-// 로그인 절차
+	// 로그인 절차
 	function loginSubmit() {
 		if($('#floatingInput').val() == "") {
 			alert("이메일을 입력해주세요."); 
@@ -82,13 +82,13 @@
 		}
 		
         var params = {
-	        userId : $("#floatingInput").val(),
+	        username : $("#floatingInput").val(),
 	        userPw : $("#floatingPassword").val()
         }
             
         $.ajax({
             type : "POST",
-            url : "/login",
+            url : "/login/action",
             data : params,
             success : function(res){
                 alert(res.code);
@@ -98,6 +98,33 @@
             }
         });
 	}
+	
+	// 임시 회원가입
+	function tempJoin() {
+		var params = {
+				userId : 'a',
+				userPw : '1',
+				status : 1
+		}
+		
+        $.ajax({
+            type : "POST",
+            url : "/join/action",
+            data : params,
+            success : function(res){
+               	if(res == 0) {
+               		alert("회원가입 되었습니다.");
+               	} else if(res == 1) {
+               		alert("ID가 중복됩니다. 다른 ID 작성 부탁드립니다.");
+               	}
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+                alert("통신 실패.")
+            }
+        });
+	}
+	
+	
 </script>
   
 

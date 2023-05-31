@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<header class="p-3 text" style="background-color: darkseagreen;">
+<header class="p-2 text" style="background-color: darkseagreen;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/board" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">

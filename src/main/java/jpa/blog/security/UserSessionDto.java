@@ -2,7 +2,7 @@ package jpa.blog.security;
 
 import java.io.Serializable;
 
-
+import jpa.blog.dto.UserDto;
 import jpa.blog.entity.User;
 import lombok.Getter;
 

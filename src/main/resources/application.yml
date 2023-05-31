@@ -21,7 +21,7 @@ spring:
     hibernate:
       # 개발 초기 : create, update || 테스트 : update, validate || 운영 : validate, none
       # create-drop : create와 같으나 종료시점에 테이블 DROP
-      ddl-auto: none
+      ddl-auto: create-drop
     properties:
       hibernate:
         # 콘솔에 jpa 실행 쿼리

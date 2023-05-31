@@ -1,6 +1,7 @@
 package jpa.blog.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,17 +15,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import jpa.blog.controller.model.UserService;
+import jpa.blog.dto.UserDto;
 import jpa.blog.dto.UserResponseDto;
+import jpa.blog.entity.User;
+import jpa.blog.entity.UserRepository;
 
 @Controller
 public class UserController {
 
 	private final UserService userService;
+	private final UserRepository userRepository;
 	
 	// 생성자 주입
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService, UserRepository userRepository) {
 		this.userService = userService;
+		this.userRepository = userRepository;
 	}
 	
 	@GetMapping("test")
@@ -44,11 +50,26 @@ public class UserController {
 		return "login/signUp"; 
 	}
 //	
-//	@PostMapping("/login")
-//	public @ResponseBody Object loginProcess(HttpServletRequest request) {
-//		
-//		return 0;
-//	}
+	@PostMapping("/login/action")
+	public @ResponseBody Object loginProcess(HttpServletRequest request) {
+		
+		
+		
+		return 0;
+	}
+	
+//	
+	@PostMapping("/join/action")
+	public @ResponseBody Object join(HttpServletRequest request, UserDto userDto) {
+		Optional<User> userInfo = userRepository.findByUserId(userDto.getUserId());
+		
+		if(userInfo.isPresent()) {
+			return 1;
+		} else {
+			userService.join(userDto);
+			return 0;
+		}
+	}
 	
 	
 	@RequestMapping(value="/sample/dashboard", method = {RequestMethod.GET, RequestMethod.POST})
