@@ -1,2 +1,2 @@
 # MINLOG
-use : Spring Boot, MySQL, JPA
+use : Spring Boot, MySQL, JPA, tiles, Spring Security
