@@ -34,10 +34,7 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 //            errorCode = LoginFailType.AUTH_FAIL.getId();
 //            errorMsg = LoginFailType.AUTH_FAIL.getMsg();
 //        }
-//        if(exception instanceof BadCredentialsException){           // 비밀번호가 일치하지 않을 때 던지는 예외
-//            errorCode = LoginFailType.BAD_CREDENTIALS.getId();
-//            errorMsg = LoginFailType.BAD_CREDENTIALS.getMsg();
-//        }
+
 //        if(exception instanceof LockedException){                   // 인증 거부 - 잠긴 계정
 //            errorCode = LoginFailType.LOCKED_ACCOUNT.getId();
 //            errorMsg = LoginFailType.LOCKED_ACCOUNT.getMsg();
@@ -54,10 +51,10 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 //            errorCode = LoginFailType.EXPIRED_PASSWORD.getId();
 //            errorMsg = LoginFailType.EXPIRED_PASSWORD.getMsg();
 //        }
-//        if(exception instanceof UsernameNotFoundException){         // 계정정보가 없을때
-//            errorCode = LoginFailType.NONE_ACCOUNT.getId();
-//            errorMsg = LoginFailType.NONE_ACCOUNT.getMsg();
-//        }
+        if(exception instanceof BadCredentialsException){         // 계정정보가 없을때
+            errorCode = "BAD_CREDENTIALS";
+            errorMsg = "아이디 혹은 비밀번호를 확인하세요.";
+        }
 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);    // 인증거부
         response.getWriter().print("{\"errorCode\": \""+errorCode+"\", \"errorMsg\": \""+errorMsg+"\"}");

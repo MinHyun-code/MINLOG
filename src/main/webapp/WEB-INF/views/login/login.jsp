@@ -83,7 +83,7 @@
 		
         var params = {
 	        username : $("#floatingInput").val(),
-	        userPw : $("#floatingPassword").val()
+	        password : $("#floatingPassword").val()
         }
             
         $.ajax({
@@ -91,10 +91,13 @@
             url : "/login/action",
             data : params,
             success : function(res){
-                alert(res.code);
+                alert("로그인 되었습니다.");
+            	var result = (JSON.parse(res));
+            	window.location.href = Object.values(result);
             },
-            error : function(XMLHttpRequest, textStatus, errorThrown){
-                alert("통신 실패.")
+            error : function(XMLHttpRequest, textStatus, error){
+            	var result = (JSON.parse(XMLHttpRequest.responseText));
+               	alert(Object.values(result)[1]);
             }
         });
 	}

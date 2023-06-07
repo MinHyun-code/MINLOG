@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
 
 <header class="p-2 text" style="background-color: darkseagreen;">
     <div class="container">
@@ -19,10 +20,12 @@
           <input type="search" class="form-control form-control-dark" aria-label="Search">
         </form>
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2" onclick="forwardLogin()">Login</button>
-          <button type="button" class="btn btn-outline-light me-2" onclick="forwardSignUp()">Sign-up</button>
-        </div>
+		<c:if test="${loginUser == null}">
+	        <div class="text-end">
+	          <button type="button" class="btn btn-outline-light me-2" onclick="forwardLogin()">Login</button>
+	          <button type="button" class="btn btn-outline-light me-2" onclick="forwardSignUp()">Sign-up</button>
+	        </div>
+	    </c:if>
       </div>
     </div>
     <script type="text/javascript">
