@@ -9,7 +9,7 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/layouts/footer.jsp"/>
 	</definition>
 	
-	<definition name="layout-include" template="/WEB-INF/tiles/layouts/layout-include.jsp">
+	<definition name="layout-login" template="/WEB-INF/tiles/layouts/layout-login.jsp">
 		<put-attribute name="include" value="/WEB-INF/tiles/layouts/include.jsp" />
 		<put-attribute name="body" value=""/>
 	</definition>
@@ -18,7 +18,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp"/>
 	</definition>
 	
-	<definition name="login/*" extends="layout-include">
+	<definition name="login/*" extends="layout-login">
 		<put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp"/>
 	</definition>
 	

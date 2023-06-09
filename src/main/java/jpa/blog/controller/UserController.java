@@ -49,12 +49,15 @@ public class UserController {
 	public String signUp() { 
 		return "login/signUp"; 
 	}
-//	
+	// 로그인
 	@PostMapping("/login/action")
 	public @ResponseBody Object loginProcess(HttpServletRequest request) {
-		
-		
-		
+		return 0;
+	}
+	
+	// 로그아웃
+	@PostMapping("/logout/action")
+	public @ResponseBody Object logoutProcess(HttpServletRequest request) {
 		return 0;
 	}
 	
