@@ -24,7 +24,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         // 로그인 성공 시 이전 페이지로 가는 경우
-        String redirectURL = "/board";
+        String redirectURL = "/";
         SavedRequest savedRequest = requestCache.getRequest(request,response);
         if(savedRequest != null && !savedRequest.getRedirectUrl().equals("http://localhost:8080/")){
             // 인증 받기 전 url로 이동하기

@@ -6,7 +6,6 @@
 		<put-attribute name="header" value="/WEB-INF/tiles/layouts/header.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/tiles/layouts/side.jsp"/>
 		<put-attribute name="body" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/tiles/layouts/footer.jsp"/>
 	</definition>
 	
 	<definition name="layout-login" template="/WEB-INF/tiles/layouts/layout-login.jsp">
@@ -16,6 +15,14 @@
 	
 	<definition name="board/*" extends="layout-basic">
 		<put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp"/>
+	</definition>
+	
+	<definition name="myInfo/*" extends="layout-basic">
+		<put-attribute name="body" value="/WEB-INF/views/myInfo/{1}.jsp"/>
+	</definition>
+	
+	<definition name="signUp/*" extends="layout-basic">
+		<put-attribute name="body" value="/WEB-INF/views/signUp/{1}.jsp"/>
 	</definition>
 	
 	<definition name="login/*" extends="layout-login">

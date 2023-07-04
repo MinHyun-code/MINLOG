@@ -2,10 +2,18 @@
 // 테마 변경
 function themeLight(){
 	document.documentElement.setAttribute('data-bs-theme','light');
+	const theme = "light";
+	const text = "<svg class=\"bi my-1 theme-icon opacity-50\" width=\"1em\" height=\"1em\"><use href=\"#sun-fill\"></use></svg>";
+	document.getElementById('bd-theme').innerHTML = text;
+	setCookie("theme", theme, 7); // 7일 동안 쿠키 보관
 }
 // 테마 변경
 function themeDark(){
 	document.documentElement.setAttribute('data-bs-theme','dark');
+	const theme = "dark";
+	const text = "<svg class=\"bi my-1 theme-icon\" width=\"1em\" height=\"1em\"><use href=\"#moon-stars-fill\"></use></svg>";
+	document.getElementById('bd-theme').innerHTML = text;
+	setCookie("theme", theme, 7); // 7일 동안 쿠키 보관
 }
 
 // 쿠키 저장하기 

@@ -6,7 +6,6 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jpa.blog.dto.UserDto;
 import jpa.blog.entity.User;
 import lombok.AllArgsConstructor;
 
@@ -69,5 +68,9 @@ public class CustomUserDetails implements UserDetails {
 		collectors.add(() -> "ROLE_"+user.getRole());
  
 		return collectors;
+	}
+
+	public Object getUserId() {
+		return user.getUserId();
 	}
 }

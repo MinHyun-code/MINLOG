@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<body class="text-center" style="display: block; align-items: center; padding-bottom: 110px; padding-top: 40px; height: 100vh; display: flex;">
+<body class="text-center bg-body-tertiary" style="display: block; align-items: center; padding-bottom: 110px; padding-top: 40px; height: 100vh; display: flex;">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
@@ -17,26 +17,24 @@
       </symbol>
     </svg>
     
-    <input type="button" onclick="tempJoin()" value="test"/>
-    
 	<main class="m-auto w-100" style="max-width: 330px; padding : 15px;">
 	    <img class="mb-4" src="img/logo.png" alt="" style="width: 230px; height: 75px; padding-right: 10px;">
 	
 	    <div class="form-floating">
-	      <input type="email" class="form-control" id="floatingInput" placeholder="Email">
-	      <label for="floatingInput">Email address</label>
+	      <input type="email" class="form-control" id="floatingInput">
+	      <label for="floatingInput">이메일</label>
 	    </div>
 	    <div class="form-floating">
-	      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="margin-bottom: 10px;">
-	      <label for="floatingPassword">Password</label>
+	      <input type="password" class="form-control" id="floatingPassword" onkeyup="enterkey()" style="margin-bottom: 10px;">
+	      <label for="floatingPassword">비밀번호</label>
 	    </div>
 	
 	    <div class="checkbox mb-3">
 	      <label>
-	        <input type="checkbox" value="remember-me" id="checkId"> Remember me
+	        <input type="checkbox" value="remember-me" id="checkId"> 아이디 저장
 	      </label>
 	    </div>
-	    <button class="w-100 btn btn-lg btn-primary" onclick="loginSubmit()" style="background-color: #2aa75a; border-color: #2aa75a;">Sign in</button>
+	    <button class="w-100 btn btn-lg btn-primary" onclick="loginSubmit()" style="background-color: #2aa75a; border-color: #2aa75a;">로그인</button>
 	</main>
 </body>
 
@@ -68,6 +66,12 @@
 	    });
 	});
 
+	// Enter Key 이벤트
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			loginSubmit();			
+	    }
+	}
 
 	
 	// 로그인 절차
@@ -97,36 +101,11 @@
             error : function(XMLHttpRequest, textStatus, error){
             	var result = (JSON.parse(XMLHttpRequest.responseText));
                	alert(Object.values(result)[1]);
+               	
+               	$('#floatingPassword').val("");
             }
         });
 	}
-	
-	// 임시 회원가입
-	function tempJoin() {
-		var params = {
-				userId : 'a',
-				userPw : '1',
-				status : 1
-		}
-		
-        $.ajax({
-            type : "POST",
-            url : "/join/action",
-            data : params,
-            success : function(res){
-               	if(res == 0) {
-               		alert("회원가입 되었습니다.");
-               	} else if(res == 1) {
-               		alert("ID가 중복됩니다. 다른 ID 작성 부탁드립니다.");
-               	}
-            },
-            error : function(XMLHttpRequest, textStatus, errorThrown){
-                alert("통신 실패.")
-            }
-        });
-	}
-	
-	
 </script>
   
 

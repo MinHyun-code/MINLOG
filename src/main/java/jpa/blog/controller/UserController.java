@@ -1,24 +1,23 @@
 package jpa.blog.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import jpa.blog.controller.model.UserService;
-import jpa.blog.dto.UserDto;
+import jpa.blog.dto.AjaxResult;
+import jpa.blog.dto.UserRequestDto;
 import jpa.blog.dto.UserResponseDto;
-import jpa.blog.entity.User;
-import jpa.blog.entity.UserRepository;
+import jpa.blog.repository.UserRepository;
+import jpa.blog.service.UserService;
 
 @Controller
 public class UserController {
@@ -33,53 +32,58 @@ public class UserController {
 		this.userRepository = userRepository;
 	}
 	
-	@GetMapping("test")
-	public List<UserResponseDto> findAll() {
-		return userService.findAll();
-	}
+//	----------------  로그인, 로그아웃  ----------------
 	
 	// 로그인 화면
 	@GetMapping("/login")
-	public String login() { 
+	public String loginPage() { 
 		return "login/login"; 
 	}
 	
-	// 회원가입 화면
-	@GetMapping("/signUp")
-	public String signUp() { 
-		return "login/signUp"; 
-	}
 	// 로그인
 	@PostMapping("/login/action")
-	public @ResponseBody Object loginProcess(HttpServletRequest request) {
+	public @ResponseBody Object loginProcess() {
 		return 0;
 	}
 	
 	// 로그아웃
 	@PostMapping("/logout/action")
-	public @ResponseBody Object logoutProcess(HttpServletRequest request) {
+	public @ResponseBody Object logoutProcess() {
 		return 0;
 	}
 	
-//	
-	@PostMapping("/join/action")
-	public @ResponseBody Object join(HttpServletRequest request, UserDto userDto) {
-		Optional<User> userInfo = userRepository.findByUserId(userDto.getUserId());
+//	----------------  회원가입  ----------------
+	
+	// 회원가입 화면
+	@GetMapping("/signUp")
+	public String signUpPage() { 
+		return "signUp/signUp"; 
+	}
+	
+	// 회원가입
+	@PostMapping("/signUp/action")
+	public @ResponseBody AjaxResult signUp(UserRequestDto dto) {
+		AjaxResult ajaxResult = new AjaxResult();
+		boolean existYn = userService.findByUserId(dto.getUserId());
 		
-		if(userInfo.isPresent()) {
-			return 1;
+		if(existYn == true) {
+			ajaxResult.setResultCode("fail");
+			ajaxResult.setResultMessage("해당 이메일로 생성된 계정이 있습니다.");
+			return ajaxResult;
 		} else {
-			userService.join(userDto);
-			return 0;
+			userService.signUp(dto);
+			ajaxResult.setResultCode("success");
+			ajaxResult.setResultMessage("회원가입 되었습니다.");
+			return ajaxResult;
 		}
 	}
 	
+//	----------------  마이페이지  ----------------
 	
-	@RequestMapping(value="/sample/dashboard", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView dashboard() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("sample/dashboard");
-		return mv;
+	// 내정보 화면
+	@GetMapping("/myInfo")
+	public String myInfoPage(Authentication au, Model model) {
+		
+		return "myInfo/myInfo";
 	}
-	
 }

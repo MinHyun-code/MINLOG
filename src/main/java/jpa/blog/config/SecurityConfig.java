@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.DefaultSecurityFilterChain;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import jpa.blog.security.AuthFailureHandler;
@@ -60,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/join/**","/login/**", "/board", "/posts/read/**", "/posts/search/**").permitAll() // 해당 경로로 접근 허용
+			.antMatchers("/", "/signUp/**","/login/**", "/board/**", "/posts/read/**", "/posts/search/**").permitAll() // 해당 경로로 접근 허용
 			.anyRequest().authenticated();	 //antMatchers 외의 경로는 인증을 요구
 		http.formLogin()
 			.loginPage("/login")	// 로그인 페이지 지정
@@ -69,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.failureHandler(authFailureHandler);
 		http.logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout/action")) // 로그아웃 URL 지정
-			.logoutSuccessUrl("/login") // 성공 리턴 URL
+			.logoutSuccessUrl("/") // 성공 리턴 URL
 			.invalidateHttpSession(true) // 인증 정보 지우고 세션을 무효화
 			.deleteCookies("JSESSIONID", "remember-me"); // JSESSIONID, remember-me 쿠키 삭제
 //		http.sessionManagement()

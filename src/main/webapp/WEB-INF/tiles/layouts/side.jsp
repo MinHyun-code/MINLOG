@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="flex-shrink-0 p-3 bg-white" style="width: 280px; float:left;">
+<!-- <div class="flex-shrink-0 p-3 bg-white" style="width: 280px; float:left;"> 
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
@@ -55,3 +55,4 @@
       </li>
     </ul>
   </div>
+  -->
