@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div style="background-color: white; width: 60vw; margin:0 auto; min-height: 90vh; padding: 100px 0;">
+<div  class="div-read0">
 	
-	<div class="container">
+	<div class="container" style="padding: 0 4vw;">
 	
 		<div>
 			<span class="title" id="title"></span>
 		</div>
-		<div>
+ 		<div style="margin: 50px 0; float:left;">
+			<span class="span-read0" id="regUserId"></span>
+		</div>
+		<div style="margin: 50px 0; float:right;">
 			<input type="button" class="btn-read0" id="" value="통계"/>
 			<input type="button" class="btn-read0" id="" value="수정"/>
 			<input type="button" class="btn-read0" onclick="boardDel()" value="삭제"/>
@@ -36,6 +39,7 @@
 	        		});
 	        		
 	        		$('#title').html(res.data.title);
+	        		$('#regUserId').html(res.data.regUserId);
 	        		$('#boardSeq').val(res.data.boardSeq);
 	        	}
 	        	else {

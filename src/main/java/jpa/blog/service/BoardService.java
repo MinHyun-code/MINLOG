@@ -31,13 +31,15 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	
 	@Transactional
-	public void boardAdd(BoardRequestDto boardDto) {
+	public void boardWrite(BoardRequestDto boardDto) {
 		
         // 현재 날짜 구하기
         LocalDateTime now = LocalDateTime.now();
         
         boardDto.setRegDate(now);
-		boardRepository.save(boardDto.toEntity());
+        boardDto.setDelYn("N");
+
+        boardRepository.save(boardDto.toEntity());
 	}
 	
 

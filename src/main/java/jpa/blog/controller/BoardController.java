@@ -93,7 +93,7 @@ public class BoardController {
 		AjaxResult ajaxResult = new AjaxResult();
 		
 		try {
-			boardService.boardAdd(boardDto);
+			boardService.boardWrite(boardDto);
 			ajaxResult.setResultCode("success");
 		} catch (Exception e) {
 			ajaxResult.setResultCode("fail");

@@ -23,6 +23,7 @@ public class BoardRequestDto {
 	private LocalDateTime upDate; 	// 수정일자
 	private String delYn; 			// 삭제여부
 	private LocalDateTime delDate; 	// 삭제일자
+	private String thumbnail;
 	private String openYn;			// 공개여부
 	
 	public Board toEntity() {
@@ -36,6 +37,7 @@ public class BoardRequestDto {
 				.upDate(upDate)
 				.delYn(delYn)
 				.delDate(delDate)
+				.thumbnail(thumbnail)
 				.openYn(openYn)
 				.build();
 		return board;

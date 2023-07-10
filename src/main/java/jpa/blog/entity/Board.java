@@ -45,16 +45,19 @@ public class Board {
 	
 	private LocalDateTime upDate; 	// 수정일자
 	
+	@NonNull
 	private String delYn;			// 삭제여부
 	
 	private LocalDateTime delDate; 	// 삭제일자
+	
+	private String thumbnail; 		// 썸네일
 	
 	@NonNull
 	private String openYn;			// 공개여부
 	
 	
 	@Builder
-	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String openYn) {
+	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String openYn) {
 		this.boardSeq = boardSeq;
 		this.title = title;
 		this.content = content;
@@ -64,6 +67,7 @@ public class Board {
 		this.upDate = upDate;
 		this.delYn = delYn;
 		this.delDate = delDate;
+		this.thumbnail = thumbnail;
 		this.openYn = openYn;
 	}
 }
