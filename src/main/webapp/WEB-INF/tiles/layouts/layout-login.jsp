@@ -6,7 +6,7 @@
 	<title>Title</title>
 	<tiles:insertAttribute name="include"/>
 </head>
-<body>
+<body class="bg-body-tertiary">
 	<tiles:insertAttribute name="body"/>
 </body>
 </html>

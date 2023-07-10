@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="bg-body-tertiary">
+<div>
 	<div style="min-height: 1150px" class="container">
 		<div class="col-md-7" style="margin:0 auto; padding: 5vh;">
 	    <h4 class="mb-3">회원가입</h4>
@@ -53,7 +53,6 @@
 	        url : "/signUp/action",
 	        data : params,
 	        success : function(res){
-	        	console.log(res);
 	           	if(res.resultCode == "success") {
 	           		alert(res.resultMessage);
 	            	window.location.href = "/login";

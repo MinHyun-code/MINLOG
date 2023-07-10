@@ -11,7 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import jpa.blog.dto.AjaxResult;
 import jpa.blog.dto.UserRequestDto;
@@ -19,7 +23,7 @@ import jpa.blog.dto.UserResponseDto;
 import jpa.blog.repository.UserRepository;
 import jpa.blog.service.UserService;
 
-@Controller
+@RestController
 public class UserController {
 
 	private final UserService userService;
@@ -35,19 +39,22 @@ public class UserController {
 //	----------------  로그인, 로그아웃  ----------------
 	
 	// 로그인 화면
-	@GetMapping("/login")
-	public String loginPage() { 
-		return "login/login"; 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView loginPage() { 
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login/login");
+		return mv;
 	}
 	
 	// 로그인
-	@PostMapping("/login/action")
+	@RequestMapping(value = "/login/action", method = RequestMethod.POST)
 	public @ResponseBody Object loginProcess() {
 		return 0;
 	}
 	
 	// 로그아웃
-	@PostMapping("/logout/action")
+	@RequestMapping(value = "/logout/action", method = RequestMethod.POST)
 	public @ResponseBody Object logoutProcess() {
 		return 0;
 	}
@@ -55,13 +62,16 @@ public class UserController {
 //	----------------  회원가입  ----------------
 	
 	// 회원가입 화면
-	@GetMapping("/signUp")
-	public String signUpPage() { 
-		return "signUp/signUp"; 
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public ModelAndView signUpPage() { 
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("signUp/signUp");
+		return mv;
 	}
 	
 	// 회원가입
-	@PostMapping("/signUp/action")
+	@RequestMapping(value = "/signUp/action", method = RequestMethod.POST)
 	public @ResponseBody AjaxResult signUp(UserRequestDto dto) {
 		AjaxResult ajaxResult = new AjaxResult();
 		boolean existYn = userService.findByUserId(dto.getUserId());
@@ -81,9 +91,11 @@ public class UserController {
 //	----------------  마이페이지  ----------------
 	
 	// 내정보 화면
-	@GetMapping("/myInfo")
-	public String myInfoPage(Authentication au, Model model) {
+	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
+	public ModelAndView myInfoPage(Authentication au, Model model) {
 		
-		return "myInfo/myInfo";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("myInfo/myInfo");
+		return mv;
 	}
 }

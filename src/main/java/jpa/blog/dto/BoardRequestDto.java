@@ -21,6 +21,7 @@ public class BoardRequestDto {
 	private String regUserId;		// 등록자
 	private LocalDateTime regDate;  // 등록일자
 	private LocalDateTime upDate; 	// 수정일자
+	private String delYn; 			// 삭제여부
 	private LocalDateTime delDate; 	// 삭제일자
 	private String openYn;			// 공개여부
 	
@@ -33,6 +34,7 @@ public class BoardRequestDto {
 				.regUserId(regUserId)
 				.regDate(regDate)
 				.upDate(upDate)
+				.delYn(delYn)
 				.delDate(delDate)
 				.openYn(openYn)
 				.build();

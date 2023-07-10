@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jpa.blog.security.Role;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,6 +22,7 @@ import lombok.NonNull;
 @Table(name="BOARD")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@DynamicUpdate	// 변경한 필드만 대응
 public class Board {
 
 	@Id
@@ -42,6 +45,8 @@ public class Board {
 	
 	private LocalDateTime upDate; 	// 수정일자
 	
+	private String delYn;			// 삭제여부
+	
 	private LocalDateTime delDate; 	// 삭제일자
 	
 	@NonNull
@@ -49,7 +54,7 @@ public class Board {
 	
 	
 	@Builder
-	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, LocalDateTime delDate, String openYn) {
+	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String openYn) {
 		this.boardSeq = boardSeq;
 		this.title = title;
 		this.content = content;
@@ -57,6 +62,7 @@ public class Board {
 		this.regUserId = regUserId;
 		this.regDate = regDate;
 		this.upDate = upDate;
+		this.delYn = delYn;
 		this.delDate = delDate;
 		this.openYn = openYn;
 	}

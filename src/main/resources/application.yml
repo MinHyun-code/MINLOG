@@ -6,6 +6,14 @@ spring:
       
   # jsp 수정 후 새로고침 시 반영
   devtools.livereload.enabled: true
+  
+#  servlet:
+#   multipart:
+#     enabled: true
+#     location: c:\\MinLOG\\upload
+#     max-request-size: 300MB
+#     max-file-size: 50MB
+     
   # DB 연결 정보
   datasource:
     hikari: 

@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!-- jstl -->
-	<div class="bg-body-tertiary" style="height: 10vh; padding: 0.5vw 0.5vh;">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+	<div>
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="padding: 0 50px; box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         	<img src="${pageContext.request.contextPath}/img/logo.png" alt="" style="width: 180px; height: 60px; padding-right: 10px;">
         </a>
@@ -17,7 +17,7 @@
 			<button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/login'">새 글 작성</button>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
-			<button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/board/reg'">새 글 작성</button>
+			<button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/write'">새 글 작성</button>
         </sec:authorize>
         
         

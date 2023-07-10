@@ -6,7 +6,7 @@
 	<title>MINLOG</title>
 	<tiles:insertAttribute name="include"/>
 </head>
-<body>
+<body class="bg-body-tertiary">
 	<tiles:insertAttribute name="header"/>
 	<tiles:insertAttribute name="side"/>
 	<tiles:insertAttribute name="body"/>
