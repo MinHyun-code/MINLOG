@@ -17,7 +17,8 @@ public class BoardResponseDto {
 	private String upDate; 			// 수정일자
 	private String delYn; 			// 삭제여부
 	private String delDate; 		// 삭제일자
-	private String thumbnail;		// 썸네일
+	private String thumbnail;		// 썸네일 이미지
+	private String thumbnail_txt;	// 썸네일 텍스트
 	private String openYn;			// 공개여부
 	
 	public BoardResponseDto(Board entity) {
@@ -29,6 +30,7 @@ public class BoardResponseDto {
 		this.regDate = entity.getRegDate().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 		this.delYn = entity.getDelYn();
 		this.thumbnail = entity.getThumbnail();
+		this.thumbnail_txt = entity.getThumbnail_txt();
 		this.openYn = entity.getOpenYn();
 	}
 }

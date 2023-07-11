@@ -50,14 +50,16 @@ public class Board {
 	
 	private LocalDateTime delDate; 	// 삭제일자
 	
-	private String thumbnail; 		// 썸네일
+	private String thumbnail; 		// 썸네일 이미지
+
+	private String thumbnail_txt; 	// 썸네일 텍스트
 	
 	@NonNull
 	private String openYn;			// 공개여부
 	
 	
 	@Builder
-	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String openYn) {
+	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnail_txt, String openYn) {
 		this.boardSeq = boardSeq;
 		this.title = title;
 		this.content = content;
@@ -68,6 +70,7 @@ public class Board {
 		this.delYn = delYn;
 		this.delDate = delDate;
 		this.thumbnail = thumbnail;
+		this.thumbnail_txt = thumbnail_txt;
 		this.openYn = openYn;
 	}
 }

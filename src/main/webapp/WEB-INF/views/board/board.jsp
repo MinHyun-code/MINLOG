@@ -6,16 +6,15 @@
       <c:forEach var="boardList" items="${boardList}">
         <div style="width: 300px; margin-left: 15px; margin-right: 15px;">
           <div class="card-custom">
-            <svg class="bd-placeholder-img card-img-top" style="width:320px;height:170px;cursor: pointer;" xmlns="http://www.w3.org/2000/svg" onclick="viewPageMove(${boardList.boardSeq});" role="img" focusable="false"><rect width="320px" height="100%" fill="#55595c"></rect></svg>
+            <c:if test="${boardList.thumbnail == null}">
+            	<svg class="bd-placeholder-img card-img-top" style="width:320px;height:170px;cursor: pointer;" xmlns="http://www.w3.org/2000/svg" onclick="viewPageMove(${boardList.boardSeq});" role="img" focusable="false"><rect width="320px" height="100%" fill="#55595c"></rect></svg>
+            </c:if>
+            <c:if test="${boardList.thumbnail != null}">
+            	<img alt="" src="${boardList.thumbnail}" style="width:320px;height:170px;cursor: pointer;"/>
+            </c:if>
             <div class="" style="height: 120px; cursor: pointer; padding: 16px;" onclick="viewPageMove(${boardList.boardSeq});">
               <h5>${boardList.title}</h5>
-<!--               <div class="d-flex justify-content-between align-items-center"> -->
-<!--                 <div class="btn-group"> -->
-<%--                   <button type="button" onclick="viewPageMove(${boardList.boardSeq});" class="btn btn-sm btn-outline-secondary">View</button> --%>
-<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-<!--                 </div> -->
-<!--                 <small class="text-body-secondary">9 mins</small> -->
-<!--               </div> -->
+              <span>${boardList.thumbnail_txt}</span>
             </div>
             <div class="card-body" style="height: 40px; padding-left: 15px;">
             	<small class="text-small">${boardList.regDate} &nbsp;&nbsp;·11개의 댓글</small>
