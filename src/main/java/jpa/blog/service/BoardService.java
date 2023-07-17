@@ -31,7 +31,7 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	
 	@Transactional
-	public void boardWrite(BoardRequestDto boardDto) {
+	public void boardWrite(BoardRequestDto.Create boardDto) {
 		
         // 현재 날짜 구하기
         LocalDateTime now = LocalDateTime.now();
@@ -42,16 +42,34 @@ public class BoardService {
         boardRepository.save(boardDto.toEntity());
 	}
 	
+	public List<BoardResponseDto.BoardList> boardList() {
 
+		// 등록 순서대로 보여주기 (나중에 등록된 것 위로)
+		List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardSeq"));
+		List<BoardResponseDto.BoardList> boardDtoList = new ArrayList<>();
+		for(int i=0; i<boardList.size(); i++) {
+			boardDtoList.add(new BoardResponseDto.BoardList(boardList.get(i)));
+		}
+		return boardDtoList;
+	}
+	
+	public BoardResponseDto.BoardDetail boardDetail(int boardSeq) {
+
+		BoardResponseDto.BoardDetail boardDetail = new BoardResponseDto.BoardDetail(boardRepository.findByBoardSeq(boardSeq));
+		
+		return boardDetail;
+	}
+	
+	
+	@Transactional
     public void boardDelete(int boardSeq) {
     	
-//    	Board board = boardRepository.findByBoardSeq(boardSeq);
-//    	
-//    	board.
-//    	
-//    	board.setDelYn("Y");
-//
-//		boardRepository.save(board.toEntity());
+    	Board boardDetail = boardRepository.findByBoardSeq(boardSeq);
+
+        // 현재 날짜 구하기
+        LocalDateTime now = LocalDateTime.now();
+        
+    	boardDetail.changeDelYn("Y", now);
     }
 	
 }

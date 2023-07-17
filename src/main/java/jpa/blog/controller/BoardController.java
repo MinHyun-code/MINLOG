@@ -37,6 +37,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 
+import jpa.blog.common.CommonUtil;
 import jpa.blog.dto.AjaxResult;
 import jpa.blog.dto.BoardRequestDto;
 import jpa.blog.dto.BoardResponseDto;
@@ -51,25 +52,17 @@ import jpa.blog.service.BoardService;
 public class BoardController {
 	
 	private BoardService boardService;
-	private BoardRepository boardRepository;
 	private String path = "C:/MinLOG/";
 	@Autowired
 	public BoardController(BoardService boardService, BoardRepository boardRepository) {
 		this.boardService = boardService;
-		this.boardRepository = boardRepository;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView board(Model model) { 
 		
-		// 등록 순서대로 보여주기 (나중에 등록된 것 위로)
-		List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardSeq"));
-		List<BoardResponseDto> boardDtoList = new ArrayList<>();
-		for(int i=0; i<boardList.size(); i++) {
-			boardDtoList.add(new BoardResponseDto(boardList.get(i)));
-		}
-		
-		model.addAttribute("boardList", boardDtoList);
+		List<BoardResponseDto.BoardList> boardList = boardService.boardList(); 
+		model.addAttribute("boardList", boardList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/board");
@@ -77,19 +70,40 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public ModelAndView boardRegPage(@AuthenticationPrincipal CustomUserDetails cu, Model model) { 
+	public ModelAndView boardWritePage(@AuthenticationPrincipal CustomUserDetails cu, Model model, HttpServletRequest request) { 
 		
 		if(cu != null) {
 			model.addAttribute("loginUserId", cu.getUserId());
 		} 
+
+		String status = CommonUtil.paramNullCheck(request, "status", "");
+		
+//		수정일 경우
+		if(status.equals("R")) {
+			model.addAttribute("status", status);
+			int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
+			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
+			// 로그인한 사용자와 같을 경우
+			if(cu.getUserId().equals(boardDetail.getRegUserId())) {
+				// JS에서 /n을 변수에 넣을 때 줄바꿈으로 인식하여 오류 발생 - Java에서 치환 후 JS에서 치환
+				String content = (boardDetail.getContent()).replaceAll("(\r\n|\r|\n|\n\r)", "<br2>");
+				boardDetail.setContent(content);
+				model.addAttribute("boardDetail", boardDetail);
+			} else {
+				model.addAttribute("status", "W");
+			}
+		} else {
+			model.addAttribute("status", "W");
+		}
+		
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/boardReg");
+		mv.setViewName("board/boardWrite");
 		return mv;
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public @ResponseBody AjaxResult boardAdd(BoardRequestDto boardDto) {
+	public @ResponseBody AjaxResult boardAdd(BoardRequestDto.Create boardDto) {
 		AjaxResult ajaxResult = new AjaxResult();
 		
 		try {
@@ -123,10 +137,10 @@ public class BoardController {
 		
 		try {
 			
-			Optional<Board> boardList = boardRepository.findById(boardSeq);
+			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
 			
 			ajaxResult.setResultCode("success");
-			ajaxResult.setData(boardList);
+			ajaxResult.setData(boardDetail);
 			
 		}catch (Exception e) {
 			ajaxResult.setResultCode("fail");

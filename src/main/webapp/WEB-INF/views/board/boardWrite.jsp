@@ -4,20 +4,16 @@
 	
 		<div style="height: 6vh;">
 			<input type="text" class="form-control form-control-dark" id="title" placeholder="제목을 입력하세요." style="float:left; width: 47vw;"/>
-			
-<!-- 			<input type="button" class="btn btn-outline-secondary me-2" onclick="menuPopup();" value="메뉴선택" style="float:left; margin-left: 3vw; width: 6vw;"/> -->
-			
-<!-- 			<input type="button" class="btn btn-outline-secondary me-2" onclick="" style="margin-left:1vw;" value="공개여부"/> -->
-			
 			<input type="button" class="btn btn-outline-secondary me-2" onclick="openModal();" value="출간하기" style="float:right;"/>
 		</div>
 		<div id="editor" style="background-color: white;"></div>
 	</div>
 	
+<!-- 	모달 -->
+	
 	<div class="writeModal">
 		<div class="div-write0">
 			<div class="div-write1">
-				
 				<div class="div-write2">
 					<span class="span-write0">포스트 미리보기</span>
 					<div style="width: 100%; padding-top: 55.11%; position: relative;">
@@ -31,7 +27,7 @@
 					</div>
 					<div style="margin-top: 1.5rem">
 						<span class="span-write0">제목</span>
-						<textarea placeholder="당신의 포스트를 짧게 소개해보세요." class="textarea-write0"></textarea>
+						<textarea placeholder="당신의 포스트를 짧게 소개해보세요." class="textarea-write0" id="thumbnail_txt"></textarea>
 					</div>
 				</div>	 
 				
@@ -57,20 +53,39 @@
 	</div>
 	
 	<script type="text/javascript">
+// 	history.replaceState({}, null, location.pathname); 
+	
+	let initialValue = '';
+
+	$(document).ready(function(){
+		
+		// 수정일 경우
+		if("${status}" == "R"){
+			$('#title').val('${boardDetail.title}');
+			initialValue = '${boardDetail.content}';
+			$('#thumbnail_img_url').val('${boardDetail.thumbnail}');
+			$('#thumbnail_txt').val('${boardDetail.thumbnail_txt}');
+			
+			var content = '${boardDetail.content}';
+			content = content.replaceAll('<br2>','\r\n');
+			editor.setMarkdown(content);
+		}
+	});
+	
 	const editor = new toastui.Editor({
 		el: document.querySelector('#editor'),
 		previewStyle: 'vertical',
 		// 표시할 초기 유형
 		initialEditType: 'markdown',
 		// 초기 값, 마크다운 문자열 설정
-// 		initialValue '',
+// 		initialValue: '${boardDetail.content}',
 		width: '80vw',
 		height: '75vh',
+		previewStyle: 'vertical',
 		hooks: {
 	    	addImageBlobHook: (blob, callback) => {
 	    		// blob : 사용자가 선택한 이미지 파일
 	    		// callback : 파일이 업로드 된 후 에디터에 표시할 이미지 주소를 전달하기 위한 콜백함수
-	    		console.log(blob);
 	    		
 	    		const formData = new FormData();
 	        	formData.append('image', blob);
@@ -86,8 +101,6 @@
 	           		processData: false,
 	           		contentType: false,
 	           		success: function(data) {
-	           			//console.log('ajax 이미지 업로드 성공');
-	           			console.log(data);
 	           			url += data.filename;
 	           			
 	           			// callback : 에디터(마크다운 편집기)에 표시할 텍스트, 뷰어에는 imageUrl 주소에 저장된 사진으로 나옴
@@ -95,10 +108,6 @@
 	           			callback(url, '사진 대체 텍스트 입력');
 	           		},
 	           		error: function(e) {
-	           			console.log(e);
-	           			//console.log('ajax 이미지 업로드 실패');
-	           			//console.log(e.abort([statusText]));
-	           			
 	           			callback('image_load_fail', '사진 대체 텍스트 입력');
 	           		}
 	           	});
@@ -121,14 +130,14 @@
 	
 	function boardWrite() {
 		
-		
 		$.ajax({
 	    	type : "POST",
 	        url : "/write",
 	        data : {
 	        	title : $('#title').val(), 
-	        	content : editor.getHTML(),
+	        	content : editor.getMarkdown(),
 	        	thumbnail : $('#thumbnail_img_url').val(),
+	        	thumbnail_txt : $('#thumbnail_txt').val(),
 				regUserId : "${loginUserId}"
 	        },
 	        success : function(res){

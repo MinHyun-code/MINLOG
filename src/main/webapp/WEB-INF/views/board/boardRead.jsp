@@ -12,12 +12,16 @@
 		</div>
 		<div style="margin: 50px 0; float:right;">
 			<input type="button" class="btn-read0" id="" value="통계"/>
-			<input type="button" class="btn-read0" id="" value="수정"/>
+			<input type="button" class="btn-read0" onclick="boardUpdate()" value="수정"/>
 			<input type="button" class="btn-read0" onclick="boardDel()" value="삭제"/>
-			<input type="hidden" id="boardSeq"/>
 		</div>
 		<div class="contents" id="contents"></div>
 	</div>
+	
+	<form id="frm">
+		<input type="hidden" id="boardSeq" name="boardSeq"/>
+		<input type="hidden" name="status" value="R"/>
+	</form>
 	
 	<script type="text/javascript">
 	
@@ -52,13 +56,18 @@
 		
 	});
 	
+	function boardUpdate() {
+		const form = $('#frm');
+		var formData = form.serialize();
+		form.attr("action", "/write");
+		form.submit();
+	}
+	
 	function boardDel() {
-		
-		console.log($('#boardSeq').val());
 		
 		$.ajax({
 	    	type : "POST",
-	        url : "/delete",
+	        url : "/board/delete",
 	        data : {
 	        	boardSeq : $('#boardSeq').val()
 	        },

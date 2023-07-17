@@ -73,4 +73,9 @@ public class Board {
 		this.thumbnail_txt = thumbnail_txt;
 		this.openYn = openYn;
 	}
+	
+	public void changeDelYn(String delYn, LocalDateTime delDate) {
+		this.delYn = delYn;
+		this.delDate = delDate;
+	}
 }

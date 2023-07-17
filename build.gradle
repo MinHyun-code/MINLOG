@@ -43,6 +43,7 @@ dependencies {
     implementation 'org.apache.tiles:tiles-servlet:3.0.8'
 	// jsp changing reflash    
     implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.modelmapper:modelmapper:2.4.2'
 }
 
 tasks.named('test') {

@@ -6,15 +6,15 @@
       <c:forEach var="boardList" items="${boardList}">
         <div style="width: 300px; margin-left: 15px; margin-right: 15px;">
           <div class="card-custom">
-            <c:if test="${boardList.thumbnail == null}">
+            <c:if test="${boardList.thumbnail == null || boardList.thumbnail == ''}">
             	<svg class="bd-placeholder-img card-img-top" style="width:320px;height:170px;cursor: pointer;" xmlns="http://www.w3.org/2000/svg" onclick="viewPageMove(${boardList.boardSeq});" role="img" focusable="false"><rect width="320px" height="100%" fill="#55595c"></rect></svg>
             </c:if>
-            <c:if test="${boardList.thumbnail != null}">
-            	<img alt="" src="${boardList.thumbnail}" style="width:320px;height:170px;cursor: pointer;"/>
+            <c:if test="${boardList.thumbnail != null && boardList.thumbnail != ''}">
+            	<img alt="" src="${boardList.thumbnail}" style="width:320px;height:170px;cursor: pointer;"  onclick="viewPageMove(${boardList.boardSeq});"/>
             </c:if>
             <div class="" style="height: 120px; cursor: pointer; padding: 16px;" onclick="viewPageMove(${boardList.boardSeq});">
-              <h5>${boardList.title}</h5>
-              <span>${boardList.thumbnail_txt}</span>
+              <h4 class="h4-board">${boardList.title}</h4>
+              <span class="p-board">${boardList.thumbnail_txt}</span>
             </div>
             <div class="card-body" style="height: 40px; padding-left: 15px;">
             	<small class="text-small">${boardList.regDate} &nbsp;&nbsp;·11개의 댓글</small>

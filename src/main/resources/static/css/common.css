@@ -265,6 +265,38 @@ body {
 	background-color: white;
 }
 
+.h4-board {
+	font-size: 1rem; 
+	margin: 0px 0px 0.25rem; 
+	line-height: 1.5; 
+	text-overflow: ellipsis; 
+	white-space: nowrap; 
+	overflow: hidden;
+	font-weight: bold;
+}
+
+.p-board {
+	margin: 0px 0px 1.5rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+}
+
+blockquote {
+	border-left: 4px solid #ed9494 !important;
+	background: #F8F9FA;
+	padding: 1rem 1rem 1rem 2rem !important;
+	color: black !important;
+}
+
+blockquote p {
+	color: black !important;
+}
 
 @media(max-width: 700px){
 	.div-read0 {

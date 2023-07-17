@@ -27,13 +27,11 @@ import jpa.blog.service.UserService;
 public class UserController {
 
 	private final UserService userService;
-	private final UserRepository userRepository;
 	
 	// 생성자 주입
 	@Autowired
-	public UserController(UserService userService, UserRepository userRepository) {
+	public UserController(UserService userService) {
 		this.userService = userService;
-		this.userRepository = userRepository;
 	}
 	
 //	----------------  로그인, 로그아웃  ----------------
