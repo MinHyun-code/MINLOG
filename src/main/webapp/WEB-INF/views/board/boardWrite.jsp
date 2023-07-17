@@ -72,7 +72,7 @@
 		}
 	});
 	
-	const editor = new toastui.Editor({
+	const editor = new toastui.Editor({ 
 		el: document.querySelector('#editor'),
 		previewStyle: 'vertical',
 		// 표시할 초기 유형
