@@ -88,7 +88,7 @@ body {
 
 .div-read0 {
 	background-color: white;
-	width: 60vw;
+	width: 50vw;
 	margin:0 auto; 
 	min-height: 90vh; 
 	padding: 100px 0;
@@ -116,6 +116,7 @@ body {
 	position: fixed;
 	background-color: #f8f9fa;
 	display: none;
+	z-index: 100;
 }
 
 .div-write0 {
@@ -196,7 +197,12 @@ body {
 	margin-top: 0.5rem;
 }
 
-.bebpEY, .fxPkFT {
+.fxPkFT.active {
+	border: solid 1px #20c997;
+	color: #20c997;
+}
+
+.fxPkFT {
 	outline: none;
 	flex: 1 1 0%;
 	height: 3rem;
@@ -208,8 +214,8 @@ body {
 	padding: 0px 0px 0px 1rem;
 	border-radius: 4px;
 	cursor: pointer;
-	border: solid 1px #20c997;
-	color: #20c997;
+	border: solid 1px #868e96;
+	color: #868e96;
 }
 
 .description {
@@ -255,7 +261,23 @@ body {
 	font-size: 1.125rem;
 }
 
-.btn-write2:hover {
+.btn-write3 {
+	color: white;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	background-color: #12B886;
+	border-radius: 4px;
+	padding: 0px 1rem;
+	height: 2rem;
+	font-size: 1rem;
+}
+
+.btn-write2:hover, .btn-write3:hover {
 	background-color: #20C997;
 }
 
@@ -296,6 +318,15 @@ blockquote {
 
 blockquote p {
 	color: black !important;
+}
+
+.textarea-comment {
+	width: 100%; 
+	height: 110px; 
+	margin: 0 auto; 
+	resize: none; 
+	outline: none; 
+	border: 1px solid #e1e3e5; 
 }
 
 @media(max-width: 700px){

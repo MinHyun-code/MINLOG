@@ -45,7 +45,7 @@ public class BoardService {
 	public List<BoardResponseDto.BoardList> boardList() {
 
 		// 등록 순서대로 보여주기 (나중에 등록된 것 위로)
-		List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardSeq"));
+		List<Board> boardList = boardRepository.findByDelYnAndOpenYnOrderByBoardSeqDesc("N", "Y");
 		List<BoardResponseDto.BoardList> boardDtoList = new ArrayList<>();
 		for(int i=0; i<boardList.size(); i++) {
 			boardDtoList.add(new BoardResponseDto.BoardList(boardList.get(i)));
@@ -72,4 +72,15 @@ public class BoardService {
     	boardDetail.changeDelYn("Y", now);
     }
 	
+	@Transactional
+	public void boardUpdate(BoardRequestDto.Create boardDto) {
+		Board boardInfo = boardRepository.findByBoardSeq(boardDto.getBoardSeq());
+
+        // 현재 날짜 구하기
+        LocalDateTime now = LocalDateTime.now();
+        
+        boardDto.setUpDate(now);
+        
+		boardInfo.changeBoard(boardDto);
+	}
 }

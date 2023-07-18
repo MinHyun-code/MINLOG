@@ -7,7 +7,7 @@ import jpa.blog.entity.Board;
 import lombok.Data;
 
 public class BoardResponseDto {
-
+	
 	@Data
 	public static class BoardList {
 		private int boardSeq;			// 일련번호
@@ -15,15 +15,18 @@ public class BoardResponseDto {
 		private String regUserId;		// 등록자
 		private String regDate;  		// 등록일자
 		private String thumbnail;		// 썸네일 이미지
-		private String thumbnail_txt;	// 썸네일 텍스트
+		private String thumbnailTxt;	// 썸네일 텍스트
+		private String openYn;
 		
+		// 메인화면 게시글 리스트
 		public BoardList(Board entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
 			this.regUserId = entity.getRegUserId();
 			this.regDate = entity.getRegDate().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 			this.thumbnail = entity.getThumbnail();
-			this.thumbnail_txt = entity.getThumbnail_txt();
+			this.thumbnailTxt = entity.getThumbnailTxt();
+			this.openYn = entity.getOpenYn();
 		}
 	}
 
@@ -39,9 +42,10 @@ public class BoardResponseDto {
 		private String delYn; 			// 삭제여부
 		private String delDate; 		// 삭제일자
 		private String thumbnail;		// 썸네일 이미지
-		private String thumbnail_txt;	// 썸네일 텍스트
+		private String thumbnailTxt;	// 썸네일 텍스트
 		private String openYn;			// 공개여부
 		
+		// 게시글 상세
 		public BoardDetail(Board entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
@@ -51,7 +55,7 @@ public class BoardResponseDto {
 			this.regDate = entity.getRegDate().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 			this.delYn = entity.getDelYn();
 			this.thumbnail = entity.getThumbnail();
-			this.thumbnail_txt = entity.getThumbnail_txt();
+			this.thumbnailTxt = entity.getThumbnailTxt();
 			this.openYn = entity.getOpenYn();
 		}
 	}

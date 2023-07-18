@@ -23,18 +23,18 @@ public class User {
 	@Id
 	private String userId; 			// 아이디 - PK
 
-	@NonNull
+	@Column(nullable = false)
 	private String userPw;	 		// 비밀번호
 	
-	@NonNull
+	@Column(nullable = false)
 	private String userName; 		// 이름
 	
-	@NonNull
+	@Column(nullable = false)
 	private int status; 			// 상태 값
 	
 	private String userIntro;		// 자기소개
 	
-	@NonNull
+	@Column(nullable = false)
 	private LocalDateTime regDate; 	// 생성일
 	
 	private LocalDateTime delDate;	// 삭제일

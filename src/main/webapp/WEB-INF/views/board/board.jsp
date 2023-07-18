@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
-<div class="album py-5 bg-body-tertiary" style="min-height: 1150px; margin-top:10px;">
+<div class="album py-5 bg-body-tertiary" style="min-height: 1150px;">
 
       <div class="row g-4" style="margin: 0 70px;">
       <c:forEach var="boardList" items="${boardList}">
@@ -14,7 +14,7 @@
             </c:if>
             <div class="" style="height: 120px; cursor: pointer; padding: 16px;" onclick="viewPageMove(${boardList.boardSeq});">
               <h4 class="h4-board">${boardList.title}</h4>
-              <span class="p-board">${boardList.thumbnail_txt}</span>
+              <span class="p-board">${boardList.thumbnailTxt}</span>
             </div>
             <div class="card-body" style="height: 40px; padding-left: 15px;">
             	<small class="text-small">${boardList.regDate} &nbsp;&nbsp;·11개의 댓글</small>

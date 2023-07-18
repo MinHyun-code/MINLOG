@@ -41,21 +41,26 @@ import jpa.blog.common.CommonUtil;
 import jpa.blog.dto.AjaxResult;
 import jpa.blog.dto.BoardRequestDto;
 import jpa.blog.dto.BoardResponseDto;
+import jpa.blog.dto.CommentResponseDto;
 import jpa.blog.dto.FileNameModel;
 import jpa.blog.entity.Board;
 import jpa.blog.entity.User;
 import jpa.blog.repository.BoardRepository;
 import jpa.blog.security.CustomUserDetails;
 import jpa.blog.service.BoardService;
+import jpa.blog.service.CommentService;
 
 @RestController
 public class BoardController {
 	
 	private BoardService boardService;
+	private CommentService commentService;
 	private String path = "C:/MinLOG/";
+	
 	@Autowired
-	public BoardController(BoardService boardService, BoardRepository boardRepository) {
+	public BoardController(BoardService boardService, CommentService commentService) {
 		this.boardService = boardService;
+		this.commentService = commentService;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -103,11 +108,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public @ResponseBody AjaxResult boardAdd(BoardRequestDto.Create boardDto) {
+	public @ResponseBody AjaxResult boardAdd(BoardRequestDto.Create boardDto, HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
 		
 		try {
-			boardService.boardWrite(boardDto);
+			String status = CommonUtil.paramNullCheck(request, "status", "");
+			// 수정인 경우
+			if(status.equals("R")) {
+				boardService.boardUpdate(boardDto);
+			} else {
+				boardService.boardWrite(boardDto);
+			}
 			ajaxResult.setResultCode("success");
 		} catch (Exception e) {
 			ajaxResult.setResultCode("fail");
@@ -138,9 +149,11 @@ public class BoardController {
 		try {
 			
 			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
+//			List<CommentResponseDto.CommentList> commentList = commentService.commentList(boardSeq);
 			
 			ajaxResult.setResultCode("success");
 			ajaxResult.setData(boardDetail);
+//			ajaxResult.setData2(commentList);
 			
 		}catch (Exception e) {
 			ajaxResult.setResultCode("fail");

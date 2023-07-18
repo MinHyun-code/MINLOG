@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!-- jstl -->
-	<div>
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="padding: 0 50px; box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;">
+<header>
+	<div id="header">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="padding: 0 50px;">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         	<img src="${pageContext.request.contextPath}/img/logo.png" alt="" style="width: 180px; height: 60px; padding-right: 10px;">
         </a>
@@ -45,7 +46,7 @@
 		
 		<button type="button" class="btn btn-outline-secondary me-2" onclick="menuDisplay()">⚙️</button>
 
-		<div id="menuDiv" class="boxShadow bg-body-tertiary" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; border-radius: 20px; z-index: 100;">
+		<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; border-radius: 20px; z-index: 100;">
 			<ul style="margin: 0 auto; padding-left: 0px;">
 				<sec:authorize access="isAnonymous()">
 				          <li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%;" onclick="forwardLogin()">로그인</button></li>
@@ -62,14 +63,21 @@
       </div>
     </div>
     <script type="text/javascript">
-// 		$(document).ready(function(){
+		$(document).ready(function(){
+			const currentUrl = window.location.href;
+			console.log(currentUrl);
+			if(currentUrl == 'http://localhost:8080/') {
+				$('#header').addClass('bg-body-tertiary');
+			} else {
+				$('#header').removeClass('bg-body-tertiary');
+			}
 // 			var key = getCookie("theme");	 
 // 			if(key == "light") {
 // 				themeLight();
 // 			} else {
 // 				themeDark();
 // 			}
-// 		});
+		});
 		
 		// 외부영역 클릭 시 팝업 닫기
 		$(document).mouseup(function (e){

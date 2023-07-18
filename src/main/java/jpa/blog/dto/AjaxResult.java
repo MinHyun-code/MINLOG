@@ -8,4 +8,5 @@ public class AjaxResult {
     private String resultCode;
     private String resultMessage;
     private Object data;
+    private Object data2;
 }
