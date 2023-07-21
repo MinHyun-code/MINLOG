@@ -65,7 +65,6 @@
     <script type="text/javascript">
 		$(document).ready(function(){
 			const currentUrl = window.location.href;
-			console.log(currentUrl);
 			if(currentUrl == 'http://localhost:8080/') {
 				$('#header').addClass('bg-body-tertiary');
 			} else {

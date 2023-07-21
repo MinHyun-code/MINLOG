@@ -65,6 +65,20 @@ body {
 	margin-right: 0.5rem;
 }
 
+.card-img-custom2 {
+	border-radius: 50%;
+	width: 3.3rem;
+	height: 3.3rem;
+	margin-right: 0.5rem;
+}
+
+.card-img-custom3 {
+	border-radius: 50%;
+	width: 8rem;
+	height: 8rem;
+	margin-right: 0.5rem;
+}
+
 .card-like-custom {
 	display: flex;
 	-webkit-box-align: center;
@@ -320,6 +334,10 @@ blockquote p {
 	color: black !important;
 }
 
+.toastui-editor-contents p {
+	font-size: 1rem;
+}
+
 .textarea-comment {
 	width: 100%; 
 	height: 110px; 
@@ -328,6 +346,52 @@ blockquote p {
 	outline: none; 
 	border: 1px solid #e1e3e5; 
 }
+
+#comment {
+	margin: 4rem 0;	
+}
+
+.comment_div1 {
+	padding: 1.5rem 0;
+	border-bottom: 1px solid #e1e3e5;
+}
+
+.comment_div2 {
+	display: flex;
+	align-items: center;
+}
+
+.comment_span {
+	font-weight: bold;
+	font-size: 1rem;
+	line-height: 1;
+}
+
+.comment_span2 {
+	margin-top: 0.8rem;
+	font-size: 0.875rem;
+	line-height: 1;
+	display: flex;
+	color: #868e96;	
+}
+
+.comment_span3 {
+	font-weight: bold;
+	font-size: 1.5rem;
+	line-height: 1.5;
+}
+
+.comment_span4 {
+	margin-top: 0.8rem;
+	font-size: 1.125rem;
+	line-height: 1;
+	display: flex;
+}
+
+.comment_p {
+	margin: 2rem 0;
+}
+
 
 @media(max-width: 700px){
 	.div-read0 {

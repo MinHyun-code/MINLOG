@@ -41,6 +41,7 @@ import jpa.blog.common.CommonUtil;
 import jpa.blog.dto.AjaxResult;
 import jpa.blog.dto.BoardRequestDto;
 import jpa.blog.dto.BoardResponseDto;
+import jpa.blog.dto.CommentRequestDto;
 import jpa.blog.dto.CommentResponseDto;
 import jpa.blog.dto.FileNameModel;
 import jpa.blog.entity.Board;
@@ -149,11 +150,11 @@ public class BoardController {
 		try {
 			
 			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
-//			List<CommentResponseDto.CommentList> commentList = commentService.commentList(boardSeq);
+			List<CommentResponseDto.CommentList> commentList = commentService.commentList(boardSeq);
 			
 			ajaxResult.setResultCode("success");
 			ajaxResult.setData(boardDetail);
-//			ajaxResult.setData2(commentList);
+			ajaxResult.setData2(commentList);
 			
 		}catch (Exception e) {
 			ajaxResult.setResultCode("fail");
@@ -205,6 +206,23 @@ public class BoardController {
 		try {
 			
 			boardService.boardDelete(boardSeq);
+			
+			ajaxResult.setResultCode("success");
+		}catch (Exception e) {
+			ajaxResult.setResultCode("fail");
+			// TODO: handle exception
+		}
+		
+		return ajaxResult;
+	}
+	
+	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
+	public @ResponseBody AjaxResult commentWrite(CommentRequestDto.Create commentDto) { 
+
+		AjaxResult ajaxResult = new AjaxResult();
+		
+		try {
+			commentService.commentWrite(commentDto);
 			
 			ajaxResult.setResultCode("success");
 		}catch (Exception e) {

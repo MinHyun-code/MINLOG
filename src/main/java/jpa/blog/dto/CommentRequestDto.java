@@ -19,12 +19,15 @@ public class CommentRequestDto {
 	@Builder
 	public static class Create {
 		
-		private int commentSeq;		// 댓글 인덱스
-		private String commentTxt;	// 댓글 내용
-		private Board board;		// 게시글 번호
-		private int commentDepth;	// 계층
-		private int commentOrder;	// 댓글과 대댓글 순서
-		private int groupNum;		// 댓글 그룹
+		private int commentSeq;				// 댓글 인덱스
+		private String commentTxt;			// 댓글 내용
+		private Board board;				// 게시글 번호
+		private int boardSeq;				// 게시글 번호
+		private int depth;					// 계층
+		private String delYn;				// 삭제여부
+		private int groupNum;				// 댓글 그룹
+		private LocalDateTime regDate;		// 등록일자
+		private String regUserId;			// 등록자 ID
 		
 		
 		public Comment toEntity() {
@@ -32,9 +35,11 @@ public class CommentRequestDto {
 					.commentSeq(commentSeq)
 					.commentTxt(commentTxt)
 					.board(board)
-					.commentDepth(commentDepth)
-					.commentOrder(commentOrder)
+					.depth(depth)
 					.groupNum(groupNum)
+					.delYn(delYn)
+					.regDate(regDate)
+					.regUserId(regUserId)
 					.build();
 			return commentEntity;
 		}

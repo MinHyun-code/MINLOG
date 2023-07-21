@@ -1,6 +1,10 @@
 package jpa.blog.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -25,7 +30,7 @@ import lombok.NonNull;
 @Getter
 @Table(name="BOARD")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+@Entity(name="BOARD")
 @DynamicUpdate	// 변경한 필드만 대응
 public class Board {
 
@@ -63,6 +68,10 @@ public class Board {
 	@Column(columnDefinition = "varchar(1)")
 	private String openYn;			// 공개여부
 	
+	
+	// N+1 문제를 방지하기 위해 Set 사용
+	@OneToMany(mappedBy = "board")
+	private Set<Comment> comment = new LinkedHashSet<>();
 	
 	@Builder
 	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
