@@ -1,9 +1,11 @@
 package jpa.blog.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 
+import jpa.blog.common.CommonUtil;
 import jpa.blog.entity.Board;
 import jpa.blog.entity.Comment;
 import lombok.Data;
@@ -21,7 +23,7 @@ public class CommentResponseDto {
 		private String delYn;				// 삭제 여부
 		private LocalDateTime delDate;		// 삭제일자
 		private LocalDateTime upDate;		// 수정일자
-		private LocalDateTime regDate;		// 등록일자
+		private String regDate;				// 등록일자
 		private String regUserId;			// 등록자 ID
 		
 		public CommentList(Comment entity) {
@@ -32,7 +34,7 @@ public class CommentResponseDto {
 			this.delYn = entity.getDelYn();
 			this.upDate = entity.getUpDate();
 			this.delDate = entity.getDelDate();
-			this.regDate = entity.getRegDate();
+			this.regDate = CommonUtil.commentDayDiff(entity.getRegDate());
 			this.regUserId = entity.getRegUserId();
 			this.groupNum = entity.getGroupNum();
 		}

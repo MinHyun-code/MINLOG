@@ -14,6 +14,7 @@ import jpa.blog.entity.Comment;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
 	
-	@Query("select c from COMMENT c left join fetch c.board where c.board.boardSeq = ?1 and c.depth=1")
+	@Query("select c from COMMENT c left join fetch c.board where c.board.boardSeq = ?1")
+//	@Query("select c from COMMENT c left join fetch c.board where c.board.boardSeq = ?1 and c.depth=1")
     List<Comment> findByComment(int boardSeq);
 }

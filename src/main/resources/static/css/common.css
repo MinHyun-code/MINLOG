@@ -392,6 +392,15 @@ blockquote p {
 	margin: 2rem 0;
 }
 
+.comment_div3 {
+	color: #12b886;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.comment_div3:hover {
+	color: #20C997;
+}
 
 @media(max-width: 700px){
 	.div-read0 {

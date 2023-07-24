@@ -3,6 +3,7 @@ package jpa.blog.dto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import jpa.blog.common.CommonUtil;
 import jpa.blog.entity.Board;
 import lombok.Data;
 
@@ -23,7 +24,7 @@ public class BoardResponseDto {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
 			this.regUserId = entity.getRegUserId();
-			this.regDate = entity.getRegDate().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
+			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
 			this.openYn = entity.getOpenYn();
@@ -52,7 +53,7 @@ public class BoardResponseDto {
 			this.content = entity.getContent();
 			this.menuSeq = entity.getMenuSeq();
 			this.regUserId = entity.getRegUserId();
-			this.regDate = entity.getRegDate().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
+			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.delYn = entity.getDelYn();
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
