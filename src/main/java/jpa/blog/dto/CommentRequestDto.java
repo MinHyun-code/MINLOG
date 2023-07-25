@@ -6,6 +6,7 @@ import javax.persistence.Column;
 
 import jpa.blog.entity.Board;
 import jpa.blog.entity.Comment;
+import jpa.blog.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class CommentRequestDto {
 		private String delYn;				// 삭제여부
 		private int groupNum;				// 댓글 그룹
 		private LocalDateTime regDate;		// 등록일자
-		private String regUserId;			// 등록자 ID
+		private User userId;				// 등록자 ID
 		
 		
 		public Comment toEntity() {
@@ -39,7 +40,7 @@ public class CommentRequestDto {
 					.groupNum(groupNum)
 					.delYn(delYn)
 					.regDate(regDate)
-					.regUserId(regUserId)
+					.userId(userId)
 					.build();
 			return commentEntity;
 		}

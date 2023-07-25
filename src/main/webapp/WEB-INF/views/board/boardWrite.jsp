@@ -178,7 +178,7 @@
     	        	thumbnail : $('#thumbnail_img_url').val(),
     	        	thumbnailTxt : $('#thumbnail_txt').val(),
     	        	openYn : $('#open_yn').val(),
-    				regUserId : "${loginUserId}",
+    	        	userId : "${loginUserId}",
        		}
 		}
 
@@ -215,6 +215,7 @@
           var img = document.createElement("img");
           img.className = 'thumbnail';
           img.setAttribute("src", event.target.result);
+          img.setAttribute("onclick", "onClickUpload()");
           $(".div-write5").empty();
           document.querySelector(".div-write5").appendChild(img);
         };

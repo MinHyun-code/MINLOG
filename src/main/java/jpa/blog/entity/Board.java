@@ -8,10 +8,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -47,8 +49,9 @@ public class Board {
 	
 	private int menuSeq;			// 메뉴
 	
-	@Column(nullable = false)
-	private String regUserId;		// 등록자
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User userId;			// 등록자 ID
 	
 	@Column(nullable = false)
 	private LocalDateTime regDate;  // 등록일자
@@ -74,12 +77,12 @@ public class Board {
 	private Set<Comment> comment = new LinkedHashSet<>();
 	
 	@Builder
-	public Board(int boardSeq, String title, String content, int menuSeq, String regUserId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
+	public Board(int boardSeq, String title, String content, int menuSeq, User userId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
 		this.boardSeq = boardSeq;
 		this.title = title;
 		this.content = content;
 		this.menuSeq = menuSeq;
-		this.regUserId = regUserId;
+		this.userId = userId;
 		this.regDate = regDate;
 		this.upDate = upDate;
 		this.delYn = delYn;

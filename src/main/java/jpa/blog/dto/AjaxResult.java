@@ -9,4 +9,5 @@ public class AjaxResult {
     private String resultMessage;
     private Object data;
     private Object data2;
+    private Object data3;
 }

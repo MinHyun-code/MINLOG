@@ -42,7 +42,7 @@ public class CommonUtil {
         	  regDateResult = String.format("%.0f", Math.floor(dayDiff / minute)) + "분";
             //시보다 작으면 몇분전인지
           }else if(dayDiff < day){
-        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "시";
+        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "시간";
             //일보다 작으면 몇시간전인지 
           }else if(dayDiff < month){
         	  regDateResult = String.format("%.0f", Math.floor(dayDiff / day)) + "일";
@@ -85,7 +85,7 @@ public class CommonUtil {
         	regDateResult = String.format("%.0f", Math.floor(dayDiff / minute)) + "분";
             //시보다 작으면 몇분전인지
          }else if(dayDiff < day){
-        	regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "시";
+        	regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "시간";
             //일보다 작으면 몇시간전인지 
           }else if(dayDiff < month){
         	String weekDiff = String.format("%.0f", Math.floor(dayDiff / day));

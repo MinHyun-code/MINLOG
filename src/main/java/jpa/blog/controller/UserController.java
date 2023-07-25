@@ -70,7 +70,7 @@ public class UserController {
 	
 	// 회원가입
 	@RequestMapping(value = "/signUp/action", method = RequestMethod.POST)
-	public @ResponseBody AjaxResult signUp(UserRequestDto dto) {
+	public @ResponseBody AjaxResult signUp(UserRequestDto.Create dto) {
 		AjaxResult ajaxResult = new AjaxResult();
 		boolean existYn = userService.findByUserId(dto.getUserId());
 		

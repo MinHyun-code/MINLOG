@@ -22,9 +22,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 	/* username이 DB에 있는지 확인 */
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		User user = userRepository.findByUserId(userId).orElseThrow(() ->
-		new UsernameNotFoundException("해당 사용자가 존재하지 않습니다. : " + userId));
-	 
+		User user = userRepository.findByUserId(userId);
+		if(user == null) {
+			throw new UsernameNotFoundException("해당 사용자가 존재하지 않습니다. : " + userId);
+		}
 		session.setAttribute("user", new UserSessionDto(user));
 	 
 		/* 시큐리티 세션에 유저 정보 저장 */

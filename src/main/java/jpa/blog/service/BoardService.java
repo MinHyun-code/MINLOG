@@ -19,7 +19,10 @@ import org.springframework.stereotype.Service;
 
 import jpa.blog.dto.BoardRequestDto;
 import jpa.blog.dto.BoardResponseDto;
+import jpa.blog.dto.UserRequestDto;
+import jpa.blog.dto.UserResponseDto;
 import jpa.blog.entity.Board;
+import jpa.blog.entity.User;
 import jpa.blog.repository.BoardRepository;
 import jpa.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,15 +32,20 @@ import lombok.RequiredArgsConstructor;
 public class BoardService {
 
 	private final BoardRepository boardRepository;
+	private final UserRepository userRepository;
+	private final UserService userService;
 	
 	@Transactional
-	public void boardWrite(BoardRequestDto.Create boardDto) {
+	public void boardWrite(BoardRequestDto.Create boardDto, String user_id) {
 		
         // 현재 날짜 구하기
         LocalDateTime now = LocalDateTime.now();
         
+        User user = userRepository.findByUserId(user_id);
+        
         boardDto.setRegDate(now);
         boardDto.setDelYn("N");
+        boardDto.setUserId(user);
 
         boardRepository.save(boardDto.toEntity());
 	}

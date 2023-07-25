@@ -44,24 +44,29 @@ import jpa.blog.dto.BoardResponseDto;
 import jpa.blog.dto.CommentRequestDto;
 import jpa.blog.dto.CommentResponseDto;
 import jpa.blog.dto.FileNameModel;
+import jpa.blog.dto.UserResponseDto;
 import jpa.blog.entity.Board;
 import jpa.blog.entity.User;
 import jpa.blog.repository.BoardRepository;
+import jpa.blog.repository.CommentList;
 import jpa.blog.security.CustomUserDetails;
 import jpa.blog.service.BoardService;
 import jpa.blog.service.CommentService;
+import jpa.blog.service.UserService;
 
 @RestController
 public class BoardController {
 	
 	private BoardService boardService;
 	private CommentService commentService;
+	private UserService userService;
 	private String path = "C:/MinLOG/";
 	
 	@Autowired
-	public BoardController(BoardService boardService, CommentService commentService) {
+	public BoardController(BoardService boardService, CommentService commentService, UserService userService) {
 		this.boardService = boardService;
 		this.commentService = commentService;
+		this.userService = userService;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -90,7 +95,7 @@ public class BoardController {
 			int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
 			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
 			// 로그인한 사용자와 같을 경우
-			if(cu.getUserId().equals(boardDetail.getRegUserId())) {
+			if(cu.getUserId().equals(boardDetail.getUserId())) {
 				// JS에서 /n을 변수에 넣을 때 줄바꿈으로 인식하여 오류 발생 - Java에서 치환 후 JS에서 치환
 				String content = (boardDetail.getContent()).replaceAll("(\r\n|\r|\n|\n\r)", "<br2>");
 				boardDetail.setContent(content);
@@ -109,16 +114,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public @ResponseBody AjaxResult boardAdd(BoardRequestDto.Create boardDto, HttpServletRequest request) {
+	public @ResponseBody AjaxResult boardAdd(@AuthenticationPrincipal CustomUserDetails cu, BoardRequestDto.Create boardDto, HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
 		
 		try {
 			String status = CommonUtil.paramNullCheck(request, "status", "");
+			
 			// 수정인 경우
 			if(status.equals("R")) {
 				boardService.boardUpdate(boardDto);
 			} else {
-				boardService.boardWrite(boardDto);
+				boardService.boardWrite(boardDto, (String) cu.getUserId());
 			}
 			ajaxResult.setResultCode("success");
 		} catch (Exception e) {
@@ -150,7 +156,12 @@ public class BoardController {
 		try {
 			
 			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
-			List<CommentResponseDto.CommentList> commentList = commentService.commentList(boardSeq);
+			
+			CommentRequestDto.Create commentDto = new CommentRequestDto.Create();
+			
+			commentDto.setBoardSeq(boardSeq);
+			
+			List<CommentResponseDto.CommentList> commentList = commentService.commentList(commentDto);
 			
 			ajaxResult.setResultCode("success");
 			ajaxResult.setData(boardDetail);
@@ -223,6 +234,25 @@ public class BoardController {
 		
 		try {
 			commentService.commentWrite(commentDto);
+			
+			ajaxResult.setResultCode("success");
+		}catch (Exception e) {
+			ajaxResult.setResultCode("fail");
+			// TODO: handle exception
+		}
+		
+		return ajaxResult;
+	}
+	
+	@RequestMapping(value = "/read/commentRead", method = RequestMethod.POST)
+	public @ResponseBody AjaxResult commentRead(CommentRequestDto.Create commentDto) { 
+
+		AjaxResult ajaxResult = new AjaxResult();
+
+		try {
+			List<CommentResponseDto.reCommentList> commentList = commentService.reCommentList(commentDto);
+
+			ajaxResult.setData(commentList);
 			
 			ajaxResult.setResultCode("success");
 		}catch (Exception e) {

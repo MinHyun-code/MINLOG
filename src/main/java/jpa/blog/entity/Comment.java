@@ -49,15 +49,16 @@ public class Comment {
 	@Column(nullable = false)
 	private LocalDateTime regDate;		// 등록일자
 	
-	@Column(nullable = false)
-	private String regUserId;		// 등록자 ID
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User userId;				// 등록자 ID
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="board_seq")
-	private Board board;		// 게시글 번호
+	private Board board;				// 게시글 번호
 	
 	@Builder
-	public Comment(int commentSeq, String commentTxt, Board board, int depth, int groupNum, String delYn, LocalDateTime delDate, LocalDateTime upDate, LocalDateTime regDate, String regUserId) {
+	public Comment(int commentSeq, String commentTxt, Board board, int depth, int groupNum, String delYn, LocalDateTime delDate, LocalDateTime upDate, LocalDateTime regDate, User userId) {
 		this.commentSeq = commentSeq;
 		this.commentTxt = commentTxt;
 		this.board =board;
@@ -66,7 +67,7 @@ public class Comment {
 		this.upDate = upDate;
 		this.delDate = delDate;
 		this.regDate = regDate;
-		this.regUserId = regUserId;
+		this.userId = userId;
 		this.groupNum = groupNum;
 	}
 	

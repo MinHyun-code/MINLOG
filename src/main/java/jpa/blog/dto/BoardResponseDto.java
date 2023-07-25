@@ -13,7 +13,7 @@ public class BoardResponseDto {
 	public static class BoardList {
 		private int boardSeq;			// 일련번호
 		private String title;			// 제목
-		private String regUserId;		// 등록자
+		private String userId;			// 등록자
 		private String regDate;  		// 등록일자
 		private String thumbnail;		// 썸네일 이미지
 		private String thumbnailTxt;	// 썸네일 텍스트
@@ -23,7 +23,7 @@ public class BoardResponseDto {
 		public BoardList(Board entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
-			this.regUserId = entity.getRegUserId();
+			this.userId = entity.getUserId().getUserId();
 			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
@@ -37,11 +37,11 @@ public class BoardResponseDto {
 		private String title;			// 제목
 		private String content;			// 내용
 		private int menuSeq;			// 메뉴
-		private String regUserId;		// 등록자
+		private String userId;			// 등록자 ID
+		private String userName;		// 등록자 이름
+		private String userIntro;		// 등록자 소개
 		private String regDate;  		// 등록일자
 		private String upDate; 			// 수정일자
-		private String delYn; 			// 삭제여부
-		private String delDate; 		// 삭제일자
 		private String thumbnail;		// 썸네일 이미지
 		private String thumbnailTxt;	// 썸네일 텍스트
 		private String openYn;			// 공개여부
@@ -52,9 +52,10 @@ public class BoardResponseDto {
 			this.title = entity.getTitle();
 			this.content = entity.getContent();
 			this.menuSeq = entity.getMenuSeq();
-			this.regUserId = entity.getRegUserId();
+			this.userId = entity.getUserId().getUserId();
+			this.userName = entity.getUserId().getUserName();
+			this.userIntro = entity.getUserId().getUserIntro();
 			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
-			this.delYn = entity.getDelYn();
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
 			this.openYn = entity.getOpenYn();

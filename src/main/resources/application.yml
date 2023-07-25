@@ -41,7 +41,7 @@ spring:
 logging:
   level:
   # 로그 레벨 설정 (설정된 레벨의 로그 출력)
-    org.hibernate.type.descriptor.sql: trace
+    # org.hibernate.type.descriptor.sql: trace
     org.hibernate.SQL: debug
     
 

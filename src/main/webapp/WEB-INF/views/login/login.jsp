@@ -94,6 +94,7 @@
             url : "/login/action",
             data : params,
             success : function(res){
+            	console.log(res);
                 alert("로그인 되었습니다.");
             	var result = (JSON.parse(res));
             	window.location.href = Object.values(result);

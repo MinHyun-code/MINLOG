@@ -3,6 +3,7 @@ package jpa.blog.dto;
 import java.time.LocalDateTime;
 
 import jpa.blog.entity.Board;
+import jpa.blog.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class BoardRequestDto {
 		private String title;			// 제목
 		private String content;			// 내용
 		private int menuSeq;
-		private String regUserId;		// 등록자
+		private User userId;			// 등록자
 		private LocalDateTime regDate;  // 등록일자
 		private LocalDateTime upDate; 	// 수정일자
 		private String delYn; 			// 삭제여부
@@ -34,7 +35,7 @@ public class BoardRequestDto {
 					.title(title)
 					.content(content)
 					.menuSeq(menuSeq)
-					.regUserId(regUserId)
+					.userId(userId)
 					.regDate(regDate)
 					.upDate(upDate)
 					.delYn(delYn)

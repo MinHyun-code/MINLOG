@@ -8,5 +8,5 @@ import jpa.blog.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String>{
 	
-	Optional<User> findByUserId(String user_id);
+	User findByUserId(String user_id);
 }
