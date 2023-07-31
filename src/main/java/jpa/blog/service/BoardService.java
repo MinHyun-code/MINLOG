@@ -1,5 +1,8 @@
 package jpa.blog.service;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class BoardService {
 
 	private final BoardRepository boardRepository;
 	private final UserRepository userRepository;
+	private final ImageService imageService;
 	private final UserService userService;
 	
 	@Transactional
@@ -40,12 +44,31 @@ public class BoardService {
 		
         // 현재 날짜 구하기
         LocalDateTime now = LocalDateTime.now();
-        
+
         User user = userRepository.findByUserId(user_id);
         
+        int year = now.getYear();
+        int month = now.getMonthValue();
+        int day = now.getDayOfMonth();
+        
+        String boardSeq = boardRepository.boardSeqCnt(Integer.toString(year), String.format("%02d", month), String.format("%02d", day));
+        
+        
+        // TEMP 폴더에 있는 이미지 옮기기 + 기존 폴더 삭제
+        File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + user_id);
+        File moveFolder = new File("C:\\MinLOG\\board\\" + boardSeq);
+        
+        // 디렉토리 생성
+        boolean directoryCreated = moveFolder.mkdirs();
+        
+        imageService.copy(tempFolder, moveFolder);
+        imageService.delete(tempFolder.toString());
+        
+        boardDto.setContent(boardDto.getContent().replace("temp/"+user_id, boardSeq));
         boardDto.setRegDate(now);
         boardDto.setDelYn("N");
         boardDto.setUserId(user);
+        boardDto.setBoardSeq(boardSeq);
 
         boardRepository.save(boardDto.toEntity());
 	}
@@ -61,7 +84,7 @@ public class BoardService {
 		return boardDtoList;
 	}
 	
-	public BoardResponseDto.BoardDetail boardDetail(int boardSeq) {
+	public BoardResponseDto.BoardDetail boardDetail(String boardSeq) {
 
 		BoardResponseDto.BoardDetail boardDetail = new BoardResponseDto.BoardDetail(boardRepository.findByBoardSeq(boardSeq));
 		
@@ -70,7 +93,7 @@ public class BoardService {
 	
 	
 	@Transactional
-    public void boardDelete(int boardSeq) {
+    public void boardDelete(String boardSeq) {
     	
     	Board boardDetail = boardRepository.findByBoardSeq(boardSeq);
 

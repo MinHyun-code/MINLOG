@@ -111,10 +111,21 @@
 	    		// blob : 사용자가 선택한 이미지 파일
 	    		// callback : 파일이 업로드 된 후 에디터에 표시할 이미지 주소를 전달하기 위한 콜백함수
 	    		
+	    		var urlGubun = "";
+	    		if("${status}" == "R"){
+	    			urlGubun = '${boardDetail.boardSeq}';
+	    		} else {
+	    			urlGubun = "temp";
+	    		}
+	    		
+	    		var customPath = "board/"+urlGubun+"/${loginUserId}/";
+	    		
 	    		const formData = new FormData();
 	        	formData.append('image', blob);
-
-	        	let url = '/images/';
+	    		formData.append('loginUser', '${loginUserId}');      	
+	    		formData.append('customPath', customPath);
+	        	
+	        	let url = '/images/' + customPath;
 	        	
 	   			$.ajax({
 	           		type: 'POST',

@@ -11,7 +11,7 @@ public class BoardResponseDto {
 	
 	@Data
 	public static class BoardList {
-		private int boardSeq;			// 일련번호
+		private String boardSeq;			// 일련번호
 		private String title;			// 제목
 		private String userId;			// 등록자
 		private String regDate;  		// 등록일자
@@ -33,7 +33,7 @@ public class BoardResponseDto {
 
 	@Data
 	public static class BoardDetail {
-		private int boardSeq;			// 일련번호
+		private String boardSeq;		// 일련번호
 		private String title;			// 제목
 		private String content;			// 내용
 		private int menuSeq;			// 메뉴

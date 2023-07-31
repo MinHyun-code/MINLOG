@@ -233,13 +233,9 @@
 			    							+ "<span class=\"comment_span2\">" + data[i].regDate + "</span>"
 			    						+ "</div>"	
 			    						+ "</div>"
-			    						+ "<p class=\"comment_p\">"
+			    						+ "<p class=\"comment_p2\">"
 			    						+ data[i].commentTxt
 			    						+ "</p>"	
-			    						+ "<div class=\"comment_div3\" style=\" padding-bottom: 2rem; border-bottom:1px solid #f1f3f5;\">"
-			        					+ "<svg width=\"12\" height=\"12\" fill=\"none\" viewBox=\"0 0 12 12\"><path fill=\"currentColor\" d=\"M5.5 2.5h1v3h3v1h-3v3h-1v-3h-3v-1h3v-3z\"></path><path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M1 0a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm10 1H1v10h10V1z\" clip-rule=\"evenodd\"></path></svg>"
-			    						+ "<span style=\"margin-left:0.5rem;\" onclick=\"reReplySearchBtn("+groupNum+","+depth+")\">개의 답글</span>"	
-			    						+ "</div>"
 			    			);
 			        	}
 		        		

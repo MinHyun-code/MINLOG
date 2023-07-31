@@ -23,7 +23,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 					+ "group by c.group_num "
 					+ "order by c.comment_seq", 
 					nativeQuery = true)
-    List<CommentList> findByComment(int boardSeq);
+    List<CommentList> findByComment(String boardSeq);
 	
 	@Query(value="select c.comment_seq as commentSeq, c.comment_txt as commentTxt, c.group_num as groupNum, c.reg_date as regDate, c.depth as depth, c.user_id as userId, b.board_seq as boardSeq "
 			+ "from COMMENT c left join BOARD b "
@@ -35,10 +35,10 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 			+ "and c.depth = ?3 "
 			+ "order by c.reg_date ", 
 			nativeQuery = true)
-	List<CommentList> findByReComment(int boardSeq, int groupNum, int depth);
+	List<CommentList> findByReComment(String boardSeq, int groupNum, int depth);
 	
 	@Query(value="select max(group_num) from comment where board_seq = ?1", nativeQuery = true)
-	int findTopGroupNum(int boardSeq);
+	int findTopGroupNum(String boardSeq);
 	
 	Long countByBoard(Board commentDto);
 }

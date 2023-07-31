@@ -4,6 +4,30 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
 }
 
+.header-btn {
+	margin-right: 1.25rem;
+	height: 2rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 1rem;
+	border-radius: 1rem;
+	outline: none;
+	font-weight: bold;
+	word-break: keep-all;
+	background: #f8f9fa;
+	border: #212529;
+	color: #212529;
+	transition: all 0.125s ease-in 0s;
+	border: 1px solid #212529;
+	cursor: pointer;
+	text-align: center;
+}
+
+.header-btn:hover {
+	background: black;
+	color: white;
+}
+
 .boxShadow {
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -391,7 +415,12 @@ blockquote p {
 }
 
 .comment_p {
-	margin: 2rem 0;
+	padding: 2rem 0;
+}
+
+.comment_p2 {
+	padding: 2rem 0;
+	border-bottom:1px solid #f1f3f5;
 }
 
 .comment_div3 {

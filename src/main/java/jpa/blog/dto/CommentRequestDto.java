@@ -23,7 +23,7 @@ public class CommentRequestDto {
 		private int commentSeq;				// 댓글 인덱스
 		private String commentTxt;			// 댓글 내용
 		private Board board;				// 게시글 번호
-		private int boardSeq;				// 게시글 번호
+		private String boardSeq;			// 게시글 번호
 		private int depth;					// 계층
 		private String delYn;				// 삭제여부
 		private int groupNum;				// 댓글 그룹

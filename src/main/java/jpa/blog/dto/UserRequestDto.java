@@ -19,6 +19,7 @@ public class UserRequestDto {
 		private String userId; 			// 아이디 - PK
 		private String userPw;	 		// 비밀번호
 		private String userName; 		// 이름
+		private String userImg;			// 이미지
 		private String userIntro;		// 자기소개
 		private int status; 			// 상태 값
 		private LocalDateTime regDate; 	// 생성일
@@ -31,6 +32,7 @@ public class UserRequestDto {
 				.userId(userId)
 				.userPw(userPw)
 				.userName(userName)
+				.userImg(userImg)
 				.userIntro(userIntro)
 				.status(status)
 				.regDate(regDate)

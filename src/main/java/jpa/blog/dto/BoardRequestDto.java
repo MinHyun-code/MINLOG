@@ -16,7 +16,7 @@ public class BoardRequestDto {
 	@NoArgsConstructor
 	@Builder
 	public static class Create {
-		private int boardSeq;			// 일련번호
+		private String boardSeq;		// 일련번호
 		private String title;			// 제목
 		private String content;			// 내용
 		private int menuSeq;

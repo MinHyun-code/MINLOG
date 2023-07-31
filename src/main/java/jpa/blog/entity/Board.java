@@ -37,9 +37,8 @@ import lombok.NonNull;
 public class Board {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "board_seq")
-	private int boardSeq;			// 일련번호
+	private String boardSeq;		// 일련번호
 	
 	@Column(columnDefinition = "varchar(100)", nullable = false)
 	private String title;			// 제목
@@ -77,7 +76,7 @@ public class Board {
 	private Set<Comment> comment = new LinkedHashSet<>();
 	
 	@Builder
-	public Board(int boardSeq, String title, String content, int menuSeq, User userId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
+	public Board(String boardSeq, String title, String content, int menuSeq, User userId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
 		this.boardSeq = boardSeq;
 		this.title = title;
 		this.content = content;

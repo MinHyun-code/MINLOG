@@ -15,30 +15,30 @@
         
         
 		<sec:authorize access="isAnonymous()">			
-			<button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/login'">새 글 작성</button>
+			<button type="button" class="header-btn" onclick="location.href='/login'">새 글 작성</button>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
-			<button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/write'">새 글 작성</button>
+			<button type="button" class="header-btn" onclick="location.href='/write'">새 글 작성</button>
         </sec:authorize>
         
         
-		<button class="btn btn-bd-primary py-2 d-flex align-items-center md-100" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown"aria-label="Toggle theme (light)" >
-		  <svg class="bi my-1 theme-icon opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-		</button>
-		<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-		  <li>
-		    <button type="button" onclick="themeLight()" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true">
-		      <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-		      Light
-		    </button>
-		  </li>
-		  <li>
-		    <button type="button" onclick="themeDark()" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-		      <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-		      Dark
-		    </button>
-		  </li>
-		</ul>
+<!-- 		<button class="btn btn-bd-primary py-2 d-flex align-items-center md-100" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown"aria-label="Toggle theme (light)" > -->
+<!-- 		  <svg class="bi my-1 theme-icon opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg> -->
+<!-- 		</button> -->
+<!-- 		<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text"> -->
+<!-- 		  <li> -->
+<!-- 		    <button type="button" onclick="themeLight()" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true"> -->
+<!-- 		      <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg> -->
+<!-- 		      Light -->
+<!-- 		    </button> -->
+<!-- 		  </li> -->
+<!-- 		  <li> -->
+<!-- 		    <button type="button" onclick="themeDark()" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false"> -->
+<!-- 		      <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg> -->
+<!-- 		      Dark -->
+<!-- 		    </button> -->
+<!-- 		  </li> -->
+<!-- 		</ul> -->
 		
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input type="search" class="form-control form-control-dark" aria-label="Search">

@@ -17,7 +17,7 @@ public class CommentResponseDto {
 		
 		private int commentSeq;				// ´ñ±Û ÀÎµ¦½º
 		private String commentTxt;			// ´ñ±Û ³»¿ë
-		private int board_seq;				// °Ô½Ã±Û ¹øÈ£
+		private String board_seq;			// °Ô½Ã±Û ¹øÈ£
 		private int depth;					// °èÃþ
 		private int groupNum;				// ´ñ±Û ±×·ì
 		private String delYn;				// »èÁ¦ ¿©ºÎ
@@ -49,7 +49,7 @@ public class CommentResponseDto {
 		
 		private int commentSeq;				// ´ñ±Û ÀÎµ¦½º
 		private String commentTxt;			// ´ñ±Û ³»¿ë
-		private int board_seq;				// °Ô½Ã±Û ¹øÈ£
+		private String board_seq;			// °Ô½Ã±Û ¹øÈ£
 		private int depth;					// °èÃþ
 		private int groupNum;				// ´ñ±Û ±×·ì
 		private String regDate;				// µî·ÏÀÏÀÚ
