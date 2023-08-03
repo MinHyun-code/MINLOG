@@ -59,12 +59,14 @@ public class BoardService {
         File moveFolder = new File("C:\\MinLOG\\board\\" + boardSeq);
         
         // 디렉토리 생성
-        boolean directoryCreated = moveFolder.mkdirs();
+        boolean directoryCreated1 = tempFolder.mkdirs();
+        boolean directoryCreated2 = moveFolder.mkdirs();
         
         imageService.copy(tempFolder, moveFolder);
         imageService.delete(tempFolder.toString());
         
         boardDto.setContent(boardDto.getContent().replace("temp/"+user_id, boardSeq));
+        boardDto.setThumbnail(boardDto.getThumbnail().replace("temp/"+user_id, boardSeq));
         boardDto.setRegDate(now);
         boardDto.setDelYn("N");
         boardDto.setUserId(user);

@@ -28,7 +28,7 @@
 	      <input type="password" class="form-control" id="floatingPassword" onkeyup="enterkey()" style="margin-bottom: 10px;">
 	      <label for="floatingPassword">비밀번호</label>
 	    </div>
-	
+		<button onclick="github_login()">git</button>
 	    <div class="checkbox mb-3">
 	      <label>
 	        <input type="checkbox" value="remember-me" id="checkId"> 아이디 저장
@@ -106,6 +106,12 @@
                	$('#floatingPassword').val("");
             }
         });
+	}
+	
+	function github_login(){
+		  const loginUri = "https://github.com/login/oauth/authorize?client_id=8b0232deb8d470498a51&scope=repo:status read:repo_hook user:email&redirect_uri=http://localhost:8080/callback";
+
+		  location.href = loginUri;
 	}
 </script>
   

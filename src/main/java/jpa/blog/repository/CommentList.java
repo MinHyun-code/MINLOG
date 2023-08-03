@@ -10,6 +10,7 @@ public interface CommentList {
 	int getGroupNum();
 	LocalDateTime getRegDate();
 	String getUserId();
+	String getUserImg();
 	String getBoardSeq();
 	int getDepth();
 	int getCommentCnt();

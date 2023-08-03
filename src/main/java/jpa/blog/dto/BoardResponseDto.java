@@ -39,6 +39,7 @@ public class BoardResponseDto {
 		private int menuSeq;			// 메뉴
 		private String userId;			// 등록자 ID
 		private String userName;		// 등록자 이름
+		private String userImg;			// 등록자 사진
 		private String userIntro;		// 등록자 소개
 		private String regDate;  		// 등록일자
 		private String upDate; 			// 수정일자
@@ -54,6 +55,7 @@ public class BoardResponseDto {
 			this.menuSeq = entity.getMenuSeq();
 			this.userId = entity.getUserId().getUserId();
 			this.userName = entity.getUserId().getUserName();
+			this.userImg = entity.getUserId().getUserImg();
 			this.userIntro = entity.getUserId().getUserIntro();
 			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();

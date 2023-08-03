@@ -235,10 +235,20 @@
 
     	imageFile = event.target.files[0];
 
+		if("${status}" == "R"){
+			urlGubun = '${boardDetail.boardSeq}';
+		} else {
+			urlGubun = "temp";
+		}
+		
+		var customPath = "board/"+urlGubun+"/${loginUserId}/";
+
 		const formData = new FormData();
 		formData.append("image", imageFile);
-        
-        let url = '/images/';
+		formData.append('loginUser', '${loginUserId}');      	
+		formData.append('customPath', customPath);
+    	
+    	let url = '/images/' + customPath;
         
         $.ajax({
        		type: 'POST',
@@ -250,7 +260,7 @@
        		contentType: false,
        		success: function(data) {
        			url += data.filename;
-       			thumbnail_img_url = url;
+       			var thumbnail_img_url = url;
        			$('#thumbnail_img_url').val(thumbnail_img_url);
        		},
        		error: function(e) {

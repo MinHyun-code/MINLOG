@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/", "/signUp/**","/login/**", "/read/**").permitAll() // 해당 경로로 접근 허용
+			.antMatchers("/", "/signUp/**","/login/**", "/read/**", "/imgSave").permitAll() // 해당 경로로 접근 허용
 			.anyRequest().authenticated();	 //antMatchers 외의 경로는 인증을 요구
 		http.formLogin()
 			.loginPage("/login")	// 로그인 페이지 지정
