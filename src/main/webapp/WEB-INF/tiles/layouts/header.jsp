@@ -13,53 +13,34 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         </ul>
         
-        
-		<sec:authorize access="isAnonymous()">			
-			<button type="button" class="header-btn" onclick="location.href='/login'">새 글 작성</button>
-        </sec:authorize>
         <sec:authorize access="isAuthenticated()">
 			<button type="button" class="header-btn" onclick="location.href='/write'">새 글 작성</button>
         </sec:authorize>
-        
-        
-<!-- 		<button class="btn btn-bd-primary py-2 d-flex align-items-center md-100" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown"aria-label="Toggle theme (light)" > -->
-<!-- 		  <svg class="bi my-1 theme-icon opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg> -->
-<!-- 		</button> -->
-<!-- 		<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text"> -->
-<!-- 		  <li> -->
-<!-- 		    <button type="button" onclick="themeLight()" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="true"> -->
-<!-- 		      <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg> -->
-<!-- 		      Light -->
-<!-- 		    </button> -->
-<!-- 		  </li> -->
-<!-- 		  <li> -->
-<!-- 		    <button type="button" onclick="themeDark()" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false"> -->
-<!-- 		      <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg> -->
-<!-- 		      Dark -->
-<!-- 		    </button> -->
-<!-- 		  </li> -->
-<!-- 		</ul> -->
 		
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input type="search" class="form-control form-control-dark" aria-label="Search">
         </form>
-		
-		<button type="button" class="btn btn-outline-secondary me-2" onclick="menuDisplay()">⚙️</button>
 
-		<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; border-radius: 20px; z-index: 100;">
+		<sec:authorize access="isAnonymous()">
+	          <button type="button" class="header-btn" onclick="forwardLogin()">로그인</button>
+	          <button type="button" class="header-btn" onclick="forwardSignUp()">회원가입</button>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+        <sec:authentication property="principal" var="user"/> 
+        <div style="cursor: pointer;" onclick="menuDisplay()">
+	        <div class="sc-fFeiMQ cniJzc">
+	        	<img class="card-img-custom4" src="${user.userImg}" onerror=""/><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>
+	        </div>
+        </div>
+       	<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; z-index: 100; background-color: white;">
 			<ul style="margin: 0 auto; padding-left: 0px;">
-				<sec:authorize access="isAnonymous()">
-				          <li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%;" onclick="forwardLogin()">로그인</button></li>
-				          <li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%;" onclick="forwardSignUp()">회원가입</button></li>
-		        </sec:authorize>
-		        <sec:authorize access="isAuthenticated()">
-<%-- 		            <sec:authentication var="loginName" property="principal.name"/> --%>
-<%-- 		            <sec:authentication var="companyName" property="principal.companyName"/> --%>
-		            
-		            <li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%;" onclick="forwardLogOut()">로그아웃</button></li>
-		        </sec:authorize>
+           		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">내 민로그</button></li>
+           		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">읽기 목록</button></li>
+           		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">설정</button></li>
+           		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;" onclick="forwardLogOut()">로그아웃</button></li>
 			</ul>
 		</div>
+       	</sec:authorize>
       </div>
     </div>
     <script type="text/javascript">
@@ -70,12 +51,6 @@
 			} else {
 				$('#header').removeClass('bg-body-tertiary');
 			}
-// 			var key = getCookie("theme");	 
-// 			if(key == "light") {
-// 				themeLight();
-// 			} else {
-// 				themeDark();
-// 			}
 		});
 		
 		// 외부영역 클릭 시 팝업 닫기
@@ -103,11 +78,7 @@
     	}
     	
     	function menuDisplay() {
-    		if($('#menuDiv').css('display') == 'none') {
-    			$('#menuDiv').show();
-    		} else {
-    			$('#menuDiv').hide();
-    		}
+			$('#menuDiv').toggle();
     	}
     </script>
   </header>

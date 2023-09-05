@@ -13,7 +13,7 @@
 		</div>
 		<div style="margin: 50px 0; float:right; display: none;" id="readDiv">
 			<input type="button" class="btn-read0" id="" value="통계"/>
-			<input type="button" class="btn-read0" onclick="boardUpdate()" value="수정"/>
+			<input type="button" class="btn-read0" onclick="boardRevise()" value="수정"/>
 			<input type="button" class="btn-read0" onclick="boardDel()" value="삭제"/>
 		</div>
 		<div class="contents" id="contents"></div>
@@ -66,7 +66,6 @@
 	        		    viewer : true,
 	        		    initialValue : boardData.content
 	        		});
-	        		console.log(boardData);
 	        		$('#title').html(boardData.title);
 	        		$('#userId').html(boardData.userId);
 	        		$('#boardSeq').val(boardData.boardSeq);
@@ -76,7 +75,6 @@
 	        		$('#regDate').html(" · " + boardData.regDate);
 	        		
 	        		$('#regUserNm').html(boardData.userName);
-	        		console.log(boardData.userImg);
 	        		if(boardData.userImg != null){
 	        			$('#regUserImg').attr("src", boardData.userImg);
 	        		} else {
@@ -128,13 +126,13 @@
 	        	}
 	        },
 	        error : function(XMLHttpRequest, textStatus, errorThrown){
-	            alert("통신 실패.")
+	            toastr.error("통신 실패.")
 	        }
 	    });
 		
 	});
 	
-	function boardUpdate() {
+	function boardRevise() {
 		const form = $('#frm');
 		var formData = form.serialize();
 		form.attr("action", "/write");
@@ -152,15 +150,15 @@
 		        },
 		        success : function(res){
 		        	if(res.resultCode == "success"){
-		        		alert("삭제되었습니다.");
+		        		toastr.success("삭제되었습니다.");
 		        		window.location.href = "/";
 		        	}
 		        	else {
-		        		alert("삭제 중 오류가 발생하였습니다.");
+		        		toastr.error("삭제 중 오류가 발생하였습니다.");
 		        	}
 		        },
 		        error : function(XMLHttpRequest, textStatus, errorThrown){
-		            alert("통신 실패.")
+		        	toastr.error("통신 실패.")
 		        }
 		    });
 		}
@@ -170,7 +168,7 @@
 	function commentWrite(groupNum, depth) {
 		
 		if($('#loginUserId').val() == null || $('#loginUserId').val() == '') {
-			alert("로그인 후 작성 가능합니다.");
+			toastr.warning("로그인 후 작성 가능합니다.");
 			return false;
 		} 
 		
@@ -188,15 +186,15 @@
 	        data : params,
 	        success : function(res){
 	        	if(res.resultCode == "success"){
-	        		alert("등록되었습니다.");
+	        		toastr.success("등록되었습니다.");
 	        		location.reload();
 	        	}
 	        	else {
-	        		alert("등록 중 오류가 발생하였습니다.");
+	        		toastr.error("등록 중 오류가 발생하였습니다.");
 	        	}
 	        },
 	        error : function(XMLHttpRequest, textStatus, errorThrown){
-	            alert("통신 실패.")
+	        	toastr.error("통신 실패.")
 	        }
 	    });
 	}
@@ -250,11 +248,11 @@
 											    				+ "</div>");
 		        	}
 		        	else {
-		        		alert("댓글 조회 중 오류가 발생하였습니다.");
+		        		toastr.error("댓글 조회 중 오류가 발생하였습니다.");
 		        	}
 		        },
 		        error : function(XMLHttpRequest, textStatus, errorThrown){
-		            alert("통신 실패.")
+		        	toastr.error("통신 실패.")
 		        }
 		    });
 		}

@@ -77,7 +77,7 @@ public class CommonUtil {
         String regDateResult = "";
         
         if(dayDiff < seconds) {
-        	regDateResult = "바로 전";
+        	regDateResult = "바로";
         }else if(dayDiff < minute){
         	regDateResult = String.format("%.0f", Math.floor(dayDiff / seconds)) + "초";
             //분보다 작으면 몇초전인지

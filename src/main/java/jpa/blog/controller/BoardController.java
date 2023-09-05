@@ -73,7 +73,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView board(Model model) { 
+	public ModelAndView board(Model model, @AuthenticationPrincipal CustomUserDetails cu) { 
 		
 		List<BoardResponseDto.BoardList> boardList = boardService.boardList(); 
 		model.addAttribute("boardList", boardList);
@@ -95,24 +95,11 @@ public class BoardController {
 		// 기존 임시폴더에 저장된 이미지 삭제
 		File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + (String)cu.getUserId());
 		imageService.delete(tempFolder.toString());
+
+		String boardSeq = request.getParameter("boardSeq");
 		
-//		수정일 경우
-		if(status.equals("R")) {
-			model.addAttribute("status", status);
-			String boardSeq = request.getParameter("boardSeq");
-			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
-			// 로그인한 사용자와 같을 경우
-			if(cu.getUserId().equals(boardDetail.getUserId())) {
-				// JS에서 /n을 변수에 넣을 때 줄바꿈으로 인식하여 오류 발생 - Java에서 치환 후 JS에서 치환
-				String content = (boardDetail.getContent()).replaceAll("(\r\n|\r|\n|\n\r)", "<br2>");
-				boardDetail.setContent(content);
-				model.addAttribute("boardDetail", boardDetail);
-			} else {
-				model.addAttribute("status", "W");
-			}
-		} else {
-			model.addAttribute("status", "W");
-		}
+		model.addAttribute("boardSeq", boardSeq);
+		model.addAttribute("status", status);
 		
 		
 		ModelAndView mv = new ModelAndView();

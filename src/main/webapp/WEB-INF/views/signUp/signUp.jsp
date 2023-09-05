@@ -7,14 +7,16 @@
 	      <div class="row g-3">
 	      
 	        <div class="col-12">
-	          <label for="userId" class="form-label">이메일</label>
+	          <label for="userEmail" class="form-label">이메일</label>
 	          <div class="input-group has-validation">
 	            <span class="input-group-text">🔒</span>
-	            <input type="text" class="form-control" id="userId" name="userId">
+	            <input type="text" class="form-control" id="userEmail" name="userEmail">
 	          </div>
 	        </div>
 	        
 	        <div class="col-sm-6">
+		      <label for="userId" class="form-label">아이디</label>
+	          <input type="text" class="form-control" id="userId" name="userId" value="">
 	          <label for="userName" class="form-label">이름</label>
 	          <input type="text" class="form-control" id="userName" name="userName" value="">
 	          <label for="userPw" class="form-label">비밀번호</label>
@@ -51,12 +53,14 @@
 	function signUpAction() {
 		
 		if($('#userId').val() == "") {
-			alert("이메일은 필수 입력입니다.");
+			toastr.warning("이메일은 필수 입력입니다.");
 			return false;
+		} else if($('#userEmail').val() == "") {
+			toastr.warning("이메일은 필수 입력입니다.");
 		} else if($('#userPw').val() == "") {
-			alert("비밀번호는 필수 입력입니다.");
+			toastr.warning("비밀번호는 필수 입력입니다.");
 		} else if($('#userName').val() == "") {
-			alert("이름은 필수 입력입니다.");
+			toastr.warning("이름은 필수 입력입니다.");
 		}
 		
 		var params = $('#signUpForm').serialize();
@@ -67,15 +71,15 @@
 	        data : params,
 	        success : function(res){
 	           	if(res.resultCode == "success") {
-	           		alert(res.resultMessage);
+	           		toastr.success(res.resultMessage);
 	            	window.location.href = "/login";
 	            	
 	           	} else if(res.resultCode == "fail") {
-	           		alert(res.resultMessage);
+	           		toastr.error(res.resultMessage);
 	           	}
 	        },
 	        error : function(XMLHttpRequest, textStatus, errorThrown){
-	            alert("통신 실패.")
+	        	toastr.error("통신 실패.")
 	        }
 	    });
 	}

@@ -7,6 +7,7 @@
 			<input type="button" class="btn btn-outline-secondary me-2" onclick="openModal();" value="출간하기" style="float:right;"/>
 		</div>
 		<div id="editor" style="background-color: white;"></div>
+		<div id="contents" style="background-color: white;"></div>
 	</div>
 	
 <!-- 	모달 -->
@@ -58,40 +59,51 @@
 	<script type="text/javascript">
 // 	history.replaceState({}, null, location.pathname); 
 	
-	let initialValue = '';
 
 	$(document).ready(function(){
 		
 		// 수정일 경우
 		if("${status}" == "R"){
-			$('#title').val('${boardDetail.title}');
-			initialValue = '${boardDetail.content}';
-			$('#thumbnail_img_url').val('${boardDetail.thumbnail}');
-			$('#thumbnail_txt').val('${boardDetail.thumbnailTxt}');
-			// 썸네일 이미지 있을 경우, 이미지 띄우기
-			if($('#thumbnail_img_url').val() != '') {
-				var img = document.createElement("img");
-				img.className = 'thumbnail';
-				img.setAttribute("src", '${boardDetail.thumbnail}');
-				img.setAttribute("onclick", "onClickUpload()");
-				$(".div-write5").empty();
-		        document.querySelector(".div-write5").appendChild(img);
-			}
-			
-			// 공개여부
-			if('${boardDetail.openYn}' == 'Y') {
-	    		$('#open_yn').val('Y');
-	        	$('#openYnY').addClass('active');
-	        	$('#openYnN').removeClass('active');
-			} else {
-	    		$('#open_yn').val('N');
-	        	$('#openYnN').addClass('active');
-	        	$('#openYnY').removeClass('active');
-			}
-			
-			var content = '${boardDetail.content}';
-			content = content.replaceAll('<br2>','\r\n');
-			editor.setMarkdown(content);
+			$.ajax({
+		    	type : "POST",
+		        url : "/read",
+		        data : {
+		        	boardSeq : "${boardSeq}"
+		        },
+		        success : function(res){
+		        	var data = res.data;
+		        	$('#title').val(data.title);
+					$('#thumbnail_img_url').val(data.thumbnail);
+					$('#thumbnail_txt').val(data.thumbnailTxt);
+					
+					// 썸네일 이미지 있을 경우, 이미지 띄우기
+					if($('#thumbnail_img_url').val() != '') {
+						var img = document.createElement("img");
+						img.className = 'thumbnail';
+						img.setAttribute("src", data.thumbnail);
+						img.setAttribute("onclick", "onClickUpload()");
+						$(".div-write5").empty();
+				        document.querySelector(".div-write5").appendChild(img);
+					}
+					
+					// 공개여부
+					if(data.openYn == 'Y') {
+			    		$('#open_yn').val('Y');
+			        	$('#openYnY').addClass('active');
+			        	$('#openYnN').removeClass('active');
+					} else {
+			    		$('#open_yn').val('N');
+			        	$('#openYnN').addClass('active');
+			        	$('#openYnY').removeClass('active');
+					}
+					
+					var content = data.content;
+					editor.setMarkdown(content);
+		        },
+		        error : function(XMLHttpRequest, textStatus, errorThrown){
+		            toastr.error("통신 실패.")
+		        }
+		    });
 		}
 	});
 	
@@ -102,7 +114,6 @@
 		// 표시할 초기 유형
 		initialEditType: 'markdown',
 		// 초기 값, 마크다운 문자열 설정
-// 		initialValue: '${boardDetail.content}',
 		width: '80vw',
 		height: '75vh',
 		previewStyle: 'vertical',
@@ -113,7 +124,7 @@
 	    		
 	    		var urlGubun = "";
 	    		if("${status}" == "R"){
-	    			urlGubun = '${boardDetail.boardSeq}';
+	    			urlGubun = '${boardSeq}';
 	    		} else {
 	    			urlGubun = "temp";
 	    		}
@@ -167,14 +178,14 @@
 	function boardWrite() {
 		
 		if($('#open_yn').val() == '') {
-			alert("공개 설정을 선택해주세요.");
+			toastr.warning("공개 설정을 선택해주세요.");
 			return false;
 		}
 		
 		var param = {};
 		if('${status}' == "R") {
        		param = {
-       			boardSeq : '${boardDetail.boardSeq}',
+       			boardSeq : '${boardSeq}',
 	        	title : $('#title').val(), 
 	        	content : editor.getMarkdown(),
 	        	thumbnail : $('#thumbnail_img_url').val(),
@@ -199,16 +210,16 @@
 	        data : param,
 	        success : function(res){
 	        	if(res.resultCode == "success"){
-	           		alert("저장되었습니다.");
+	        		toastr.success("저장되었습니다.");
 	            	window.location.href = "/";
 	        	}
 	        	else {
-	        		alert("출간 도중 에러 발생하였습니다. 관리자에게 문의 부탁드립니다.");
+	        		toastr.error("출간 도중 에러 발생하였습니다. 관리자에게 문의 부탁드립니다.");
 	        		return false;
 	        	}
 	        },
 	        error : function(XMLHttpRequest, textStatus, errorThrown){
-	            alert("통신 실패.")
+	        	toastr.error("통신 실패.")
 	        }
 	    });
 	}

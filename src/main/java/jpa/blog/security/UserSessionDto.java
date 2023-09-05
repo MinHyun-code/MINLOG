@@ -10,6 +10,7 @@ public class UserSessionDto implements Serializable {
 	private String userId;
 	private String userPw;
 	private String userName;
+	private String userImg;
 	private Role role;
 	
 	/* Entity -> Dto */
@@ -17,6 +18,7 @@ public class UserSessionDto implements Serializable {
 		this.userId = user.getUserId();
 		this.userPw = user.getUserPw();
 		this.userName = user.getUserName();
+		this.userImg = user.getUserImg();
 		this.role = user.getRole();
 	}
 }

@@ -28,7 +28,7 @@
 	      <input type="password" class="form-control" id="floatingPassword" onkeyup="enterkey()" style="margin-bottom: 10px;">
 	      <label for="floatingPassword">비밀번호</label>
 	    </div>
-		<button onclick="github_login()">git</button>
+<!-- 		<button onclick="github_login()">git</button> -->
 	    <div class="checkbox mb-3">
 	      <label>
 	        <input type="checkbox" value="remember-me" id="checkId"> 아이디 저장
@@ -77,10 +77,10 @@
 	// 로그인 절차
 	function loginSubmit() {
 		if($('#floatingInput').val() == "") {
-			alert("이메일을 입력해주세요."); 
+			toastr.warning("이메일을 입력해주세요."); 
 			return false;
 		} else if($('#floatingPassword').val() == "") {
-			alert("비밀번호를 입력해주세요.");
+			toastr.warning("비밀번호를 입력해주세요.");
 			return false;
 		}
 		
@@ -94,25 +94,24 @@
             url : "/login/action",
             data : params,
             success : function(res){
-            	console.log(res);
-                alert("로그인 되었습니다.");
+            	toastr.success("로그인 되었습니다.");
             	var result = (JSON.parse(res));
             	window.location.href = Object.values(result);
             },
             error : function(XMLHttpRequest, textStatus, error){
             	var result = (JSON.parse(XMLHttpRequest.responseText));
-               	alert(Object.values(result)[1]);
+               	toastr.error(Object.values(result)[1]);
                	
                	$('#floatingPassword').val("");
             }
         });
 	}
 	
-	function github_login(){
-		  const loginUri = "https://github.com/login/oauth/authorize?client_id=8b0232deb8d470498a51&scope=repo:status read:repo_hook user:email&redirect_uri=http://localhost:8080/callback";
+// 	function github_login(){
+// 		  const loginUri = "https://github.com/login/oauth/authorize?client_id=8b0232deb8d470498a51&scope=repo:status read:repo_hook user:email&redirect_uri=http://localhost:8080/callback";
 
-		  location.href = loginUri;
-	}
+// 		  location.href = loginUri;
+// 	}
 </script>
   
 

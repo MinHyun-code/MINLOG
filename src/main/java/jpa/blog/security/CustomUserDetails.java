@@ -23,7 +23,9 @@ public class CustomUserDetails implements UserDetails {
  
 	@Override
 	public String getUsername() { return user.getUserId(); }
- 
+
+	public String getUserImg() { return user.getUserImg(); }
+	
 	/* 계정 만료 여부
 	 *  true : 만료 안됨
 	 *  false : 만료
