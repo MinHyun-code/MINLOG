@@ -14,7 +14,7 @@
         </ul>
         
         <sec:authorize access="isAuthenticated()">
-			<button type="button" class="header-btn" onclick="location.href='/write'">새 글 작성</button>
+			<button type="button" class="header-btn" onclick="writePageMove()">새 글 작성</button>
         </sec:authorize>
 		
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -28,8 +28,8 @@
         <sec:authorize access="isAuthenticated()">
         <sec:authentication property="principal" var="user"/> 
         <div style="cursor: pointer;" onclick="menuDisplay()">
-	        <div class="sc-fFeiMQ cniJzc">
-	        	<img class="card-img-custom4" src="${user.userImg}" onerror=""/><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>
+	        <div id="menuBtn" class="sc-fFeiMQ cniJzc">
+	        	<img class="card-img-custom4" src="${user.userImg}" onerror="src='/images/common/default_user.png'"/><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>
 	        </div>
         </div>
        	<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; z-index: 100; background-color: white;">
@@ -41,6 +41,8 @@
 			</ul>
 		</div>
        	</sec:authorize>
+       	<form id="frmHeader" method="post">
+       	</form>
       </div>
     </div>
     <script type="text/javascript">
@@ -55,8 +57,8 @@
 		
 		// 외부영역 클릭 시 팝업 닫기
 		$(document).mouseup(function (e){
-			var menuDiv = $('#menuDiv');
-			if(menuDiv.has(e.target).length === 0){
+			var menuBtn = $('#menuBtn');
+			if(menuBtn.has(e.target).length === 0){
 				$('#menuDiv').hide();
 			}
 		});
@@ -76,6 +78,10 @@
     			return false;
     		}
     	}
+    	// 게시글 작성 페이지 이동
+        function writePageMove() {
+        	$("#frmHeader").attr("action","/write").submit();
+        }
     	
     	function menuDisplay() {
 			$('#menuDiv').toggle();

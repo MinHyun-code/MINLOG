@@ -83,7 +83,7 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public ModelAndView boardWritePage(@AuthenticationPrincipal CustomUserDetails cu, Model model, HttpServletRequest request) { 
 		
 		if(cu != null) {
@@ -107,7 +107,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/write/data", method = RequestMethod.POST)
 	public @ResponseBody AjaxResult boardAdd(@AuthenticationPrincipal CustomUserDetails cu, BoardRequestDto.Create boardDto, HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
 		
@@ -169,12 +169,13 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public ModelAndView boardReadPage(@AuthenticationPrincipal CustomUserDetails cu, Model model, String boardSeq) { 
+	@RequestMapping(value = "/read", method = RequestMethod.POST)
+	public ModelAndView boardReadPage(@AuthenticationPrincipal CustomUserDetails cu, Model model, HttpServletRequest request) { 
 		
 		if(cu != null) {
 			model.addAttribute("loginUserId", cu.getUserId());
 		}
+		String boardSeq = request.getParameter("boardSeq");
 		model.addAttribute("boardSeq", boardSeq);
 		
 		ModelAndView mv = new ModelAndView();
@@ -182,7 +183,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/read", method = RequestMethod.POST)
+	@RequestMapping(value = "/read/data", method = RequestMethod.POST)
 	public @ResponseBody AjaxResult boardReadData(@AuthenticationPrincipal CustomUserDetails cu, String boardSeq) { 
 
 		AjaxResult ajaxResult = new AjaxResult();

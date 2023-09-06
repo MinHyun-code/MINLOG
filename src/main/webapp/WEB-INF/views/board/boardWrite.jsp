@@ -66,7 +66,7 @@
 		if("${status}" == "R"){
 			$.ajax({
 		    	type : "POST",
-		        url : "/read",
+		        url : "/read/data",
 		        data : {
 		        	boardSeq : "${boardSeq}"
 		        },
@@ -206,7 +206,7 @@
 
 		$.ajax({
 	    	type : "POST",
-	        url : "/write",
+	        url : "/write/data",
 	        data : param,
 	        success : function(res){
 	        	if(res.resultCode == "success"){

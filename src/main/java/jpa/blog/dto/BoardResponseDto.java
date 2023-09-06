@@ -11,23 +11,25 @@ public class BoardResponseDto {
 	
 	@Data
 	public static class BoardList {
-		private String boardSeq;			// 일련번호
+		private String boardSeq;		// 일련번호
 		private String title;			// 제목
 		private String userId;			// 등록자
 		private String regDate;  		// 등록일자
 		private String thumbnail;		// 썸네일 이미지
 		private String thumbnailTxt;	// 썸네일 텍스트
-		private String openYn;
+		private int commentCnt;			// 댓글 개수
 		
 		// 메인화면 게시글 리스트
-		public BoardList(Board entity) {
+		public BoardList(jpa.blog.repository.BoardList entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
-			this.userId = entity.getUserId().getUserId();
+			this.userId = entity.getUserId();
 			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
-			this.openYn = entity.getOpenYn();
+			if(entity.getCommentCnt() > 0) {
+				this.commentCnt = entity.getCommentCnt();
+			}
 		}
 	}
 

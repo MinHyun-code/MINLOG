@@ -26,7 +26,9 @@ import jpa.blog.dto.UserRequestDto;
 import jpa.blog.dto.UserResponseDto;
 import jpa.blog.entity.Board;
 import jpa.blog.entity.User;
+import jpa.blog.repository.BoardList;
 import jpa.blog.repository.BoardRepository;
+import jpa.blog.repository.CommentList;
 import jpa.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -78,8 +80,12 @@ public class BoardService {
 	public List<BoardResponseDto.BoardList> boardList() {
 
 		// 등록 순서대로 보여주기 (나중에 등록된 것 위로)
-		List<Board> boardList = boardRepository.findByDelYnAndOpenYnOrderByBoardSeqDesc("N", "Y");
+		List<BoardList> boardList = new ArrayList<BoardList>();
+		
+		boardList = boardRepository.findMainBoardList();
+		
 		List<BoardResponseDto.BoardList> boardDtoList = new ArrayList<>();
+		
 		for(int i=0; i<boardList.size(); i++) {
 			boardDtoList.add(new BoardResponseDto.BoardList(boardList.get(i)));
 		}

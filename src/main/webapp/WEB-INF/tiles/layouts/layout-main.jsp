@@ -8,6 +8,7 @@
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
+	<tiles:insertAttribute name="side-left"/>
 	<tiles:insertAttribute name="body"/>
 </body>
 </html>

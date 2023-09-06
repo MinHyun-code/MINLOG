@@ -18,7 +18,7 @@
 		</div>
 		<div class="contents" id="contents"></div>
 
-	<form id="frm">
+	<form id="frm" method="post">
 		<input type="hidden" id="boardSeq" name="boardSeq"/>
 		<input type="hidden" name="status" value="R"/>
 	</form>
@@ -52,7 +52,7 @@
 		
 		$.ajax({
 	    	type : "POST",
-	        url : "/read",
+	        url : "/read/data",
 	        data : {
 	        	boardSeq : "${boardSeq}"
 	        },
@@ -133,10 +133,7 @@
 	});
 	
 	function boardRevise() {
-		const form = $('#frm');
-		var formData = form.serialize();
-		form.attr("action", "/write");
-		form.submit();
+		$("#frm").attr("action","/write").submit();
 	}
 	
 	function boardDel() {

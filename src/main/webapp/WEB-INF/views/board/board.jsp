@@ -17,7 +17,7 @@
               <span class="p-board">${boardList.thumbnailTxt}</span>
             </div>
             <div class="card-body" style="height: 40px; padding-left: 15px;">
-            	<small class="text-small">${boardList.regDate} &nbsp;&nbsp;·11개의 댓글</small>
+            	<small class="text-small">${boardList.regDate} &nbsp;&nbsp;·&nbsp;${boardList.commentCnt}개의 댓글</small>
             </div>
             <div class="card-body-custom">
            	 	<a class="card-a-custom" onclick="userSpaceMove();">
@@ -34,13 +34,18 @@
           </div>
         </div>
         </c:forEach>
+        <form id="frm" name="frm" method="post">
+        	<input type="hidden" name="boardSeq" id="boardSeq"/>
+        </form>
       </div>
     
     <script type="text/javascript">
     	
     // 조회 페이지로 이동
-    function viewPageMove(seq) {
-    	window.location.href="/read?boardSeq=" + seq;
+    function viewPageMove(boardSeq) {
+    	$('#boardSeq').val(boardSeq);
+    	console.log($('#boardSeq').val());
+    	$("#frm").attr("action","/read").submit();
     }
     
     // 개인 사용자 공간으로 이동
