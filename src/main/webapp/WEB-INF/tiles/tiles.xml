@@ -2,26 +2,33 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<definition name="layout-main" template="/WEB-INF/tiles/layouts/layout-main.jsp">
-		<put-attribute name="include" value="/WEB-INF/tiles/layouts/include.jsp" />
-		<put-attribute name="header" value="/WEB-INF/tiles/layouts/header.jsp"/>
-		<put-attribute name="body" value=""/>
-	</definition>
-	
-	<definition name="layout-basic" template="/WEB-INF/tiles/layouts/layout-basic.jsp">
+	<definition name="layout-boardRead" template="/WEB-INF/tiles/layouts/layout-main.jsp">
 		<put-attribute name="include" value="/WEB-INF/tiles/layouts/include.jsp" />
 		<put-attribute name="header" value="/WEB-INF/tiles/layouts/header.jsp"/>
 		<put-attribute name="side-left" value="/WEB-INF/tiles/layouts/side-left.jsp"/>
 		<put-attribute name="body" value=""/>
 	</definition>
 	
+	<definition name="layout-basic" template="/WEB-INF/tiles/layouts/layout-basic.jsp">
+		<put-attribute name="include" value="/WEB-INF/tiles/layouts/include.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles/layouts/header.jsp"/>
+		<put-attribute name="side-left" value=""/>
+		<put-attribute name="body" value=""/>
+	</definition>
+	
 	<definition name="layout-login" template="/WEB-INF/tiles/layouts/layout-login.jsp">
 		<put-attribute name="include" value="/WEB-INF/tiles/layouts/include.jsp" />
+		<put-attribute name="header" value=""/>
+		<put-attribute name="side-left" value=""/>
 		<put-attribute name="body" value=""/>
 	</definition>
 	
 	<definition name="board/*" extends="layout-basic">
 		<put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp"/>
+	</definition>
+	
+	<definition name="board/boardRead" extends="layout-boardRead">
+		<put-attribute name="body" value="/WEB-INF/views/board/boardRead.jsp"/>
 	</definition>
 	
 	<definition name="myInfo/*" extends="layout-basic">

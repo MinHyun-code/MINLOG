@@ -85,6 +85,8 @@
 	        		// 댓글
 	        		var comment = res.data2;
 	        		
+	        		console.log(comment);
+	        		
 	        		var totalCnt = 0;
 	        		
 	        		for(var i=0; i<comment.length; i++) {
@@ -126,7 +128,7 @@
 	        	}
 	        },
 	        error : function(XMLHttpRequest, textStatus, errorThrown){
-	            toastr.error("통신 실패.")
+	            toastr.error("관리자에게 문의 부탁드립니다.")
 	        }
 	    });
 		
@@ -165,7 +167,7 @@
 	function commentWrite(groupNum, depth) {
 		
 		if($('#loginUserId').val() == null || $('#loginUserId').val() == '') {
-			toastr.warning("로그인 후 작성 가능합니다.");
+			toastr.error("로그인 후 이용해주세요.");
 			return false;
 		} 
 		

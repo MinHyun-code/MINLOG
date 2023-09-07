@@ -46,10 +46,12 @@ import jpa.blog.dto.CommentResponseDto;
 import jpa.blog.dto.FileNameModel;
 import jpa.blog.dto.UserResponseDto;
 import jpa.blog.entity.Board;
+import jpa.blog.entity.BoardLike;
 import jpa.blog.entity.User;
 import jpa.blog.repository.BoardRepository;
 import jpa.blog.repository.CommentList;
 import jpa.blog.security.CustomUserDetails;
+import jpa.blog.service.BoardLikeService;
 import jpa.blog.service.BoardService;
 import jpa.blog.service.CommentService;
 import jpa.blog.service.ImageService;
@@ -62,14 +64,17 @@ public class BoardController {
 	private CommentService commentService;
 	private UserService userService;
 	private ImageService imageService;
+	private BoardLikeService boardLikeService;
 	private String path = "C:/MinLOG/";
 	
 	@Autowired
-	public BoardController(BoardService boardService, CommentService commentService, UserService userService, ImageService imageService) {
+	public BoardController(BoardService boardService, CommentService commentService, UserService userService, ImageService imageService
+				, BoardLikeService boardLikeService) {
 		this.boardService = boardService;
 		this.commentService = commentService;
 		this.userService = userService;
 		this.imageService = imageService;
+		this.boardLikeService = boardLikeService;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -254,6 +259,28 @@ public class BoardController {
 			List<CommentResponseDto.reCommentList> commentList = commentService.reCommentList(commentDto);
 
 			ajaxResult.setData(commentList);
+			
+			ajaxResult.setResultCode("success");
+		}catch (Exception e) {
+			ajaxResult.setResultCode("fail");
+			// TODO: handle exception
+		}
+		
+		return ajaxResult;
+	}
+
+	@RequestMapping(value = "/like", method = RequestMethod.POST)
+	public @ResponseBody AjaxResult like(HttpServletRequest request) { 
+
+		AjaxResult ajaxResult = new AjaxResult();
+
+		try {
+
+			String boardSeq = CommonUtil.paramNullCheck(request, "boardSeq", "");
+			
+			String msg = boardLikeService.likeUpdate(boardSeq);
+
+			ajaxResult.setResultMessage(msg);
 			
 			ajaxResult.setResultCode("success");
 		}catch (Exception e) {

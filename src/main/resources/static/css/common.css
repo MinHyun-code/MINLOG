@@ -475,8 +475,8 @@ blockquote p {
 
 .sideLeft_div1 {
 	position: absolute;
-	left: 20rem;
-	top: 20rem;
+	left: 17vw;
+	top: 400px;
 }
 
 .sideLeft_div2 {
@@ -503,6 +503,10 @@ blockquote p {
 	cursor: pointer;
 }
 
+.sideLeft_div3:hover {
+	color: black;
+}
+
 .sideLeft_div4 {
 	margin-top: 0.5rem;
 	color: black;
@@ -510,6 +514,11 @@ blockquote p {
 	font-size: 0.75rem;
 	margin-bottom: 1rem;
 	font-weight: bold;
+}
+
+.sideLeft_div1.fixed{
+	position:fixed; 
+	top: 300px;
 }
 
 @media(max-width: 700px){

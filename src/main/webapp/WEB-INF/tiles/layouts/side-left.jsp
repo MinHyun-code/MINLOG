@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="sideLeft_div1">
 	<div class="sideLeft_div2">
-		<div data-testid="like" active="false" class="sideLeft_div3"
+		<div data-testid="like" active="false" class="sideLeft_div3" onclick="boardLike()"
 			style="transform: scale(1);">
 			<svg width="24" height="24" viewBox="0 0 24 24">
 				<path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg>
@@ -53,9 +53,9 @@
 
 <script type="text/javascript">
 	const content = document.querySelector('.content');
-	const wing = document.querySelector('.wing');
+	const wing = document.querySelector('.sideLeft_div1');
 	//컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
-	const contentTop = content.getBoundingClientRect().top + window.scrollY;
+	const contentTop = '100';
 	
 	window.addEventListener('scroll', function(){
 	  if(window.scrollY >= contentTop){
@@ -64,4 +64,27 @@
 	    wing.classList.remove('fixed');
 	  }
 	});
+	
+	function boardLike() {
+		console.log($('#boardSeq').val());	
+		if($('#loginUserId').val() == null || $('#loginUserId').val() == '') {
+			toastr.error("로그인 후 이용해주세요.");
+			return false;
+		} 
+		
+		$.ajax({
+	    	type : "POST",
+	        url : "/like",
+	        data : {
+	        	boardSeq : "${boardSeq}"
+	        },
+	        success : function(res){
+				console.log("좋아요 성공");
+	        },
+	        error : function(XMLHttpRequest, textStatus, errorThrown){
+	            toastr.error("관리자에게 문의 부탁드립니다.")
+	        }
+		
+		
+	}
 </script>
