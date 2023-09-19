@@ -28,7 +28,7 @@
             		<svg width="24" height="24" viewBox="0 0 24 24" class="like-svg">
             			<path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
             		</svg>
-            		0
+            		${boardList.likeCnt}
             	</div>
             </div>
           </div>
@@ -44,7 +44,6 @@
     // 조회 페이지로 이동
     function viewPageMove(boardSeq) {
     	$('#boardSeq').val(boardSeq);
-    	console.log($('#boardSeq').val());
     	$("#frm").attr("action","/read").submit();
     }
     

@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name="BOARD_LIKE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name="BOARD_LIKE")
+@IdClass(BoardLikeKey.class)
 public class BoardLike implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -31,7 +33,7 @@ public class BoardLike implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@Id
 	@JoinColumn(name="user_id")
-	private User userId;			// 사용자 ID
+	private User user;			// 사용자 ID
 
 	@Column(name="like_yn")
 	private String likeYn; 			// 상태 값 (좋아요:Y, 디폴트:N)
@@ -40,9 +42,9 @@ public class BoardLike implements Serializable {
 	private LocalDateTime regDate;	// 등록일자
 	
 	@Builder
-	public BoardLike(Board board, User userId, String likeYn, LocalDateTime regDate) {
+	public BoardLike(Board board, User user, String likeYn, LocalDateTime regDate) {
 		this.board = board;
-		this.userId = userId;
+		this.user = user;
 		this.likeYn = likeYn;
 		this.regDate = regDate;
 	}

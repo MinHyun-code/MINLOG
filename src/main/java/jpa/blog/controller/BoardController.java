@@ -44,6 +44,7 @@ import jpa.blog.dto.BoardResponseDto;
 import jpa.blog.dto.CommentRequestDto;
 import jpa.blog.dto.CommentResponseDto;
 import jpa.blog.dto.FileNameModel;
+import jpa.blog.dto.LikeRequestDto;
 import jpa.blog.dto.UserResponseDto;
 import jpa.blog.entity.Board;
 import jpa.blog.entity.BoardLike;
@@ -195,17 +196,23 @@ public class BoardController {
 		
 		try {
 			
+			// 게시글 정보 
 			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
 			
+			// 댓글 정보
 			CommentRequestDto.Create commentDto = new CommentRequestDto.Create();
-			
 			commentDto.setBoardSeq(boardSeq);
-			
 			List<CommentResponseDto.CommentList> commentList = commentService.commentList(commentDto);
-			
+			String likeYn = "N";
+			if(cu != null) {
+				// 관심 등록 여부
+				likeYn = boardLikeService.likeInfoYn(boardSeq, String.valueOf(cu.getUserId()));
+				ajaxResult.setData3(likeYn);
+			}
 			ajaxResult.setResultCode("success");
 			ajaxResult.setData(boardDetail);
 			ajaxResult.setData2(commentList);
+			ajaxResult.setData3(likeYn);
 			
 		}catch (Exception e) {
 			ajaxResult.setResultCode("fail");
@@ -270,20 +277,35 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/like", method = RequestMethod.POST)
-	public @ResponseBody AjaxResult like(HttpServletRequest request) { 
+	public @ResponseBody AjaxResult like(HttpServletRequest request, @AuthenticationPrincipal CustomUserDetails cu) { 
 
 		AjaxResult ajaxResult = new AjaxResult();
 
 		try {
 
 			String boardSeq = CommonUtil.paramNullCheck(request, "boardSeq", "");
+			String likeYn = CommonUtil.paramNullCheck(request, "likeYn", "");
 			
-			String msg = boardLikeService.likeUpdate(boardSeq);
+			LikeRequestDto.Create likeReqDto = new LikeRequestDto.Create();
+			
+			likeReqDto.setBoardSeq(boardSeq);
+			likeReqDto.setUserId((String) cu.getUserId());
+			likeReqDto.setLikeYn(likeYn);
+			
+			String msg = boardLikeService.likeUpdate(likeReqDto);
 
-			ajaxResult.setResultMessage(msg);
+			if(likeYn.equals("Y")) {
+				likeYn = "N";
+			} else {
+				likeYn = "Y";
+			}
 			
+			ajaxResult.setData(likeYn);
+			
+			ajaxResult.setResultMessage(msg);
 			ajaxResult.setResultCode("success");
 		}catch (Exception e) {
+			ajaxResult.setResultMessage("관리자에게 문의 부탁드립니다.");
 			ajaxResult.setResultCode("fail");
 			// TODO: handle exception
 		}

@@ -15,7 +15,8 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	Board findByBoardSeq(String boardSeq);
 	
 	@Query(value="SELECT b.board_seq as boardSeq, b.menu_seq as menuSeq, b.reg_date as regDate, b.thumbnail, b.thumbnail_txt as thumbnailTxt, b.title, b.user_id as userId, "
-					+ "(SELECT count(*) FROM comment c WHERE c.board_seq = b.board_seq AND c.del_yn = 'N')  as commentCnt "
+					+ "(SELECT count(*) FROM comment c WHERE c.board_seq = b.board_seq AND c.del_yn = 'N')  as commentCnt, "
+					+ "(SELECT count(*) FROM board_like l WHERE l.board_seq = b.board_seq AND l.like_yn = 'Y') as likeCnt "
 					+ "FROM board b "
 					+ "WHERE b.del_yn = 'N' AND b.open_yn = 'Y' "
 					+ "ORDER BY board_seq DESC", nativeQuery = true)

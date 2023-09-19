@@ -44,6 +44,7 @@
 	<div id="comment"></div>
 	
 	<input type="hidden" id="loginUserId" value="${loginUserId}" name="loginUserId"/>
+	<input type="hidden" id="likeYn" name="likeYn"/>
 	</div>
 	
 	<script type="text/javascript">
@@ -85,7 +86,12 @@
 	        		// 댓글
 	        		var comment = res.data2;
 	        		
-	        		console.log(comment);
+	        		$('#likeYn').val(res.data3);
+	        		if(res.data3 == "Y") {
+	        			$('#likeBtn').addClass("active");
+	        		} else {
+	        			$('#likeBtn').removeClass("active");
+	        		}
 	        		
 	        		var totalCnt = 0;
 	        		

@@ -18,6 +18,7 @@ public class BoardResponseDto {
 		private String thumbnail;		// 썸네일 이미지
 		private String thumbnailTxt;	// 썸네일 텍스트
 		private int commentCnt;			// 댓글 개수
+		private int likeCnt;			// 관심 개수
 		
 		// 메인화면 게시글 리스트
 		public BoardList(jpa.blog.repository.BoardList entity) {
@@ -29,6 +30,9 @@ public class BoardResponseDto {
 			this.thumbnailTxt = entity.getThumbnailTxt();
 			if(entity.getCommentCnt() > 0) {
 				this.commentCnt = entity.getCommentCnt();
+			}
+			if(entity.getLikeCnt() > 0) {
+				this.likeCnt = entity.getLikeCnt();
 			}
 		}
 	}

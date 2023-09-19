@@ -17,20 +17,23 @@ public class LikeRequestDto {
 	@NoArgsConstructor
 	@Builder
 	public static class Create {
+
+		private Board board;				// 게시글 번호
+		private String boardSeq;			// 게시글 번호
+		private User user;					// 사용자 ID
+		private String userId;				// 사용자 ID
+		private String likeYn;				// 좋아요 유무
+		private LocalDateTime regDate;		// 등록일자
 		
-		private Board board;
-		private User userId;
-		private String likeYn;
-		private LocalDateTime regDate;
 		
 		public BoardLike toEntity() {
-			BoardLike likeEntity = BoardLike.builder()
+			BoardLike boardLikeEntity = BoardLike.builder()
 					.board(board)
-					.userId(userId)
+					.user(user)
 					.likeYn(likeYn)
 					.regDate(regDate)
 					.build();
-			return likeEntity;
+			return boardLikeEntity;
 		}
 	}
 	

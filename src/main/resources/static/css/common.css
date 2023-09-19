@@ -503,6 +503,19 @@ blockquote p {
 	cursor: pointer;
 }
 
+.sideLeft_div3.active {
+	height: 3rem;
+	width: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffffff;
+	border: 1px solid #dee2e6;
+	border-radius: 1.5rem;
+	color: black;
+	cursor: pointer;
+}
+
 .sideLeft_div3:hover {
 	color: black;
 }
