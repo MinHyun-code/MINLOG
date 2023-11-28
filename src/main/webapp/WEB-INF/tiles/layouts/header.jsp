@@ -32,7 +32,7 @@
 	        	<img class="card-img-custom4" src="${user.userImg}" onerror="src='/images/common/default_user.png'"/><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>
 	        </div>
         </div>
-       	<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; z-index: 100; background-color: white;">
+       	<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; z-index: 100; background-color: white; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;">
 			<ul style="margin: 0 auto; padding-left: 0px;">
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">내 민로그</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">읽기 목록</button></li>

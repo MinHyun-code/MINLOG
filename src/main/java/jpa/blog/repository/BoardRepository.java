@@ -14,11 +14,12 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	@Query(value = "select b, u from BOARD b join USER u on b.userId = u.userId where b.boardSeq = ?1 ")
 	Board findByBoardSeq(String boardSeq);
 	
-	@Query(value="SELECT b.board_seq as boardSeq, b.menu_seq as menuSeq, b.reg_date as regDate, b.thumbnail, b.thumbnail_txt as thumbnailTxt, b.title, b.user_id as userId, "
+	@Query(value="SELECT b.board_seq as boardSeq, b.menu_seq as menuSeq, b.reg_date as regDate, b.thumbnail, b.thumbnail_txt as thumbnailTxt, b.title, b.user_id as userId, u.user_img as regUserImg, "
 					+ "(SELECT count(*) FROM comment c WHERE c.board_seq = b.board_seq AND c.del_yn = 'N')  as commentCnt, "
 					+ "(SELECT count(*) FROM board_like l WHERE l.board_seq = b.board_seq AND l.like_yn = 'Y') as likeCnt "
 					+ "FROM board b "
-					+ "WHERE b.del_yn = 'N' AND b.open_yn = 'Y' "
+					+ "JOIN user u ON b.user_id = u.user_id "
+					+ "WHERE b.del_yn = 'N' AND b.open_yn = 'Y' AND u.status = 0 " 
 					+ "ORDER BY board_seq DESC", nativeQuery = true)
 	List<BoardList> findMainBoardList();
 	

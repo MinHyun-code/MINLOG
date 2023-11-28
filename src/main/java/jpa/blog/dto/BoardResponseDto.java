@@ -17,6 +17,7 @@ public class BoardResponseDto {
 		private String regDate;  		// 등록일자
 		private String thumbnail;		// 썸네일 이미지
 		private String thumbnailTxt;	// 썸네일 텍스트
+		private String regUserImg; 	// 유저 이미지
 		private int commentCnt;			// 댓글 개수
 		private int likeCnt;			// 관심 개수
 		
@@ -28,6 +29,7 @@ public class BoardResponseDto {
 			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
+			this.regUserImg = entity.getRegUserImg();
 			if(entity.getCommentCnt() > 0) {
 				this.commentCnt = entity.getCommentCnt();
 			}

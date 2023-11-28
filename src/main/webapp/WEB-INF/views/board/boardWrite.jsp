@@ -246,13 +246,16 @@
 
     	imageFile = event.target.files[0];
 
+		var customPath = "board/";
+		
 		if("${status}" == "R"){
-			urlGubun = '${boardDetail.boardSeq}';
+			urlGubun = '${boardSeq}';
+			customPath += urlGubun + "/";
 		} else {
 			urlGubun = "temp";
+			customPath += urlGubun+"/${loginUserId}/"
 		}
 		
-		var customPath = "board/"+urlGubun+"/${loginUserId}/";
 
 		const formData = new FormData();
 		formData.append("image", imageFile);
@@ -273,6 +276,7 @@
        			url += data.filename;
        			var thumbnail_img_url = url;
        			$('#thumbnail_img_url').val(thumbnail_img_url);
+       			console.log(url);
        		},
        		error: function(e) {
        			console.log(e);

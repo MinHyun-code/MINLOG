@@ -30,7 +30,7 @@ public class BoardLike implements Serializable {
 	@JoinColumn(name="board_seq")
 	private Board board;			// 게시글 번호
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@Id
 	@JoinColumn(name="user_id")
 	private User user;			// 사용자 ID
