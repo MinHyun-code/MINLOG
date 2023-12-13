@@ -150,7 +150,7 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(!os.contains("win")) {
-			path = "../../../MINLOG_IMG";
+			path = "../../../MINLOG_IMG/";
 		}
 		
 		try {
