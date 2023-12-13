@@ -9,11 +9,19 @@ public class ImageController implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+		String os = System.getProperty("os.name").toLowerCase();
+		String path = "file:/c:/MinLOG/";
+
+		if(!os.contains("win")){
+			path = "file:\\home\\ubuntu\\MINLOG_IMG\\";
+		}
+
 		// TODO Auto-generated method stub
 		registry
 			// 이미지 파일의 요청 경로를 지정한다.
 			.addResourceHandler("/images/**")
 			// 이미지 파일을 불러올 로컬 저장소의 위치를 지정한다.
-			.addResourceLocations("file:/c:/MinLOG/");
+			.addResourceLocations(path);
 	}
 }

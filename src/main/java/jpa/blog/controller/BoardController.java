@@ -66,8 +66,11 @@ public class BoardController {
 	private UserService userService;
 	private ImageService imageService;
 	private BoardLikeService boardLikeService;
-	private String path = "C:/MinLOG/";
 	
+
+	static String os = System.getProperty("os.name").toLowerCase();
+	static String path = "C:/MinLOG/";
+
 	@Autowired
 	public BoardController(BoardService boardService, CommentService commentService, UserService userService, ImageService imageService
 				, BoardLikeService boardLikeService) {
@@ -100,6 +103,11 @@ public class BoardController {
 
 		// 기존 임시폴더에 저장된 이미지 삭제
 		File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + (String)cu.getUserId());
+
+		if(!os.contains("win")) {
+			tempFolder = new File("\\home\\ubuntu\\MINLOG_IMG\\board\\temp\\" + (String)cu.getUserId());
+		}
+
 		imageService.delete(tempFolder.toString());
 
 		String boardSeq = request.getParameter("boardSeq");
@@ -140,6 +148,10 @@ public class BoardController {
 		
 		String url = null;
 		ModelAndView mv = new ModelAndView();
+		
+		if(!os.contains("win")) {
+			path = "\\home\\ubuntu\\MINLOG_IMG";
+		}
 		
 		try {
 

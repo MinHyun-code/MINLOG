@@ -40,6 +40,8 @@ public class BoardService {
 	private final UserRepository userRepository;
 	private final ImageService imageService;
 	private final UserService userService;
+    
+	static String os = System.getProperty("os.name").toLowerCase();
 	
 	@Transactional
 	public void boardWrite(BoardRequestDto.Create boardDto, String user_id) {
@@ -58,7 +60,16 @@ public class BoardService {
         
         // TEMP 폴더에 있는 이미지 옮기기 + 기존 폴더 삭제
         File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + user_id);
+
+        if(!os.contains("win")) {
+			tempFolder = new File("\\home\\ubuntu\\MINLOG_IMG\\board\\temp\\" + user_id);
+		}
+
         File moveFolder = new File("C:\\MinLOG\\board\\" + boardSeq);
+
+        if(!os.contains("win")) {
+			tempFolder = new File("\\home\\ubuntu\\MINLOG_IMG\\board\\" + boardSeq);
+		}
         
         // 디렉토리 생성
         boolean directoryCreated1 = tempFolder.mkdirs();
