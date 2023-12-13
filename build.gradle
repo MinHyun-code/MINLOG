@@ -27,7 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -44,10 +44,6 @@ dependencies {
 	// jsp changing reflash    
     implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.modelmapper:modelmapper:2.4.2'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
 }
 
 def frontendDir = "$projectDir/src/main/frontend"
