@@ -62,13 +62,13 @@ public class BoardService {
         File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + user_id);
 
         if(!os.contains("win")) {
-			tempFolder = new File("\\home\\ubuntu\\MINLOG_IMG\\board\\temp\\" + user_id);
+			tempFolder = new File("..\\..\\..\\home\\ubuntu\\MINLOG_IMG\\board\\temp\\" + user_id);
 		}
 
         File moveFolder = new File("C:\\MinLOG\\board\\" + boardSeq);
 
         if(!os.contains("win")) {
-			tempFolder = new File("\\home\\ubuntu\\MINLOG_IMG\\board\\" + boardSeq);
+			tempFolder = new File("..\\..\\..\\home\\ubuntu\\MINLOG_IMG\\board\\" + boardSeq);
 		}
         
         // 디렉토리 생성

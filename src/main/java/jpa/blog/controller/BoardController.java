@@ -105,7 +105,7 @@ public class BoardController {
 		File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + (String)cu.getUserId());
 
 		if(!os.contains("win")) {
-			tempFolder = new File("\\home\\ubuntu\\MINLOG_IMG\\board\\temp\\" + (String)cu.getUserId());
+			tempFolder = new File("..\\..\\..\\home\\ubuntu\\MINLOG_IMG\\board\\temp\\" + (String)cu.getUserId());
 		}
 
 		imageService.delete(tempFolder.toString());
@@ -150,7 +150,7 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(!os.contains("win")) {
-			path = "\\home\\ubuntu\\MINLOG_IMG";
+			path = "..\\..\\..\\home\\ubuntu\\MINLOG_IMG";
 		}
 		
 		try {
