@@ -15,22 +15,22 @@ public class CommentResponseDto {
 	@Data
 	public static class CommentList {
 		
-		private int commentSeq;				// ´ñ±Û ÀÎµ¦½º
-		private String commentTxt;			// ´ñ±Û ³»¿ë
-		private String board_seq;			// °Ô½Ã±Û ¹øÈ£
-		private int depth;					// °èÃş
-		private int groupNum;				// ´ñ±Û ±×·ì
-		private String delYn;				// »èÁ¦ ¿©ºÎ
-		private LocalDateTime delDate;		// »èÁ¦ÀÏÀÚ
-		private LocalDateTime upDate;		// ¼öÁ¤ÀÏÀÚ
-		private String regDate;				// µî·ÏÀÏÀÚ
-		private String userImg;				// µî·ÏÀÚ ÀÌ¹ÌÁö
-		private String userId;				// µî·ÏÀÚ ID
+		private int commentSeq;				// ëŒ“ê¸€ ì¸ë±ìŠ¤
+		private String commentTxt;			// ëŒ“ê¸€ ë‚´ìš©
+		private String board_seq;			// ê²Œì‹œê¸€ ë²ˆí˜¸
+		private int depth;					// ê³„ì¸µ
+		private int groupNum;				// ëŒ“ê¸€ ê·¸ë£¹
+		private String delYn;				// ì‚­ì œ ì—¬ë¶€
+		private LocalDateTime delDate;		// ì‚­ì œì¼ì
+		private LocalDateTime upDate;		// ìˆ˜ì •ì¼ì
+		private String regDate;				// ë“±ë¡ì¼ì
+		private String userImg;				// ë“±ë¡ì ì´ë¯¸ì§€
+		private String userId;				// ë“±ë¡ì ID
 		
-		private int commentCnt;			// ´ë´ñ±Û °³¼ö
+		private int commentCnt;			// ëŒ€ëŒ“ê¸€ ê°œìˆ˜
 		
 		
-		// °Ô½Ã±Û Á¶È¸ ÆäÀÌÁö (·Îµå ½Ã)
+		// ê²Œì‹œê¸€ ì¡°íšŒ í˜ì´ì§€ (ë¡œë“œ ì‹œ)
 		public CommentList(jpa.blog.repository.CommentList commentList) {
 			this.commentSeq = commentList.getCommentSeq();
 			this.commentTxt = commentList.getCommentTxt();
@@ -49,16 +49,16 @@ public class CommentResponseDto {
 	@Data
 	public static class reCommentList {
 		
-		private int commentSeq;				// ´ñ±Û ÀÎµ¦½º
-		private String commentTxt;			// ´ñ±Û ³»¿ë
-		private String board_seq;			// °Ô½Ã±Û ¹øÈ£
-		private int depth;					// °èÃş
-		private int groupNum;				// ´ñ±Û ±×·ì
-		private String regDate;				// µî·ÏÀÏÀÚ
-		private String userId;				// µî·ÏÀÚ ID
-		private String userImg;				// µî·ÏÀÚ ÀÌ¹ÌÁö
+		private int commentSeq;				// ëŒ“ê¸€ ì¸ë±ìŠ¤
+		private String commentTxt;			// ëŒ“ê¸€ ë‚´ìš©
+		private String board_seq;			// ê²Œì‹œê¸€ ë²ˆí˜¸
+		private int depth;					// ê³„ì¸µ
+		private int groupNum;				// ëŒ“ê¸€ ê·¸ë£¹
+		private String regDate;				// ë“±ë¡ì¼ì
+		private String userId;				// ë“±ë¡ì ID
+		private String userImg;				// ë“±ë¡ì ì´ë¯¸ì§€
 		
-		// °Ô½Ã±Û Á¶È¸ ÆäÀÌÁö (´ë´ñ±Û Á¶È¸ ½Ã)
+		// ê²Œì‹œê¸€ ì¡°íšŒ í˜ì´ì§€ (ëŒ€ëŒ“ê¸€ ì¡°íšŒ ì‹œ)
 		public reCommentList(jpa.blog.repository.CommentList commentList) {
 			this.commentSeq = commentList.getCommentSeq();
 			this.commentTxt = commentList.getCommentTxt();

@@ -26,36 +26,36 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int commentSeq;		// ´ñ±Û ÀÎµ¦½º
+	private int commentSeq;		// ëŒ“ê¸€ ì¸ë±ìŠ¤
 	
 	@Column(nullable = false)
-	private String commentTxt;	// ´ñ±Û ³»¿ë
+	private String commentTxt;	// ëŒ“ê¸€ ë‚´ìš©
 	
 	@Column(nullable = false)
-	private int depth;	// °èÃş
+	private int depth;	// ê³„ì¸µ
 	
 	@Column(nullable = false)
-	private int groupNum;		// ´ñ±Û ±×·ì
+	private int groupNum;		// ëŒ“ê¸€ ê·¸ë£¹
 
 	@Column(columnDefinition = "varchar(1) default 'N'", nullable = false)
-	private String delYn;		// »èÁ¦ ¿©ºÎ
+	private String delYn;		// ì‚­ì œ ì—¬ë¶€
 	
 	@Column
-	private LocalDateTime delDate;		// »èÁ¦ÀÏÀÚ
+	private LocalDateTime delDate;		// ì‚­ì œì¼ì
 	
 	@Column
-	private LocalDateTime upDate;		// ¼öÁ¤ÀÏÀÚ
+	private LocalDateTime upDate;		// ìˆ˜ì •ì¼ì
 	
 	@Column(nullable = false)
-	private LocalDateTime regDate;		// µî·ÏÀÏÀÚ
+	private LocalDateTime regDate;		// ë“±ë¡ì¼ì
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private User userId;				// µî·ÏÀÚ ID
+	private User userId;				// ë“±ë¡ì ID
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="board_seq")
-	private Board board;				// °Ô½Ã±Û ¹øÈ£
+	private Board board;				// ê²Œì‹œê¸€ ë²ˆí˜¸
 	
 	@Builder
 	public Comment(int commentSeq, String commentTxt, Board board, int depth, int groupNum, String delYn, LocalDateTime delDate, LocalDateTime upDate, LocalDateTime regDate, User userId) {

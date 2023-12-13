@@ -44,7 +44,7 @@ public class BoardService {
 	@Transactional
 	public void boardWrite(BoardRequestDto.Create boardDto, String user_id) {
 		
-        // ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+        // í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
         LocalDateTime now = LocalDateTime.now();
 
         User user = userRepository.findByUserId(user_id);
@@ -56,11 +56,11 @@ public class BoardService {
         String boardSeq = boardRepository.boardSeqCnt(Integer.toString(year), String.format("%02d", month), String.format("%02d", day));
         
         
-        // TEMP Æú´õ¿¡ ÀÖ´Â ÀÌ¹ÌÁö ¿Å±â±â + ±âÁ¸ Æú´õ »èÁ¦
+        // TEMP í´ë”ì— ìˆëŠ” ì´ë¯¸ì§€ ì˜®ê¸°ê¸° + ê¸°ì¡´ í´ë” ì‚­ì œ
         File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + user_id);
         File moveFolder = new File("C:\\MinLOG\\board\\" + boardSeq);
         
-        // µğ·ºÅä¸® »ı¼º
+        // ë””ë ‰í† ë¦¬ ìƒì„±
         boolean directoryCreated1 = tempFolder.mkdirs();
         boolean directoryCreated2 = moveFolder.mkdirs();
         
@@ -79,7 +79,7 @@ public class BoardService {
 	
 	public List<BoardResponseDto.BoardList> boardList() {
 
-		// µî·Ï ¼ø¼­´ë·Î º¸¿©ÁÖ±â (³ªÁß¿¡ µî·ÏµÈ °Í À§·Î)
+		// ë“±ë¡ ìˆœì„œëŒ€ë¡œ ë³´ì—¬ì£¼ê¸° (ë‚˜ì¤‘ì— ë“±ë¡ëœ ê²ƒ ìœ„ë¡œ)
 		List<BoardList> boardList = new ArrayList<BoardList>();
 		
 		boardList = boardRepository.findMainBoardList();
@@ -105,7 +105,7 @@ public class BoardService {
     	
     	Board boardDetail = boardRepository.findByBoardSeq(boardSeq);
 
-        // ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+        // í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
         LocalDateTime now = LocalDateTime.now();
         
     	boardDetail.changeDelYn("Y", now);
@@ -115,7 +115,7 @@ public class BoardService {
 	public void boardUpdate(BoardRequestDto.Create boardDto) {
 		Board boardInfo = boardRepository.findByBoardSeq(boardDto.getBoardSeq());
 
-        // ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+        // í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
         LocalDateTime now = LocalDateTime.now();
         
         boardDto.setUpDate(now);

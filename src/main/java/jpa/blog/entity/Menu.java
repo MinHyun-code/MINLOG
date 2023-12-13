@@ -19,13 +19,13 @@ import lombok.NonNull;
 public class Menu {
 	
 	@Id
-	private int menuSeq;		// ¸Ş´º ÀÏ·Ã¹øÈ£
+	private int menuSeq;		// ë©”ë‰´ ì¼ë ¨ë²ˆí˜¸
 	
 	@NonNull
-	private int menuTop;		// »óÀ§¸Ş´º ÀÏ·Ã¹øÈ£
+	private int menuTop;		// ìƒìœ„ë©”ë‰´ ì¼ë ¨ë²ˆí˜¸
 	
 	@NonNull
-	private String menuName; 	// ¸Ş´º ¸í
+	private String menuName; 	// ë©”ë‰´ ëª…
 	
 	@Builder
 	public Menu(int menuSeq, int menuTop, String menuName) {

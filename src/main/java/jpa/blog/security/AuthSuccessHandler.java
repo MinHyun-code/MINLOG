@@ -23,11 +23,11 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        // ·Î±×ÀÎ ¼º°ø ½Ã ÀÌÀü ÆäÀÌÁö·Î °¡´Â °æ¿ì
+        // ë¡œê·¸ì¸ ì„±ê³µ ì‹œ ì´ì „ í˜ì´ì§€ë¡œ ê°€ëŠ” ê²½ìš°
         String redirectURL = "/";
         SavedRequest savedRequest = requestCache.getRequest(request,response);
         if(savedRequest != null && !savedRequest.getRedirectUrl().equals("http://localhost:8080/")){
-            // ÀÎÁõ ¹Ş±â Àü url·Î ÀÌµ¿ÇÏ±â
+            // ì¸ì¦ ë°›ê¸° ì „ urlë¡œ ì´ë™í•˜ê¸°
             redirectURL = savedRequest.getRedirectUrl();
         }
         

@@ -9,14 +9,14 @@ public class UserResponseDto {
 	
 	@Data
 	public static class userSimpleInfo{
-		private String userId; 			// ¾ÆÀÌµğ - PK
-		private String userPw;	 		// ºñ¹Ğ¹øÈ£
-		private String userName; 		// ÀÌ¸§
-		private String userIntro;		// ÀÚ±â¼Ò°³
-		private String userImg; 		// ÀÌ¹ÌÁö
-		private int status; 			// »óÅÂ °ª
-		private LocalDateTime regDate; 	// »ı¼ºÀÏ
-		private LocalDateTime delDate;	// »èÁ¦ÀÏ
+		private String userId; 			// ì•„ì´ë”” - PK
+		private String userPw;	 		// ë¹„ë°€ë²ˆí˜¸
+		private String userName; 		// ì´ë¦„
+		private String userIntro;		// ìê¸°ì†Œê°œ
+		private String userImg; 		// ì´ë¯¸ì§€
+		private int status; 			// ìƒíƒœ ê°’
+		private LocalDateTime regDate; 	// ìƒì„±ì¼
+		private LocalDateTime delDate;	// ì‚­ì œì¼
 		
 		public userSimpleInfo(User entity) {
 			this.userId = entity.getUserId();

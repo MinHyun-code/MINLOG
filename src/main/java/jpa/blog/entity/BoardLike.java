@@ -28,18 +28,18 @@ public class BoardLike implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@Id
 	@JoinColumn(name="board_seq")
-	private Board board;			// °Ô½Ã±Û ¹øÈ£
+	private Board board;			// ê²Œì‹œê¸€ ë²ˆí˜¸
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@Id
 	@JoinColumn(name="user_id")
-	private User user;			// »ç¿ëÀÚ ID
+	private User user;			// ì‚¬ìš©ì ID
 
 	@Column(name="like_yn")
-	private String likeYn; 			// »óÅÂ °ª (ÁÁ¾Æ¿ä:Y, µğÆúÆ®:N)
+	private String likeYn; 			// ìƒíƒœ ê°’ (ì¢‹ì•„ìš”:Y, ë””í´íŠ¸:N)
 
 	@Column(nullable = false)
-	private LocalDateTime regDate;	// µî·ÏÀÏÀÚ
+	private LocalDateTime regDate;	// ë“±ë¡ì¼ì
 	
 	@Builder
 	public BoardLike(Board board, User user, String likeYn, LocalDateTime regDate) {

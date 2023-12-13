@@ -9,9 +9,9 @@ import lombok.Data;
 public class MenuResponseDto {
 	
 	@Id
-	private int menuSeq;		// ¸Ş´º ÀÏ·Ã¹øÈ£
-	private int menuTop;		// »óÀ§¸Ş´º ÀÏ·Ã¹øÈ£
-	private String menuName; 	// ¸Ş´º ¸í
+	private int menuSeq;		// ë©”ë‰´ ì¼ë ¨ë²ˆí˜¸
+	private int menuTop;		// ìƒìœ„ë©”ë‰´ ì¼ë ¨ë²ˆí˜¸
+	private String menuName; 	// ë©”ë‰´ ëª…
 	
 	
 	public MenuResponseDto(Menu entity) {

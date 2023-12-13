@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.stereotype.Component;
 
 /**
- * ·Î±×ÀÎ ½ÇÆĞ ÇÚµé·¯
+ * ë¡œê·¸ì¸ ì‹¤íŒ¨ í•¸ë“¤ëŸ¬
  */
 @Component
 public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
@@ -21,36 +21,36 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                                 AuthenticationException exception) throws IOException, ServletException {
 
-        String errorCode = "";  // ¿¡·¯ ÄÚµå
-        String errorMsg = "";   // ¿¡·¯ ¸Ş¼¼Áö
+        String errorCode = "";  // ì—ëŸ¬ ì½”ë“œ
+        String errorMsg = "";   // ì—ëŸ¬ ë©”ì„¸ì§€
 
-//        if(exception instanceof AuthenticationServiceException){    // ÀÎÁõ ¿ä±¸°¡ °ÅºÎµÆÀ» ¶§ ´øÁö´Â ¿¹¿Ü
+//        if(exception instanceof AuthenticationServiceException){    // ì¸ì¦ ìš”êµ¬ê°€ ê±°ë¶€ëì„ ë•Œ ë˜ì§€ëŠ” ì˜ˆì™¸
 //            errorCode = LoginFailType.AUTH_FAIL.getId();
 //            errorMsg = LoginFailType.AUTH_FAIL.getMsg();
 //        }
 
-//        if(exception instanceof LockedException){                   // ÀÎÁõ °ÅºÎ - Àá±ä °èÁ¤
+//        if(exception instanceof LockedException){                   // ì¸ì¦ ê±°ë¶€ - ì ê¸´ ê³„ì •
 //            errorCode = LoginFailType.LOCKED_ACCOUNT.getId();
 //            errorMsg = LoginFailType.LOCKED_ACCOUNT.getMsg();
 //        }
-//        if(exception instanceof DisabledException){                 // ÀÎÁõ °ÅºÎ - °èÁ¤ ºñÈ°¼ºÈ­
+//        if(exception instanceof DisabledException){                 // ì¸ì¦ ê±°ë¶€ - ê³„ì • ë¹„í™œì„±í™”
 //            errorCode = LoginFailType.DISABLED_ACCOUNT.getId();
 //            errorMsg = LoginFailType.DISABLED_ACCOUNT.getMsg();
 //        }
-//        if(exception instanceof AccountExpiredException){           // ÀÎÁõ °ÅºÎ - °èÁ¤ À¯È¿±â°£ ¸¸·á
+//        if(exception instanceof AccountExpiredException){           // ì¸ì¦ ê±°ë¶€ - ê³„ì • ìœ íš¨ê¸°ê°„ ë§Œë£Œ
 //            errorCode = LoginFailType.EXPIRED_ACCOUNT.getId();
 //            errorMsg = LoginFailType.EXPIRED_ACCOUNT.getMsg();
 //        }
-//        if(exception instanceof CredentialsExpiredException){       // ÀÎÁõ °ÅºÎ - ºñ¹Ğ¹øÈ£ À¯È¿±â°£ ¸¸·á
+//        if(exception instanceof CredentialsExpiredException){       // ì¸ì¦ ê±°ë¶€ - ë¹„ë°€ë²ˆí˜¸ ìœ íš¨ê¸°ê°„ ë§Œë£Œ
 //            errorCode = LoginFailType.EXPIRED_PASSWORD.getId();
 //            errorMsg = LoginFailType.EXPIRED_PASSWORD.getMsg();
 //        }
-        if(exception instanceof BadCredentialsException){         // °èÁ¤Á¤º¸°¡ ¾øÀ»¶§
+        if(exception instanceof BadCredentialsException){         // ê³„ì •ì •ë³´ê°€ ì—†ì„ë•Œ
             errorCode = "BAD_CREDENTIALS";
-            errorMsg = "¾ÆÀÌµğ È¤Àº ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä.";
+            errorMsg = "ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”.";
         }
 
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);    // ÀÎÁõ°ÅºÎ
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);    // ì¸ì¦ê±°ë¶€
         response.getWriter().print("{\"errorCode\": \""+errorCode+"\", \"errorMsg\": \""+errorMsg+"\"}");
         response.getWriter().flush();
         //response.sendRedirect("/pages/login?error="+errorCode);

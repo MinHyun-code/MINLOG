@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public interface BoardList {
 	
-	String getBoardSeq();		// ÀÏ·Ã¹øÈ£
-	String getTitle();			// Á¦¸ñ
-	String getUserId();			// µî·ÏÀÚ
-	LocalDateTime getRegDate(); // µî·ÏÀÏÀÚ
-	String getThumbnail();		// ½æ³×ÀÏ ÀÌ¹ÌÁö
-	String getThumbnailTxt();	// ½æ³×ÀÏ ÅØ½ºÆ®
-	String getRegUserImg();		// À¯Àú ÀÌ¹ÌÁö
-	int getCommentCnt();		// ´ñ±Û °³¼ö
-	int getLikeCnt();			// °ü½É °³¼ö
+	String getBoardSeq();		// ì¼ë ¨ë²ˆí˜¸
+	String getTitle();			// ì œëª©
+	String getUserId();			// ë“±ë¡ì
+	LocalDateTime getRegDate(); // ë“±ë¡ì¼ì
+	String getThumbnail();		// ì¸ë„¤ì¼ ì´ë¯¸ì§€
+	String getThumbnailTxt();	// ì¸ë„¤ì¼ í…ìŠ¤íŠ¸
+	String getRegUserImg();		// ìœ ì € ì´ë¯¸ì§€
+	int getCommentCnt();		// ëŒ“ê¸€ ê°œìˆ˜
+	int getLikeCnt();			// ê´€ì‹¬ ê°œìˆ˜
 }

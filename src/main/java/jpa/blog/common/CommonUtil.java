@@ -11,15 +11,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonUtil {
 
-	// ³ÎÃ¼Å©
+	// ë„ì²´í¬
     public static String paramNullCheck(HttpServletRequest request, String paramName, String returnVal) {
         return request.getParameter(paramName)==null?returnVal:request.getParameter(paramName);
     }
     
-    // ´ñ±Û µî·Ï³¯Â¥ ±¸ÇÏ±â
+    // ëŒ“ê¸€ ë“±ë¡ë‚ ì§œ êµ¬í•˜ê¸°
     public static String commentDayDiff(LocalDateTime regDate) {
 
-    	// ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+    	// í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
     	LocalDateTime now = LocalDateTime.now();
     	
         Long dayDiff = Duration.between(regDate, now).toSeconds();
@@ -34,36 +34,36 @@ public class CommonUtil {
         String regDateResult = "";
         
         if(dayDiff < seconds) {
-        	regDateResult = "¹Ù·Î";
+        	regDateResult = "ë°”ë¡œ";
         }else if(dayDiff < minute){
-        	regDateResult = String.format("%.0f", Math.floor(dayDiff / seconds)) + "ÃÊ";
-            //ºĞº¸´Ù ÀÛÀ¸¸é ¸îÃÊÀüÀÎÁö
+        	regDateResult = String.format("%.0f", Math.floor(dayDiff / seconds)) + "ì´ˆ";
+            //ë¶„ë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ì´ˆì „ì¸ì§€
           }else if(dayDiff < hour){
-        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / minute)) + "ºĞ";
-            //½Ãº¸´Ù ÀÛÀ¸¸é ¸îºĞÀüÀÎÁö
+        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / minute)) + "ë¶„";
+            //ì‹œë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ë¶„ì „ì¸ì§€
           }else if(dayDiff < day){
-        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "½Ã°£";
-            //ÀÏº¸´Ù ÀÛÀ¸¸é ¸î½Ã°£ÀüÀÎÁö 
+        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "ì‹œê°„";
+            //ì¼ë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ì‹œê°„ì „ì¸ì§€ 
           }else if(dayDiff < month){
-        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / day)) + "ÀÏ";
-            //´Şº¸´Ù ÀÛÀ¸¸é ¸îÀÏ ÀüÀÎÁö
+        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / day)) + "ì¼";
+            //ë‹¬ë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ì¼ ì „ì¸ì§€
           }else if(dayDiff < year){
-        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / month)) + "´Ş";
-            //³âº¸´Ù ÀÛÀ¸¸é ¸î´ŞÀüÀÎÁö
+        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / month)) + "ë‹¬";
+            //ë…„ë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ë‹¬ì „ì¸ì§€
           }else{
-        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / year)) + "³â";
+        	  regDateResult = String.format("%.0f", Math.floor(dayDiff / year)) + "ë…„";
           }
         
-        regDateResult += " Àü";
+        regDateResult += " ì „";
         
     	return regDateResult;
     }
     
     
-    // °Ô½Ã±Û µî·Ï ³¯Â¥ ±¸ÇÏ±â
+    // ê²Œì‹œê¸€ ë“±ë¡ ë‚ ì§œ êµ¬í•˜ê¸°
     public static String boardDayDiff(LocalDateTime regDate) {
 
-    	// ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+    	// í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
     	LocalDateTime now = LocalDateTime.now();
     	
         Long dayDiff = Duration.between(regDate, now).toSeconds();
@@ -77,27 +77,27 @@ public class CommonUtil {
         String regDateResult = "";
         
         if(dayDiff < seconds) {
-        	regDateResult = "¹Ù·Î";
+        	regDateResult = "ë°”ë¡œ";
         }else if(dayDiff < minute){
-        	regDateResult = String.format("%.0f", Math.floor(dayDiff / seconds)) + "ÃÊ";
-            //ºĞº¸´Ù ÀÛÀ¸¸é ¸îÃÊÀüÀÎÁö
+        	regDateResult = String.format("%.0f", Math.floor(dayDiff / seconds)) + "ì´ˆ";
+            //ë¶„ë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ì´ˆì „ì¸ì§€
          }else if(dayDiff < hour){
-        	regDateResult = String.format("%.0f", Math.floor(dayDiff / minute)) + "ºĞ";
-            //½Ãº¸´Ù ÀÛÀ¸¸é ¸îºĞÀüÀÎÁö
+        	regDateResult = String.format("%.0f", Math.floor(dayDiff / minute)) + "ë¶„";
+            //ì‹œë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ë¶„ì „ì¸ì§€
          }else if(dayDiff < day){
-        	regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "½Ã°£";
-            //ÀÏº¸´Ù ÀÛÀ¸¸é ¸î½Ã°£ÀüÀÎÁö 
+        	regDateResult = String.format("%.0f", Math.floor(dayDiff / hour)) + "ì‹œê°„";
+            //ì¼ë³´ë‹¤ ì‘ìœ¼ë©´ ëª‡ì‹œê°„ì „ì¸ì§€ 
           }else if(dayDiff < month){
         	String weekDiff = String.format("%.0f", Math.floor(dayDiff / day));
         	if(Integer.parseInt(weekDiff) >= 7) {
-        		regDateResult = regDate.format(DateTimeFormatter.ofPattern("yyyy³â MM¿ù ddÀÏ"));
+        		regDateResult = regDate.format(DateTimeFormatter.ofPattern("yyyyë…„ MMì›” ddì¼"));
             	return regDateResult;
         	} else {
-        		regDateResult = weekDiff + "ÀÏ";
+        		regDateResult = weekDiff + "ì¼";
         	}
           }
         
-        regDateResult += " Àü";
+        regDateResult += " ì „";
         
     	return regDateResult;
     }

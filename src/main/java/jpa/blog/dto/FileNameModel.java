@@ -8,7 +8,6 @@ public class FileNameModel {
 		// TODO Auto-generated constructor stub
 	}
 	
-	// 메서드 사용 시간 기준으로 파일 이름 생성
 	public String GenSaveFileName(String extName) {
 		// TODO Auto-generated constructor stub
 		String fileName = "";

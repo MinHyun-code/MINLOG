@@ -20,15 +20,15 @@ public class CommentRequestDto {
 	@Builder
 	public static class Create {
 		
-		private int commentSeq;				// ´ñ±Û ÀÎµ¦½º
-		private String commentTxt;			// ´ñ±Û ³»¿ë
-		private Board board;				// °Ô½Ã±Û ¹øÈ£
-		private String boardSeq;			// °Ô½Ã±Û ¹øÈ£
-		private int depth;					// °èÃş
-		private String delYn;				// »èÁ¦¿©ºÎ
-		private int groupNum;				// ´ñ±Û ±×·ì
-		private LocalDateTime regDate;		// µî·ÏÀÏÀÚ
-		private User userId;				// µî·ÏÀÚ ID
+		private int commentSeq;				// ëŒ“ê¸€ ì¸ë±ìŠ¤
+		private String commentTxt;			// ëŒ“ê¸€ ë‚´ìš©
+		private Board board;				// ê²Œì‹œê¸€ ë²ˆí˜¸
+		private String boardSeq;			// ê²Œì‹œê¸€ ë²ˆí˜¸
+		private int depth;					// ê³„ì¸µ
+		private String delYn;				// ì‚­ì œì—¬ë¶€
+		private int groupNum;				// ëŒ“ê¸€ ê·¸ë£¹
+		private LocalDateTime regDate;		// ë“±ë¡ì¼ì
+		private User userId;				// ë“±ë¡ì ID
 		
 		
 		public Comment toEntity() {

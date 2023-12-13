@@ -11,17 +11,17 @@ public class BoardResponseDto {
 	
 	@Data
 	public static class BoardList {
-		private String boardSeq;		// ÀÏ·Ã¹øÈ£
-		private String title;			// Á¦¸ñ
-		private String userId;			// µî·ÏÀÚ
-		private String regDate;  		// µî·ÏÀÏÀÚ
-		private String thumbnail;		// ½æ³×ÀÏ ÀÌ¹ÌÁö
-		private String thumbnailTxt;	// ½æ³×ÀÏ ÅØ½ºÆ®
-		private String regUserImg; 	// À¯Àú ÀÌ¹ÌÁö
-		private int commentCnt;			// ´ñ±Û °³¼ö
-		private int likeCnt;			// °ü½É °³¼ö
+		private String boardSeq;		// ì¼ë ¨ë²ˆí˜¸
+		private String title;			// ì œëª©
+		private String userId;			// ë“±ë¡ì
+		private String regDate;  		// ë“±ë¡ì¼ì
+		private String thumbnail;		// ì¸ë„¤ì¼ ì´ë¯¸ì§€
+		private String thumbnailTxt;	// ì¸ë„¤ì¼ í…ìŠ¤íŠ¸
+		private String regUserImg; 	// ìœ ì € ì´ë¯¸ì§€
+		private int commentCnt;			// ëŒ“ê¸€ ê°œìˆ˜
+		private int likeCnt;			// ê´€ì‹¬ ê°œìˆ˜
 		
-		// ¸ŞÀÎÈ­¸é °Ô½Ã±Û ¸®½ºÆ®
+		// ë©”ì¸í™”ë©´ ê²Œì‹œê¸€ ë¦¬ìŠ¤íŠ¸
 		public BoardList(jpa.blog.repository.BoardList entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
@@ -41,21 +41,21 @@ public class BoardResponseDto {
 
 	@Data
 	public static class BoardDetail {
-		private String boardSeq;		// ÀÏ·Ã¹øÈ£
-		private String title;			// Á¦¸ñ
-		private String content;			// ³»¿ë
-		private int menuSeq;			// ¸Ş´º
-		private String userId;			// µî·ÏÀÚ ID
-		private String userName;		// µî·ÏÀÚ ÀÌ¸§
-		private String userImg;			// µî·ÏÀÚ »çÁø
-		private String userIntro;		// µî·ÏÀÚ ¼Ò°³
-		private String regDate;  		// µî·ÏÀÏÀÚ
-		private String upDate; 			// ¼öÁ¤ÀÏÀÚ
-		private String thumbnail;		// ½æ³×ÀÏ ÀÌ¹ÌÁö
-		private String thumbnailTxt;	// ½æ³×ÀÏ ÅØ½ºÆ®
-		private String openYn;			// °ø°³¿©ºÎ
+		private String boardSeq;		// ì¼ë ¨ë²ˆí˜¸
+		private String title;			// ì œëª©
+		private String content;			// ë‚´ìš©
+		private int menuSeq;			// ë©”ë‰´
+		private String userId;			// ë“±ë¡ì ID
+		private String userName;		// ë“±ë¡ì ì´ë¦„
+		private String userImg;			// ë“±ë¡ì ì‚¬ì§„
+		private String userIntro;		// ë“±ë¡ì ì†Œê°œ
+		private String regDate;  		// ë“±ë¡ì¼ì
+		private String upDate; 			// ìˆ˜ì •ì¼ì
+		private String thumbnail;		// ì¸ë„¤ì¼ ì´ë¯¸ì§€
+		private String thumbnailTxt;	// ì¸ë„¤ì¼ í…ìŠ¤íŠ¸
+		private String openYn;			// ê³µê°œì—¬ë¶€
 		
-		// °Ô½Ã±Û »ó¼¼
+		// ê²Œì‹œê¸€ ìƒì„¸
 		public BoardDetail(Board entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();

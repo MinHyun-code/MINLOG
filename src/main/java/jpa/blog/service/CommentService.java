@@ -59,7 +59,7 @@ public class CommentService {
 	public void commentWrite(CommentRequestDto.Create commentDto) {
 		Board boardDetail = boardRepository.findByBoardSeq(commentDto.getBoardSeq());
 		
-        // ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+        // í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
         LocalDateTime now = LocalDateTime.now();
         
         commentDto.setRegDate(now);
@@ -67,12 +67,12 @@ public class CommentService {
 		
         Long cnt = commentRepository.countByBoard(boardDetail);
         
-//        ´ñ±Û Ã¹ µî·Ï ½Ã
+//        ëŒ“ê¸€ ì²« ë“±ë¡ ì‹œ
         if(cnt == 0) {
             commentDto.setGroupNum(1);
         } else {
         	if(commentDto.getGroupNum() == 0) {
-	            // ±×·ìÀÇ °¡Àå Å« °ª Ã£±â
+	            // ê·¸ë£¹ì˜ ê°€ì¥ í° ê°’ ì°¾ê¸°
 	            int commentGroupMax = commentRepository.findTopGroupNum(commentDto.getBoardSeq());
 	            commentDto.setGroupNum(commentGroupMax + 1);
         	}

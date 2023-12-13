@@ -34,28 +34,28 @@ public class BoardLikeService {
 	
 	public String likeUpdate(LikeRequestDto.Create likeReqDto) {
 		
-		// °Ô½Ã±Û Á¤º¸
+		// ê²Œì‹œê¸€ ì •ë³´
 		Board boardDetail = boardRepository.findByBoardSeq(likeReqDto.getBoardSeq());
-		// »ç¿ëÀÚ Á¤º¸
+		// ì‚¬ìš©ì ì •ë³´
 		User userDetail = userRepository.findByUserId(likeReqDto.getUserId());
 		
-		// ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+		// í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
         LocalDateTime now = LocalDateTime.now();
         
         likeReqDto.setRegDate(now);
 
-        // ¸®ÅÏ ¸Ş¼¼Áö
+        // ë¦¬í„´ ë©”ì„¸ì§€
         String msg = "";
         
-        // ÁÁ¾Æ¿ä Ãë¼Ò
+        // ì¢‹ì•„ìš” ì·¨ì†Œ
         if(likeReqDto.getLikeYn().equals("Y")) {
         	likeReqDto.setLikeYn("N");
-    		msg = "°ü½É µî·Ï Ãë¼ÒÇÏ¿´½À´Ï´Ù.";
+    		msg = "ê´€ì‹¬ ë“±ë¡ ì·¨ì†Œí•˜ì˜€ìŠµë‹ˆë‹¤.";
         } 
-        // ÁÁ¾Æ¿ä
+        // ì¢‹ì•„ìš”
         else {
             likeReqDto.setLikeYn("Y");
-    		msg = "°ü½É µî·ÏÇÏ¿´½À´Ï´Ù.";
+    		msg = "ê´€ì‹¬ ë“±ë¡í•˜ì˜€ìŠµë‹ˆë‹¤.";
         }
 		
         likeReqDto.setBoard(boardDetail);

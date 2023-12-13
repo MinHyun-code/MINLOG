@@ -33,45 +33,45 @@ import lombok.NonNull;
 @Table(name="board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name="board")
-@DynamicUpdate	// º¯°æÇÑ ÇÊµå¸¸ ´ëÀÀ
+@DynamicUpdate	// ë³€ê²½í•œ í•„ë“œë§Œ ëŒ€ì‘
 public class Board {
 
 	@Id
 	@Column(name = "board_seq")
-	private String boardSeq;		// ÀÏ·Ã¹øÈ£
+	private String boardSeq;		// ì¼ë ¨ë²ˆí˜¸
 	
 	@Column(columnDefinition = "varchar(100)", nullable = false)
-	private String title;			// Á¦¸ñ
+	private String title;			// ì œëª©
 	
 	@Column(columnDefinition = "TEXT")
-	private String content;			// ³»¿ë
+	private String content;			// ë‚´ìš©
 	
-	private int menuSeq;			// ¸Ş´º
+	private int menuSeq;			// ë©”ë‰´
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private User userId;			// µî·ÏÀÚ ID
+	private User userId;			// ë“±ë¡ì ID
 	
 	@Column(nullable = false)
-	private LocalDateTime regDate;  // µî·ÏÀÏÀÚ
+	private LocalDateTime regDate;  // ë“±ë¡ì¼ì
 	
-	private LocalDateTime upDate; 	// ¼öÁ¤ÀÏÀÚ
+	private LocalDateTime upDate; 	// ìˆ˜ì •ì¼ì
 	
 	@Column(columnDefinition = "varchar(1) default 'N'", nullable = false)
-	private String delYn;			// »èÁ¦¿©ºÎ
+	private String delYn;			// ì‚­ì œì—¬ë¶€
 	
-	private LocalDateTime delDate; 	// »èÁ¦ÀÏÀÚ
+	private LocalDateTime delDate; 	// ì‚­ì œì¼ì
 	
-	private String thumbnail; 		// ½æ³×ÀÏ ÀÌ¹ÌÁö
+	private String thumbnail; 		// ì¸ë„¤ì¼ ì´ë¯¸ì§€
 
 	@Column(columnDefinition = "varchar(150)", nullable = false)
-	private String thumbnailTxt; 	// ½æ³×ÀÏ ÅØ½ºÆ®
+	private String thumbnailTxt; 	// ì¸ë„¤ì¼ í…ìŠ¤íŠ¸
 	
 	@Column(columnDefinition = "varchar(1)")
-	private String openYn;			// °ø°³¿©ºÎ
+	private String openYn;			// ê³µê°œì—¬ë¶€
 	
 	
-	// N+1 ¹®Á¦¸¦ ¹æÁöÇÏ±â À§ÇØ Set »ç¿ë
+	// N+1 ë¬¸ì œë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ Set ì‚¬ìš©
 	@OneToMany(mappedBy = "board")
 	private Set<Comment> comment = new LinkedHashSet<>();
 	
@@ -91,13 +91,13 @@ public class Board {
 		this.openYn = openYn;
 	}
 	
-	// »èÁ¦¿©ºÎ º¯°æ
+	// ì‚­ì œì—¬ë¶€ ë³€ê²½
 	public void changeDelYn(String delYn, LocalDateTime delDate) {
 		this.delYn = delYn;
 		this.delDate = delDate;
 	}
 	
-	// °Ô½Ã±Û ¼öÁ¤
+	// ê²Œì‹œê¸€ ìˆ˜ì •
 	public void changeBoard(BoardRequestDto.Create boardDto) {
 		this.boardSeq = boardDto.getBoardSeq();
 		this.title = boardDto.getTitle();

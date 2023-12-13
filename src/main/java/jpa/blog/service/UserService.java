@@ -35,19 +35,19 @@ public class UserService {
 	public void signUp(UserRequestDto.Create dto) {
 		dto.setUserPw(encoder.encode(dto.getUserPw()));
 		
-        // ÇöÀç ³¯Â¥ ±¸ÇÏ±â
+        // í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°
         LocalDateTime now = LocalDateTime.now();
         
 		dto.setRegDate(now);
 		userRepository.save(dto.toEntity());
 	}
 	
-	// ÇØ´ç ID Á¸Àç ¿©ºÎ È®ÀÎ
+	// í•´ë‹¹ ID ì¡´ì¬ ì—¬ë¶€ í™•ì¸
     public boolean findByUserId(String userId) {
     	return userRepository.existsById(userId);
     }
     
-    // ¾ÆÀÌµğ, ÀÌ¸§, ¼Ò°³±Û, ÀÌ¹ÌÁö Á¶È¸
+    // ì•„ì´ë””, ì´ë¦„, ì†Œê°œê¸€, ì´ë¯¸ì§€ ì¡°íšŒ
     public UserResponseDto.userSimpleInfo userSimpleInfo(String userId) {
     	
     	User userRead = userRepository.findByUserId(userId);

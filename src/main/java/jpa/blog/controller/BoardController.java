@@ -98,7 +98,7 @@ public class BoardController {
 
 		String status = CommonUtil.paramNullCheck(request, "status", "");
 
-		// ±âÁ¸ ÀÓ½ÃÆú´õ¿¡ ÀúÀåµÈ ÀÌ¹ÌÁö »èÁ¦
+		// ê¸°ì¡´ ì„ì‹œí´ë”ì— ì €ì¥ëœ ì´ë¯¸ì§€ ì‚­ì œ
 		File tempFolder = new File("C:\\MinLOG\\board\\temp\\" + (String)cu.getUserId());
 		imageService.delete(tempFolder.toString());
 
@@ -120,7 +120,7 @@ public class BoardController {
 		try {
 			String status = CommonUtil.paramNullCheck(request, "status", "");
 			
-			// ¼öÁ¤ÀÎ °æ¿ì
+			// ìˆ˜ì •ì¸ ê²½ìš°
 			if(status.equals("R")) {
 				boardService.boardUpdate(boardDto);
 			} else {
@@ -154,7 +154,7 @@ public class BoardController {
 			if(!multi.isEmpty()) {
 				File file = new File(uploadPath, saveFileName);
 
-		        // µğ·ºÅä¸® »ı¼º
+		        // ë””ë ‰í† ë¦¬ ìƒì„±
 		        boolean directoryCreated = file.mkdirs();
 				
 				multi.transferTo(file);
@@ -196,16 +196,16 @@ public class BoardController {
 		
 		try {
 			
-			// °Ô½Ã±Û Á¤º¸ 
+			// ê²Œì‹œê¸€ ì •ë³´ 
 			BoardResponseDto.BoardDetail boardDetail = boardService.boardDetail(boardSeq);
 			
-			// ´ñ±Û Á¤º¸
+			// ëŒ“ê¸€ ì •ë³´
 			CommentRequestDto.Create commentDto = new CommentRequestDto.Create();
 			commentDto.setBoardSeq(boardSeq);
 			List<CommentResponseDto.CommentList> commentList = commentService.commentList(commentDto);
 			String likeYn = "N";
 			if(cu != null) {
-				// °ü½É µî·Ï ¿©ºÎ
+				// ê´€ì‹¬ ë“±ë¡ ì—¬ë¶€
 				likeYn = boardLikeService.likeInfoYn(boardSeq, String.valueOf(cu.getUserId()));
 				ajaxResult.setData3(likeYn);
 			}
@@ -305,7 +305,7 @@ public class BoardController {
 			ajaxResult.setResultMessage(msg);
 			ajaxResult.setResultCode("success");
 		}catch (Exception e) {
-			ajaxResult.setResultMessage("°ü¸®ÀÚ¿¡°Ô ¹®ÀÇ ºÎÅ¹µå¸³´Ï´Ù.");
+			ajaxResult.setResultMessage("ê´€ë¦¬ìì—ê²Œ ë¬¸ì˜ ë¶€íƒë“œë¦½ë‹ˆë‹¤.");
 			ajaxResult.setResultCode("fail");
 			// TODO: handle exception
 		}

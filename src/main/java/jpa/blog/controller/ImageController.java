@@ -11,9 +11,9 @@ public class ImageController implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// TODO Auto-generated method stub
 		registry
-			// ÀÌ¹ÌÁö ÆÄÀÏÀÇ ¿äÃ» °æ·Î¸¦ ÁöÁ¤ÇÑ´Ù.
+			// ì´ë¯¸ì§€ íŒŒì¼ì˜ ìš”ì²­ ê²½ë¡œë¥¼ ì§€ì •í•œë‹¤.
 			.addResourceHandler("/images/**")
-			// ÀÌ¹ÌÁö ÆÄÀÏÀ» ºÒ·¯¿Ã ·ÎÄÃ ÀúÀå¼ÒÀÇ À§Ä¡¸¦ ÁöÁ¤ÇÑ´Ù.
+			// ì´ë¯¸ì§€ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¬ ë¡œì»¬ ì €ì¥ì†Œì˜ ìœ„ì¹˜ë¥¼ ì§€ì •í•œë‹¤.
 			.addResourceLocations("file:/c:/MinLOG/");
 	}
 }

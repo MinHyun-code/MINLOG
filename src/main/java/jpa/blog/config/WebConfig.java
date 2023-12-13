@@ -23,7 +23,7 @@ public class WebConfig {
 	public TilesViewResolver tilesViewResolver() {
 		final TilesViewResolver tilesViewResolver = new TilesViewResolver();
 		tilesViewResolver.setViewClass(TilesView.class);
-		tilesViewResolver.setOrder(1); // ºä ¿ì¼±¼øÀ§
+		tilesViewResolver.setOrder(1); // ÂºÃ¤ Â¿Ã¬Â¼Â±Â¼Ã¸Ã€Â§
 		return tilesViewResolver;
 	}
 }

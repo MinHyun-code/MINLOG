@@ -18,12 +18,12 @@ public class LikeRequestDto {
 	@Builder
 	public static class Create {
 
-		private Board board;				// °Ô½Ã±Û ¹øÈ£
-		private String boardSeq;			// °Ô½Ã±Û ¹øÈ£
-		private User user;					// »ç¿ëÀÚ ID
-		private String userId;				// »ç¿ëÀÚ ID
-		private String likeYn;				// ÁÁ¾Æ¿ä À¯¹«
-		private LocalDateTime regDate;		// µî·ÏÀÏÀÚ
+		private Board board;				// ê²Œì‹œê¸€ ë²ˆí˜¸
+		private String boardSeq;			// ê²Œì‹œê¸€ ë²ˆí˜¸
+		private User user;					// ì‚¬ìš©ì ID
+		private String userId;				// ì‚¬ìš©ì ID
+		private String likeYn;				// ì¢‹ì•„ìš” ìœ ë¬´
+		private LocalDateTime regDate;		// ë“±ë¡ì¼ì
 		
 		
 		public BoardLike toEntity() {

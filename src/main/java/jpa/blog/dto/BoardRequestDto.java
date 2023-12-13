@@ -16,18 +16,18 @@ public class BoardRequestDto {
 	@NoArgsConstructor
 	@Builder
 	public static class Create {
-		private String boardSeq;		// ÀÏ·Ã¹øÈ£
-		private String title;			// Á¦¸ñ
-		private String content;			// ³»¿ë
+		private String boardSeq;		// ì¼ë ¨ë²ˆí˜¸
+		private String title;			// ì œëª©
+		private String content;			// ë‚´ìš©
 		private int menuSeq;
-		private User userId;			// µî·ÏÀÚ
-		private LocalDateTime regDate;  // µî·ÏÀÏÀÚ
-		private LocalDateTime upDate; 	// ¼öÁ¤ÀÏÀÚ
-		private String delYn; 			// »èÁ¦¿©ºÎ
-		private LocalDateTime delDate; 	// »èÁ¦ÀÏÀÚ
-		private String thumbnail;		// ½æ³×ÀÏ ÀÌ¹ÌÁö
-		private String thumbnailTxt;	// ½æ³×ÀÏ ÅØ½ºÆ®
-		private String openYn;			// °ø°³¿©ºÎ
+		private User userId;			// ë“±ë¡ì
+		private LocalDateTime regDate;  // ë“±ë¡ì¼ì
+		private LocalDateTime upDate; 	// ìˆ˜ì •ì¼ì
+		private String delYn; 			// ì‚­ì œì—¬ë¶€
+		private LocalDateTime delDate; 	// ì‚­ì œì¼ì
+		private String thumbnail;		// ì¸ë„¤ì¼ ì´ë¯¸ì§€
+		private String thumbnailTxt;	// ì¸ë„¤ì¼ í…ìŠ¤íŠ¸
+		private String openYn;			// ê³µê°œì—¬ë¶€
 		
 		public Board toEntity() {
 			Board board = Board.builder()

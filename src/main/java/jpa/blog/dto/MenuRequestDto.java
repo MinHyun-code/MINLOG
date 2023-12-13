@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 public class MenuRequestDto {
 
 	@Id
-	private int menuSeq;		// ¸Ş´º ÀÏ·Ã¹øÈ£
-	private int menuTop;		// »óÀ§¸Ş´º ÀÏ·Ã¹øÈ£
-	private String menuName; 	// ¸Ş´º ¸í
+	private int menuSeq;		// ë©”ë‰´ ì¼ë ¨ë²ˆí˜¸
+	private int menuTop;		// ìƒìœ„ë©”ë‰´ ì¼ë ¨ë²ˆí˜¸
+	private String menuName; 	// ë©”ë‰´ ëª…
 	
 	public Menu toEntity() {
 		Menu menu = Menu.builder()

@@ -25,36 +25,36 @@ public class User {
 
 	@Id	
 	@Column(name = "user_id")
-	private String userId; 			// ¾ÆÀÌµğ - PK
+	private String userId; 			// ì•„ì´ë”” - PK
 
 	@Column(nullable = false)
-	private String userEmail; 		// ÀÌ¸ŞÀÏ
+	private String userEmail; 		// ì´ë©”ì¼
 	
 	@Column(nullable = false)
-	private String userPw;	 		// ºñ¹Ğ¹øÈ£
+	private String userPw;	 		// ë¹„ë°€ë²ˆí˜¸
 	
 	@Column(nullable = false)
-	private String userName; 		// ÀÌ¸§
+	private String userName; 		// ì´ë¦„
 
-	private String userImg; 		// ÀÌ¹ÌÁö
+	private String userImg; 		// ì´ë¯¸ì§€
 	
 	@Column(nullable = false)
-	private int status; 			// »óÅÂ °ª
+	private int status; 			// ìƒíƒœ ê°’
 	
-	private String userIntro;		// ÀÚ±â¼Ò°³
+	private String userIntro;		// ìê¸°ì†Œê°œ
 	
 	@Column(nullable = false)
-	private LocalDateTime regDate; 	// »ı¼ºÀÏ
+	private LocalDateTime regDate; 	// ìƒì„±ì¼
 	
-	private LocalDateTime delDate;	// »èÁ¦ÀÏ
+	private LocalDateTime delDate;	// ì‚­ì œì¼
 	
 	private Role role;
 	
-	// N+1 ¹®Á¦¸¦ ¹æÁöÇÏ±â À§ÇØ Set »ç¿ë
+	// N+1 ë¬¸ì œë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ Set ì‚¬ìš©
 	@OneToMany(mappedBy = "userId")
 	private Set<Board> board = new LinkedHashSet<>();
 	
-	// N+1 ¹®Á¦¸¦ ¹æÁöÇÏ±â À§ÇØ Set »ç¿ë
+	// N+1 ë¬¸ì œë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ Set ì‚¬ìš©
 	@OneToMany(mappedBy = "userId")
 	private Set<Comment> comment = new LinkedHashSet<>();
 	

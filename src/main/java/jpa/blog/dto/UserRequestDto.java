@@ -16,15 +16,15 @@ public class UserRequestDto {
 	@NoArgsConstructor
 	@Builder
 	public static class Create {
-		private String userId; 			// ¾ÆÀÌµð - PK
-		private String userEmail;		// ÀÌ¸ÞÀÏ
-		private String userPw;	 		// ºñ¹Ð¹øÈ£
-		private String userName; 		// ÀÌ¸§
-		private String userImg;			// ÀÌ¹ÌÁö
-		private String userIntro;		// ÀÚ±â¼Ò°³
-		private int status; 			// »óÅÂ °ª
-		private LocalDateTime regDate; 	// »ý¼ºÀÏ
-		private LocalDateTime delDate;	// »èÁ¦ÀÏ
+		private String userId; 			// ì•„ì´ë”” - PK
+		private String userEmail;		// ì´ë©”ì¼
+		private String userPw;	 		// ë¹„ë°€ë²ˆí˜¸
+		private String userName; 		// ì´ë¦„
+		private String userImg;			// ì´ë¯¸ì§€
+		private String userIntro;		// ìžê¸°ì†Œê°œ
+		private int status; 			// ìƒíƒœ ê°’
+		private LocalDateTime regDate; 	// ìƒì„±ì¼
+		private LocalDateTime delDate;	// ì‚­ì œì¼
 		private Role role;
 		
 		/* DTO -> Entity */
