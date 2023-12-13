@@ -30,9 +30,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Getter
-@Table(name="BOARD")
+@Table(name="board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name="BOARD")
+@Entity(name="board")
 @DynamicUpdate	// 변경한 필드만 대응
 public class Board {
 

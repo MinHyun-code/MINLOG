@@ -17,6 +17,12 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+# proeperty
+*.yml
+
+# AWS
+*.pem
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Getter
-@Table(name="COMMENT")
+@Table(name="comment")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name="COMMENT")
+@Entity(name="comment")
 public class Comment {
 
 	@Id

@@ -19,9 +19,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Table(name="BOARD_LIKE")
+@Table(name="board_like")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name="BOARD_LIKE")
+@Entity(name="board_like")
 @IdClass(BoardLikeKey.class)
 public class BoardLike implements Serializable {
 

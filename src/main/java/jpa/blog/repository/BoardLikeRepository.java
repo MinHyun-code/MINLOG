@@ -8,6 +8,6 @@ import jpa.blog.entity.BoardLikeKey;
 
 public interface BoardLikeRepository extends JpaRepository<BoardLike, BoardLikeKey> {
 	
-	@Query(value = "select likeYn from BOARD_LIKE where board_seq = ?1 and user_id = ?2")
+	@Query(value = "select likeYn from board_like where board_seq = ?1 and user_id = ?2")
 	String likeInfoYn(String board_seq, String user_id);
 }

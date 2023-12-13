@@ -11,7 +11,7 @@ import jpa.blog.entity.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Integer>{
 
-	@Query(value = "select b, u from BOARD b join USER u on b.userId = u.userId where b.boardSeq = ?1 ")
+	@Query(value = "select b, u from board b join user u on b.userId = u.userId where b.boardSeq = ?1 ")
 	Board findByBoardSeq(String boardSeq);
 	
 	@Query(value="SELECT b.board_seq as boardSeq, b.menu_seq as menuSeq, b.reg_date as regDate, b.thumbnail, b.thumbnail_txt as thumbnailTxt, b.title, b.user_id as userId, u.user_img as regUserImg, "
@@ -25,7 +25,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	
 	@Query(value = "SELECT CASE WHEN max(board_seq) IS NULL THEN concat(?1, ?2, ?3, '001') "
 			+ "ELSE max(board_seq) + 1 END "
-			+ "FROM BOARD "
+			+ "FROM board "
 			+ "WHERE "
 			+ "substr(board_seq, 1, 4) = ?1 "
 			+ "AND  substr(board_seq, 5, 2) = ?2 "
