@@ -59,24 +59,28 @@ public class BoardService {
         
         
         // TEMP 폴더에 있는 이미지 옮기기 + 기존 폴더 삭제
-        File tempFolder = new File("C:/MinLOG/board/temp/" + user_id);
-
-        if(!os.contains("win")) {
-			tempFolder = new File("../../../img/board/temp/" + user_id);
+        if(os.contains("win")) {
+            File tempFolder = new File("C:/MinLOG/board/temp/" + user_id);
+            File moveFolder = new File("C:/MinLOG/board/" + boardSeq);
+            
+            // 디렉토리 생성
+            boolean directoryCreated1 = tempFolder.mkdirs();
+            boolean directoryCreated2 = moveFolder.mkdirs();
+            
+            imageService.copy(tempFolder, moveFolder);
+            imageService.delete(tempFolder.toString());
+		} else {
+			File tempFolder = new File("../../../img/board/temp/" + user_id);
+			File moveFolder = new File("../../../img/board/" + boardSeq);
+			
+	        // 디렉토리 생성
+	        boolean directoryCreated1 = tempFolder.mkdirs();
+	        boolean directoryCreated2 = moveFolder.mkdirs();
+	        
+	        imageService.copy(tempFolder, moveFolder);
+	        imageService.delete(tempFolder.toString());
+			
 		}
-
-        File moveFolder = new File("C:/MinLOG/board/" + boardSeq);
-
-        if(!os.contains("win")) {
-			tempFolder = new File("../../../img/board/" + boardSeq);
-		}
-        
-        // 디렉토리 생성
-        boolean directoryCreated1 = tempFolder.mkdirs();
-        boolean directoryCreated2 = moveFolder.mkdirs();
-        
-        imageService.copy(tempFolder, moveFolder);
-        imageService.delete(tempFolder.toString());
         
         boardDto.setContent(boardDto.getContent().replace("temp/"+user_id, boardSeq));
         boardDto.setThumbnail(boardDto.getThumbnail().replace("temp/"+user_id, boardSeq));
