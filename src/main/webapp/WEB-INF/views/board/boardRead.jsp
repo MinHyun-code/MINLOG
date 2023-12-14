@@ -79,7 +79,7 @@
 	        		if(boardData.userImg != null){
 	        			$('#regUserImg').attr("src", boardData.userImg);
 	        		} else {
-	        			$('#regUserImg').attr("src", "/images/common/default_user.png");
+	        			$('#regUserImg').attr("src", "/img/default_user.png");
 	        		}
 	        		$('#regUserIntro').html(boardData.userIntro);
 	        		
@@ -102,7 +102,7 @@
 						
 	        			$('#comment').append("<div class=\"comment_div1\" id=\"commentDiv_"+comment[i].groupNum+"\"> "
 		        					 	+ "<div class=\"comment_div2\">"
-			        						+ "<img alt=\"\" src=\"" + comment[i].userImg + "\" onerror=\"this.src='/images/common/default_user.png'\" class=\"card-img-custom2\">"
+			        						+ "<img alt=\"\" src=\"" + comment[i].userImg + "\" onerror=\"this.src='/img/default_user.png'\" class=\"card-img-custom2\">"
 			        						+ "<div style=\"padding-left: 1rem\">"
 				        						+ "<span class=\"comment_span\">" + comment[i].userId + "</span>"
 				        						+ "<span class=\"comment_span2\">" + comment[i].regDate + "</span>"
@@ -236,7 +236,7 @@
 		        		for(var i=0; i<data.length; i++) {
 			    			$('#reReply_'+groupNum+"_"+depth).append(
 			    				 		"<div class=\"comment_div2\">"
-			    						+ "<img alt=\"\" src=\"" + data[i].userImg + "\" onerror=\"this.src='/images/common/default_user.png'\" class=\"card-img-custom2\">"
+			    						+ "<img alt=\"\" src=\"" + data[i].userImg + "\" onerror=\"this.src='/img/default_user.png'\" class=\"card-img-custom2\">"
 			    						+ "<div style=\"padding-left: 1rem\">"
 			    							+ "<span class=\"comment_span\">" + data[i].userId + "</span>"
 			    							+ "<span class=\"comment_span2\">" + data[i].regDate + "</span>"
