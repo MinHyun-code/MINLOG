@@ -14,9 +14,12 @@ public class ImageController implements WebMvcConfigurer {
 		String path = "file:/c:/MinLOG/";
 
 		if(!os.contains("win")){
-			path = "file:/home/ubuntu/MINLOG_IMG/";
+			path = "file:///home/ubuntu/MINLOG_IMG/";
 		}
 
+		System.err.println("********");
+		System.err.println(path);
+		
 		// TODO Auto-generated method stub
 		registry
 			// 이미지 파일의 요청 경로를 지정한다.
