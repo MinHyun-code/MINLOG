@@ -150,7 +150,7 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(!os.contains("win")) {
-			path = "../../../img/";
+			path = "/home/ubuntu/img/";
 		}
 		
 		try {
