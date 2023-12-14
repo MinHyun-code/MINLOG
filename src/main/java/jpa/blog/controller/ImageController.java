@@ -14,7 +14,7 @@ public class ImageController implements WebMvcConfigurer {
 		String path = "file:/c:/MinLOG/";
 
 		if(!os.contains("win")){
-			path = "file:///home/ubuntu/img";
+			path = "file:///home/ubuntu/img/";
 		}
 
 		// TODO Auto-generated method stub
