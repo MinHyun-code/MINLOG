@@ -5,21 +5,21 @@
 <!-- jstl -->
 <header>
 	<div id="header">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="padding: 0 50px;">
+      <div class="d-flex flex-wrap align-items-center justify-content-lg-start header-div2">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         	<img src="${pageContext.request.contextPath}/img/logo.png" alt="" style="width: 180px; height: 60px; padding-right: 10px;">
         </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <ul class="nav col-lg-auto me-lg-auto mb-2 mb-md-0">
         </ul>
         
         <sec:authorize access="isAuthenticated()">
-			<button type="button" class="header-btn" onclick="writePageMove()">새 글 작성</button>
+			<button type="button" class="header-btn header-btn-media" onclick="writePageMove()">새 글 작성</button>
         </sec:authorize>
 		
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark" aria-label="Search">
-        </form>
+<!--         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> -->
+<!--           <input type="search" class="form-control form-control-dark" aria-label="Search"> -->
+<!--         </form> -->
 
 		<sec:authorize access="isAnonymous()">
 	          <button type="button" class="header-btn" onclick="forwardLogin()">로그인</button>
