@@ -25,10 +25,10 @@ public class User {
 
 	@Id	
 	@Column(name = "user_id")
-	private String userId; 			// 아이디 - PK
+	private String userId; 			// 아이디 - PK (이메일)
 
 	@Column(nullable = false)
-	private String userEmail; 		// 이메일
+	private String userServeId; 	// 보여지는 ID
 	
 	@Column(nullable = false)
 	private String userPw;	 		// 비밀번호
@@ -59,9 +59,9 @@ public class User {
 	private Set<Comment> comment = new LinkedHashSet<>();
 	
     @Builder
-    public User(String userId, String userPw, String userEmail, String userName, String userImg, String userIntro, int status, LocalDateTime regDate, LocalDateTime delDate, Role role) {
+    public User(String userId, String userPw, String userServeId, String userName, String userImg, String userIntro, int status, LocalDateTime regDate, LocalDateTime delDate, Role role) {
         this.userId = userId;
-        this.userEmail = userEmail;
+        this.userServeId = userServeId;
         this.userPw = userPw;
         this.userName = userName;
         this.userImg = userImg;

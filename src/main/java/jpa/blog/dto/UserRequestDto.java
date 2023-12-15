@@ -17,7 +17,7 @@ public class UserRequestDto {
 	@Builder
 	public static class Create {
 		private String userId; 			// 아이디 - PK
-		private String userEmail;		// 이메일
+		private String userServeId;		// 아이디
 		private String userPw;	 		// 비밀번호
 		private String userName; 		// 이름
 		private String userImg;			// 이미지
@@ -31,7 +31,7 @@ public class UserRequestDto {
 		public User toEntity() {
 			User user = User.builder()
 				.userId(userId)
-				.userEmail(userEmail)
+				.userServeId(userServeId)
 				.userPw(userPw)
 				.userName(userName)
 				.userImg(userImg)
