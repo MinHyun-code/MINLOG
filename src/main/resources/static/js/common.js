@@ -49,3 +49,38 @@ function getCookie(cookieName) {
 	}
 	return unescape(cookieValue);
 }
+
+// 좋아요 기능
+function boardLike(boardSeq) {
+		if($('#loginUserId').val() == null || $('#loginUserId').val() == '') {
+			toastr.error("로그인 후 이용해주세요.");
+			return false;
+		} 
+		
+		$.ajax({
+	    	type : "POST",
+	        url : "/like",
+	        data : {
+	        	boardSeq : boardSeq,
+	        	likeYn : $('#likeYn').val()
+	        },
+	        success : function(res){
+	        	if(res.resultCode == "success") {
+	        		$('#likeYn').val(res.data);
+	        		if(res.data == "Y") {
+	        			$('#likeBtn').addClass("active");
+	        			$('#likeBtn2').addClass("active");
+	        		} else {
+	        			$('#likeBtn').removeClass("active");
+	        			$('#likeBtn2').removeClass("active");
+	        		}
+	        		toastr.success(res.resultMessage);	
+	        	} else {
+	        		toastr.error(res.resultMessage);
+	        	}
+	        },
+	        error : function(XMLHttpRequest, textStatus, errorThrown){
+	            toastr.error("관리자에게 문의 부탁드립니다.")
+	        }
+		});
+	}

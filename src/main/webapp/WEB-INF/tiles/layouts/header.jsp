@@ -12,14 +12,12 @@
 
         <ul class="nav col-lg-auto me-lg-auto mb-2 mb-md-0">
         </ul>
+		<form id="frmHeader" method="post">
+       	</form>
         
         <sec:authorize access="isAuthenticated()">
 			<button type="button" class="header-btn header-btn-media" onclick="writePageMove()">새 글 작성</button>
         </sec:authorize>
-		
-<!--         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> -->
-<!--           <input type="search" class="form-control form-control-dark" aria-label="Search"> -->
-<!--         </form> -->
 
 		<sec:authorize access="isAnonymous()">
 	          <button type="button" class="header-btn" onclick="forwardLogin()">로그인</button>
@@ -32,8 +30,9 @@
 	        	<img class="card-img-custom4" src="${user.userImg}" onerror="src='/img/default_user.png'"/><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>
 	        </div>
         </div>
-       	<div id="menuDiv" style="display: none; position: absolute; right:1vw; width: 7vw; top: 7.5vh; z-index: 100; background-color: white; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;">
+       	<div id="menuDiv" style="display: none; position: absolute; right:1vw; top: 65px; z-index: 100; background-color: white; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;">
 			<ul style="margin: 0 auto; padding-left: 0px;">
+           		<li style="list-style: none;"><button type="button" class="btn me-2 boardWriteMedia" style="width: 100%; text-align: left;">새 글 작성</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">내 민로그</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">읽기 목록</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">설정</button></li>
@@ -41,8 +40,6 @@
 			</ul>
 		</div>
        	</sec:authorize>
-       	<form id="frmHeader" method="post">
-       	</form>
       </div>
     </div>
     <script type="text/javascript">

@@ -3,9 +3,10 @@
 
 <div  class="div-read0">
 	
-	<div class="container" style="padding: 0 4vw;">
+	<div style="padding: 0 4vw;">
 		<div>
 			<span class="title" id="title"></span>
+			<button data-testid="like-btn" class="likeButton" id="likeBtn2" onclick="boardLike(${boardSeq})"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg><span></span></button>
 		</div>
  		<div style="margin: 50px 0; float:left;">
 			<span class="span-read0" id="userId"></span>
@@ -16,6 +17,7 @@
 			<input type="button" class="btn-read0" onclick="boardRevise()" value="수정"/>
 			<input type="button" class="btn-read0" onclick="boardDel()" value="삭제"/>
 		</div>
+		
 		<div class="contents" id="contents"></div>
 
 	<form id="frm" method="post">
@@ -89,8 +91,10 @@
 	        		$('#likeYn').val(res.data3);
 	        		if(res.data3 == "Y") {
 	        			$('#likeBtn').addClass("active");
+	        			$('#likeBtn2').addClass("active");
 	        		} else {
 	        			$('#likeBtn').removeClass("active");
+	        			$('#likeBtn2').removeClass("active");
 	        		}
 	        		
 	        		var totalCnt = 0;

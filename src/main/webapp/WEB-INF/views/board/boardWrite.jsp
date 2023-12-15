@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div>
-	<div style="min-height: 90vh; padding: 50px 0" class="container">
+	<div style="min-height: 90vh; padding: 50px 0">
 	
-		<div style="height: 6vh;">
-			<input type="text" class="form-control form-control-dark" id="title" placeholder="제목을 입력하세요." style="float:left; width: 47vw;"/>
-			<input type="button" class="btn btn-outline-secondary me-2" onclick="openModal();" value="출간하기" style="float:right;"/>
+		<div style="height: 45px; margin: 10px 10px; display: flex; justify-content: space-between;">
+			<input type="text" class="form-control form-control-dark inputTitle" id="title" placeholder="제목을 입력하세요." style="width: 47vw;"/>
+			<input type="button" class="btn btn-outline-secondary me-2" onclick="openModal();" value="출간하기"/>
 		</div>
 		<div id="editor" style="background-color: white;"></div>
 		<div id="contents" style="background-color: white;"></div>
@@ -179,6 +179,11 @@
 		
 		if($('#title').val() == '') {
 			toastr.warning("제목을 입력해주세요.");
+			return;
+		}
+		
+		if($('#title').val().length > 100) {
+			toastr.warning("제목은 100자 이하로 작성 부탁드립니다.");
 			return;
 		}
 		
