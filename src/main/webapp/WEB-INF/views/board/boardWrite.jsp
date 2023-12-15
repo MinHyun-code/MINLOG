@@ -27,7 +27,7 @@
 					</div>
 					<input id="thumbnail_img" type="file" style="visibility: hidden;" onchange="setThumbnail(event)"/>
 					<div style="margin-top: 1.5rem">
-						<span class="span-write0">제목</span>
+						<span class="span-write0">부제목</span>
 						<textarea placeholder="당신의 포스트를 짧게 소개해보세요." class="textarea-write0" id="thumbnail_txt"></textarea>
 					</div>
 				</div>	 
@@ -177,9 +177,19 @@
 	// 출간하기 버튼 이벤트
 	function boardWrite() {
 		
+		if($('#title').val() == '') {
+			toastr.warning("제목을 입력해주세요.");
+			return;
+		}
+		
 		if($('#open_yn').val() == '') {
 			toastr.warning("공개 설정을 선택해주세요.");
-			return false;
+			return;
+		}
+		
+		if($('#thumbnail_txt').val().length > 150) {
+			toastr.warning("부제목은 150자 이하로 작성 부탁드립니다.");
+			return;
 		}
 		
 		var param = {};
@@ -276,10 +286,9 @@
        			url += data.filename;
        			var thumbnail_img_url = url;
        			$('#thumbnail_img_url').val(thumbnail_img_url);
-       			console.log(url);
        		},
        		error: function(e) {
-       			console.log(e);
+        		toastr.error("이미지 업로드 도중 에러가 발생하였습니다. 관리자에게 문의 부탁드립니다.");
        		}
        	});
       }
