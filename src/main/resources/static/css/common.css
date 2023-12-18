@@ -2,6 +2,8 @@
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
+	
+	font-size: 1rem;
 }
 
 .header-btn {
@@ -38,12 +40,12 @@ body {
 
 
 .card-custom {
-	width: 320px;
 	background-color: white;
 	border-radius: 4px;
 	box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
 	overflow: hidden;
 	transition: transform .5s ease, padding .5s ease;
+	margin: 20px 10px;
 }
 
 .card-custom:hover {
@@ -172,6 +174,7 @@ body {
 .div-write1 {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .div-write2 {
@@ -563,36 +566,23 @@ blockquote p {
 	display: none !important;
 }
 
-/* 세로모드 모바일 디바이스 (가로 해상도가 576px 보다 작은 화면에 적용) */
-@media (max-width: 575px) {
-	.div-read0 {
-		width: 100vw;	
-	}
-		
-	.sideLeft_div2 {
-		display: none;
-	}	
-		
-	.likeButton {
-		display: block;
-	}
-	
-	.header-btn-media {
-		display: none;
-	}
-	
-	.boardWriteMedia {
-		display: block !important;
-	}
-	
-	.header-div2 {
-		justify-content: space-between;
-		padding: 0 30px;
-	}
-} 
- 
+.rowDiv {
+	display: flex; 
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.forwardJoinBtn {
+	float: right;
+	color: #2aa75a;
+	text-decoration: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
 /* 가로모드 모바일 디바이스 (가로 해상도가 576px보다 크고 768px 보다 작은 화면에 적용)  */
-@media (min-width: 576px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
 	.div-read0 {
 		width: 100vw;	
 	}
@@ -615,13 +605,32 @@ blockquote p {
 	
 	.header-div2 {
 		justify-content: space-between;
-		padding: 0 30px;
 	}
 	
+	.widthBoardDiv {
+		width: 100%;
+	}
+	
+	.card-custom {
+		width: 100%;
+	}
+	
+	.card-img-top {
+		height: 200px;
+	}
+	
+	.div-write3 {
+		display: none;
+	}
+	
+	.div-write0 {
+		height: 100vh;
+		overflow-y: auto;
+	}
 }
  
 /*태블릿 디바이스 (가로 해상도가 768px보다 크고 991px 보다 작은 화면에 적용)  */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 790px) {
 	.div-read0 {
 		width: 100vw;	
 	}
@@ -646,10 +655,22 @@ blockquote p {
 		justify-content: space-between;
 		padding: 0 30px;
 	}
+	
+	.widthBoardDiv {
+		width: 100%;
+	}
+	
+	.card-custom {
+		width: 768px;
+	}
+	
+	.card-img-top {
+		height: 200px;
+	}
 } 
  
 /* 데스크탑 (가로 해상도가 992px보다 크고 1199px 보다 작은 화면에 적용)  */
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 791px) and (max-width: 1199px) {
 	.div-read0 {
 		width: 70vw;	
 	}
@@ -674,6 +695,22 @@ blockquote p {
 		justify-content: space-between;
 		padding: 0 30px;
 	}
+	
+	.widthBoardDiv {
+		width: 1330px;
+	}
+	
+	.widthBoardDiv {
+		width: 100%;
+	}
+	
+	.card-custom {
+		width: 320px;
+	}
+	
+	.card-img-top {
+		height: 170px;
+	}
 } 
  
 /* 큰화면 데스크탑 (가로 해상도가 1200px 보다 큰 화면에 적용)  */
@@ -691,4 +728,15 @@ blockquote p {
 		padding: 0 80px;
 	}
 	
+	.widthBoardDiv {
+		width: 1730px;
+	}
+	
+	.card-custom {
+		width: 320px;
+	}
+	
+	.card-img-top {
+		height: 200px;
+	}
 }

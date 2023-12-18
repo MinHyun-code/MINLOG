@@ -27,10 +27,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp"/>
 	</definition>
 	
-	<definition name="board/boardRead" extends="layout-boardRead">
-		<put-attribute name="body" value="/WEB-INF/views/board/boardRead.jsp"/>
-	</definition>
-	
 	<definition name="myInfo/*" extends="layout-basic">
 		<put-attribute name="body" value="/WEB-INF/views/myInfo/{1}.jsp"/>
 	</definition>

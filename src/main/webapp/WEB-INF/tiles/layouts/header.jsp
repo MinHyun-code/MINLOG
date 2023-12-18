@@ -21,7 +21,6 @@
 
 		<sec:authorize access="isAnonymous()">
 	          <button type="button" class="header-btn" onclick="forwardLogin()">로그인</button>
-	          <button type="button" class="header-btn" onclick="forwardSignUp()">회원가입</button>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
         <sec:authentication property="principal" var="user"/> 
@@ -62,10 +61,6 @@
 		
     	function forwardLogin() {
     		location.href="/login";
-    	}
-    	
-    	function forwardSignUp() {
-    		location.href="/signUp"
     	}
     	
     	function forwardLogOut() {

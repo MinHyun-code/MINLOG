@@ -13,7 +13,7 @@
 			<span id="regDate"></span>
 		</div>
 		<div style="margin: 50px 0; float:right; display: none;" id="readDiv">
-			<input type="button" class="btn-read0" id="" value="통계"/>
+			<input type="button" class="btn-read0" onclick="forwardChart()" value="통계"/>
 			<input type="button" class="btn-read0" onclick="boardRevise()" value="수정"/>
 			<input type="button" class="btn-read0" onclick="boardDel()" value="삭제"/>
 		</div>
@@ -63,6 +63,8 @@
 	        	if(res.resultCode == "success"){
 	        		
 	        		var boardData = res.data;
+	        		
+	        		console.log(boardData.content);
 	        		
 	        		const viewer = toastui.Editor.factory({
 	        		    el : document.querySelector("#contents"),
@@ -178,8 +180,13 @@
 		
 		if($('#loginUserId').val() == null || $('#loginUserId').val() == '') {
 			toastr.error("로그인 후 이용해주세요.");
-			return false;
+			return;
 		} 
+		
+		if($('[id*=commentTxt]').val() == null || $('[id*=commentTxt]').val() == '') {
+			toastr.warning("내용을 입력해주세요.");
+			return;
+		}
 		
 		var params = {
 				userId : $('#loginUserId').val(),
@@ -230,8 +237,6 @@
 		        success : function(res){
 		        	if(res.resultCode == "success"){
 		        		
-		        		console.log(res.data);
-		        		
 		        		var data = res.data;
 
 		    			$('#commentDiv_'+groupNum).append("<div class=\"reReply_div\" id=\"reReply_"+groupNum+"_"+depth+"\">"
@@ -270,11 +275,9 @@
 	// 답글 작성
 	function reReplyWriteBtn(groupNum, depth) {
 		
-		console.log(depth);
-		
-		if(document.getElementById("reReply_"+groupNum+"_"+depth)) {
-			$('#btn_'+groupNum+'_'+(depth-1)).show();
-			document.getElementById("reReply_"+groupNum+"_"+depth).remove();
+		if(document.getElementById("reReply_"+groupNum+"_"+(depth+1))) {
+			// $('#btn_'+groupNum+'_'+(depth-1)).show();
+			document.getElementById("reReply_"+groupNum+"_"+(depth+1)).remove();
 		} else {
 			
 			$('#commentDiv_'+groupNum).append("<div class=\"reReply_div\" id=\"reReply_"+groupNum+"_"+(depth+1)+"\">"
@@ -309,6 +312,12 @@
 
 			$('#btn_'+groupNum+'_'+(depth-1)).hide();
 		}
+	}
+	
+	// 통계 페이지로 이동
+	function forwardChart(){
+
+		window.location.href = "/chart/"+$('#boardSeq').val();
 	}
 	</script>
 </div>

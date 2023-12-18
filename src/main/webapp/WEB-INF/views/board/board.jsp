@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core"%>
-<div class="album py-5 bg-body-tertiary" style="min-height: 1150px;">
+<div class="album py-5 bg-body-tertiary" style="display: flex; justify-content: center;">
 
-      <div class="row g-4" style="margin: 0 70px;">
+      <div class="g-4 widthBoardDiv rowDiv">
       <c:forEach var="boardList" items="${boardList}">
-        <div style="width: 300px; margin-left: 15px; margin-right: 15px;">
           <div class="card-custom">
             <c:if test="${boardList.thumbnail == null || boardList.thumbnail == ''}">
-            	<svg class="bd-placeholder-img card-img-top" style="width:320px;height:170px;cursor: pointer;" xmlns="http://www.w3.org/2000/svg" onclick="viewPageMove(${boardList.boardSeq});" role="img" focusable="false"><rect width="320px" height="100%" fill="#55595c"></rect></svg>
+            	<svg class="bd-placeholder-img card-img-top" style="width:100%; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" onclick="viewPageMove(${boardList.boardSeq});" role="img" focusable="false"><rect width="100%" height="100%" fill="#55595c"></rect></svg>
             </c:if>
             <c:if test="${boardList.thumbnail != null && boardList.thumbnail != ''}">
-            	<img alt="" src="${boardList.thumbnail}" style="width:320px;height:170px;cursor: pointer;"  onclick="viewPageMove(${boardList.boardSeq});"/>
+            	<img alt="" src="${boardList.thumbnail}" class="card-img-top" style="width:100%; cursor: pointer;"  onclick="viewPageMove(${boardList.boardSeq});"/>
             </c:if>
             <div class="" style="height: 120px; cursor: pointer; padding: 16px;" onclick="viewPageMove(${boardList.boardSeq});">
               <h4 class="h4-board">${boardList.title}</h4>
@@ -39,19 +38,14 @@
             	</div>
             </div>
           </div>
-        </div>
         </c:forEach>
-        <form id="frm" name="frm" method="post">
-        	<input type="hidden" name="boardSeq" id="boardSeq"/>
-        </form>
       </div>
     
     <script type="text/javascript">
     	
     // 조회 페이지로 이동
     function viewPageMove(boardSeq) {
-    	$('#boardSeq').val(boardSeq);
-    	$("#frm").attr("action","/read").submit();
+    	window.location.href="/read/"+boardSeq;
     }
     
     // 개인 사용자 공간으로 이동

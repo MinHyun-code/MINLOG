@@ -25,6 +25,10 @@
 <!-- toastr -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+<!-- toast UI CHART   -->
+<link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+<script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
   
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check2" viewBox="0 0 16 16">

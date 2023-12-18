@@ -18,8 +18,9 @@
     </svg>
     
 	<main class="m-auto w-100" style="max-width: 330px; padding : 15px;">
-	    <img class="mb-4" src="img/logo.png" alt="" style="width: 230px; height: 75px; padding-right: 10px;">
-	
+		<div style="display: flex; justify-content: center;">
+	    	<img class="mb-4" src="img/logo.png" alt="" style="width: 230px; height: 75px; padding-right: 10px;">
+		</div>
 	    <div class="form-floating">
 	      <input type="email" class="form-control" id="floatingInput">
 	      <label for="floatingInput">이메일</label>
@@ -34,7 +35,8 @@
 	        <input type="checkbox" value="remember-me" id="checkId"> 아이디 저장
 	      </label>
 	    </div>
-	    <button class="w-100 btn btn-lg btn-primary" onclick="loginSubmit()" style="background-color: #2aa75a; border-color: #2aa75a;">로그인</button>
+	    <button class="w-100 btn btn-lg btn-primary" onclick="loginSubmit()" style="background-color: #2aa75a; border-color: #2aa75a; margin-bottom: 5px;">로그인</button>
+        <a class="forwardJoinBtn" onclick="forwardSignUp()">회원가입</a>
 	</main>
 </body>
 
@@ -72,7 +74,6 @@
 			loginSubmit();			
 	    }
 	}
-
 	
 	// 로그인 절차
 	function loginSubmit() {
@@ -107,6 +108,10 @@
         });
 	}
 	
+	// 회원가입 페이지로 이동
+	function forwardSignUp() {
+		location.href="/signUp"
+	}
 // 	function github_login(){
 // 		  const loginUri = "https://github.com/login/oauth/authorize?client_id=8b0232deb8d470498a51&scope=repo:status read:repo_hook user:email&redirect_uri=http://localhost:8080/callback";
 

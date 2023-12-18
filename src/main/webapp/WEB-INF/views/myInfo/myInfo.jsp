@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div style="min-height: 1150px;">
+<div style="">
       <div class="col-md-7" style="margin:5vh auto;">
         <h4 class="mb-3">Billing address</h4>
         <form class="needs-validation" novalidate="">
