@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import jpa.blog.security.Role;
 import lombok.AccessLevel;
@@ -25,22 +26,26 @@ public class User {
 
 	@Id	
 	@Column(name = "user_id")
+	@Size(max = 50)
 	private String userId; 			// 아이디 - PK (이메일)
 
 	@Column(nullable = false)
+	@Size(max = 15)
 	private String userServeId; 	// 보여지는 ID
 	
 	@Column(nullable = false)
 	private String userPw;	 		// 비밀번호
 	
 	@Column(nullable = false)
+	@Size(max = 30)
 	private String userName; 		// 이름
 
 	private String userImg; 		// 이미지
 	
 	@Column(nullable = false)
 	private int status; 			// 상태 값
-	
+
+	@Size(max = 100)
 	private String userIntro;		// 자기소개
 	
 	@Column(nullable = false)

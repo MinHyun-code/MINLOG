@@ -46,6 +46,7 @@ dependencies {
 	// jsp changing reflash    
     implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.modelmapper:modelmapper:2.4.2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 def frontendDir = "$projectDir/src/main/frontend"
