@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
+	font-family: -apple-system !important;
 	
 	font-size: 1rem;
 }
@@ -366,10 +366,14 @@ blockquote p {
 	color: black !important;
 }
 
+.toastui-editor-contents {
+	font-family: -apple-system !important;
+}
+
 .toastui-editor-contents p {
 	font-size: 1rem;
 }
-
+	
 .textarea-comment {
 	width: 100%; 
 	min-height: 6.125rem;
@@ -720,7 +724,7 @@ blockquote p {
 	}
 	
 	.sideLeft_div2 {
-		display: flex;
+		display: block;
 	}
 	
 	.header-div2 {

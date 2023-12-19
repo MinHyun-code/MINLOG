@@ -21,7 +21,7 @@
             <div class="card-body-custom">
            	 	<a class="card-a-custom" onclick="userSpaceMove();">
            	 		<c:choose>
-           	 			<c:when test="${boardList.regUserImg != null}">
+           	 			<c:when test="${boardList.regUserImg != ''}">
            	 				<img alt="" src="${boardList.regUserImg}" class="card-img-custom"/>
            	 			</c:when>
            	 			<c:otherwise>

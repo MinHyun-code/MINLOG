@@ -7,19 +7,19 @@
 	      <div class="row g-3">
 	      
 	        <div class="col-12">
-	          <label for="userServeId" class="form-label">이메일</label>
+	          <label for="userId" class="form-label">이메일</label>
 	          <div class="input-group has-validation">
 	            <span class="input-group-text">🔒</span>
-	            <input type="text" class="form-control" id="userServeId" name="userServeId">
+	            <input type="text" class="form-control" id="userId" name="userId">
 	          </div>
 	        </div>
 	        
 	        <div class="col-sm-6">
-		      <label for="userId" class="form-label">아이디</label>
-	          <input type="text" class="form-control" id="userId" name="userId" value="">
-	          <label for="userName" class="form-label">이름</label>
+		      <label for="userServeId" class="form-label">닉네임(영문)</label>
+	          <input type="text" class="form-control" id="userServeId" name="userServeId" value="">
+	          <label for="userName" class="form-label" style="margin-top:10px;">이름</label>
 	          <input type="text" class="form-control" id="userName" name="userName" value="">
-	          <label for="userPw" class="form-label">비밀번호</label>
+	          <label for="userPw" class="form-label" style="margin-top:10px;">비밀번호</label>
 	          <input type="password" class="form-control" id="userPw" name="userPw">
 	        </div>
    	        <div class="col-sm-6">
@@ -54,14 +54,52 @@
 		
 		if($('#userId').val() == "") {
 			toastr.warning("이메일은 필수 입력입니다.");
-			return false;
+			return;
 		} else if($('#userServeId').val() == "") {
-			toastr.warning("이메일은 필수 입력입니다.");
+			toastr.warning("닉네임은 필수 입력입니다.");
+			return;
 		} else if($('#userPw').val() == "") {
 			toastr.warning("비밀번호는 필수 입력입니다.");
+			return;
 		} else if($('#userName').val() == "") {
 			toastr.warning("이름은 필수 입력입니다.");
+			return;
 		}
+		
+		if($('#userId').val().length > 50) {
+			toastr.warning("이메일은 50자 이내로 작성하여야 합니다.");
+			return; 
+		}
+		
+		if($('#userServeId').val().length > 15){
+			toastr.warning("닉네임은 15자 이내로 작성하여야 합니다.");
+			return; 
+		}
+		
+		if($('#userName').val().length > 30){
+			toastr.warning("이름은 30자 이내로 입력하여야 합니다.");
+			return; 
+		}
+		
+		if($('#userIntro').val().length > 100) {
+			toastr.warning("자기소개는 100자 이내로 입력하여야 합니다.");
+			return;
+		}
+		
+// 		이메일 정규식
+		let regexMail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+		if(!regexMail.test($('#userId').val())) {
+			toastr.warning("올바른 이메일 형식을 입력하세요.");
+			return;
+		}
+		
+// 		비밀번호 정규식
+		let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.~_-])[A-Za-z\d@$!%*?&#.~_-]{8,20}$/;
+		if(!regexPassword.test($('#userPw').val())) {
+			toastr.warning("최소 8 자 및 최대 20 자 <br/>하나 이상의 대문자, 소문자, 숫자, 특수문자 필수 입력입니다.");
+			return;
+		}
+		
 		
 		var params = $('#signUpForm').serialize();
 		

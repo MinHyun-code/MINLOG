@@ -183,7 +183,7 @@
 			return;
 		} 
 		
-		if($('[id*=commentTxt]').val() == null || $('[id*=commentTxt]').val() == '') {
+		if($('#commentTxt_'+groupNum+'_'+depth).val() == null || $('#commentTxt_'+groupNum+'_'+depth).val() == '') {
 			toastr.warning("내용을 입력해주세요.");
 			return;
 		}
