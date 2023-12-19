@@ -26,6 +26,7 @@ public class CommentResponseDto {
 		private String regDate;				// 등록일자
 		private String userImg;				// 등록자 이미지
 		private String userId;				// 등록자 ID
+		private String userServeId;			// 등록자 ID (닉네임)
 		
 		private int commentCnt;			// 대댓글 개수
 		
@@ -38,6 +39,7 @@ public class CommentResponseDto {
 			this.regDate = CommonUtil.commentDayDiff(commentList.getRegDate());
 			this.depth = commentList.getDepth();
 			this.userId = commentList.getUserId();
+			this.userServeId = commentList.getUserServeId();
 			this.userImg = commentList.getUserImg();
 			this.groupNum = commentList.getGroupNum();
 			if(commentList.getCommentCnt() > 0) {
@@ -56,6 +58,7 @@ public class CommentResponseDto {
 		private int groupNum;				// 댓글 그룹
 		private String regDate;				// 등록일자
 		private String userId;				// 등록자 ID
+		private String userServeId;			// 등록자 ID (닉네임)
 		private String userImg;				// 등록자 이미지
 		
 		// 게시글 조회 페이지 (대댓글 조회 시)
@@ -67,6 +70,7 @@ public class CommentResponseDto {
 			this.depth = commentList.getDepth();
 			this.userImg = commentList.getUserImg();
 			this.userId = commentList.getUserId();
+			this.userServeId = commentList.getUserServeId();
 			this.groupNum = commentList.getGroupNum();
 		}
 	}

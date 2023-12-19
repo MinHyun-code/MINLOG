@@ -14,7 +14,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	@Query(value = "select b, u from board b join user u on b.userId = u.userId where b.boardSeq = ?1 ")
 	Board findByBoardSeq(String boardSeq);
 	
-	@Query(value="SELECT b.board_seq as boardSeq, b.menu_seq as menuSeq, b.reg_date as regDate, b.thumbnail, b.thumbnail_txt as thumbnailTxt, b.title, b.user_id as userId, u.user_img as regUserImg, "
+	@Query(value="SELECT b.board_seq as boardSeq, b.menu_seq as menuSeq, b.reg_date as regDate, b.thumbnail, b.thumbnail_txt as thumbnailTxt, b.title, u.user_serve_id as userServeId, u.user_img as regUserImg, "
 					+ "(SELECT count(*) FROM comment c WHERE c.board_seq = b.board_seq AND c.del_yn = 'N')  as commentCnt, "
 					+ "(SELECT count(*) FROM board_like l WHERE l.board_seq = b.board_seq AND l.like_yn = 'Y') as likeCnt "
 					+ "FROM board b "

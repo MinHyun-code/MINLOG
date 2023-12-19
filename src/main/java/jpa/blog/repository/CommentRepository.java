@@ -14,7 +14,7 @@ import jpa.blog.entity.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 	
-	@Query(value="select c.comment_seq as commentSeq, c.comment_txt as commentTxt, c.group_num as groupNum, c.reg_date as regDate, c.depth as depth, u.user_img as userImg, c.user_id as userId, b.board_seq as boardSeq, count(c.group_num) as commentCnt "
+	@Query(value="select c.comment_seq as commentSeq, c.comment_txt as commentTxt, c.group_num as groupNum, c.reg_date as regDate, c.depth as depth, u.user_img as userImg, u.user_id as userId, u.user_serve_id as userServeId, b.board_seq as boardSeq, count(c.group_num) as commentCnt "
 					+ "from comment c left join board b "
 					+ "on c.board_seq = b.board_seq "
 					+ "left outer join user u "
@@ -25,7 +25,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 					nativeQuery = true)
     List<CommentList> findByComment(String boardSeq);
 	
-	@Query(value="select c.comment_seq as commentSeq, c.comment_txt as commentTxt, c.group_num as groupNum, c.reg_date as regDate, c.depth as depth, u.user_img as userImg, c.user_id as userId, b.board_seq as boardSeq "
+	@Query(value="select c.comment_seq as commentSeq, c.comment_txt as commentTxt, c.group_num as groupNum, c.reg_date as regDate, c.depth as depth, u.user_img as userImg, u.user_id as userId, u.user_serve_id as userServeId, b.board_seq as boardSeq "
 			+ "from comment c left join board b "
 			+ "on c.board_seq = b.board_seq "
 			+ "left outer join user u "

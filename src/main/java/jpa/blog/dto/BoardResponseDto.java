@@ -13,11 +13,11 @@ public class BoardResponseDto {
 	public static class BoardList {
 		private String boardSeq;		// 일련번호
 		private String title;			// 제목
-		private String userId;			// 등록자
+		private String userServeId;		// 등록자 (닉네임)
 		private String regDate;  		// 등록일자
 		private String thumbnail;		// 썸네일 이미지
 		private String thumbnailTxt;	// 썸네일 텍스트
-		private String regUserImg; 	// 유저 이미지
+		private String regUserImg; 		// 유저 이미지
 		private int commentCnt;			// 댓글 개수
 		private int likeCnt;			// 관심 개수
 		
@@ -25,7 +25,7 @@ public class BoardResponseDto {
 		public BoardList(jpa.blog.repository.BoardList entity) {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
-			this.userId = entity.getUserId();
+			this.userServeId = entity.getUserServeId();
 			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
@@ -46,6 +46,7 @@ public class BoardResponseDto {
 		private String content;			// 내용
 		private int menuSeq;			// 메뉴
 		private String userId;			// 등록자 ID
+		private String userServeId;		// 등록자 ID (닉네임)
 		private String userName;		// 등록자 이름
 		private String userImg;			// 등록자 사진
 		private String userIntro;		// 등록자 소개
@@ -62,6 +63,7 @@ public class BoardResponseDto {
 			this.content = entity.getContent();
 			this.menuSeq = entity.getMenuSeq();
 			this.userId = entity.getUserId().getUserId();
+			this.userServeId = entity.getUserId().getUserServeId();
 			this.userName = entity.getUserId().getUserName();
 			this.userImg = entity.getUserId().getUserImg();
 			this.userIntro = entity.getUserId().getUserIntro();

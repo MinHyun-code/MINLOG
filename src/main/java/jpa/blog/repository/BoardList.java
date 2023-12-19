@@ -6,7 +6,7 @@ public interface BoardList {
 	
 	String getBoardSeq();		// 일련번호
 	String getTitle();			// 제목
-	String getUserId();			// 등록자
+	String getUserServeId();	// 등록자(닉네임)
 	LocalDateTime getRegDate(); // 등록일자
 	String getThumbnail();		// 썸네일 이미지
 	String getThumbnailTxt();	// 썸네일 텍스트

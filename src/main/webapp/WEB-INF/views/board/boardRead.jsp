@@ -9,7 +9,7 @@
 			<button data-testid="like-btn" class="likeButton" id="likeBtn2" onclick="boardLike(${boardSeq})"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg><span></span></button>
 		</div>
  		<div style="margin: 50px 0; float:left;">
-			<span class="span-read0" id="userId"></span>
+			<span class="span-read0" id="userServeId"></span>
 			<span id="regDate"></span>
 		</div>
 		<div style="margin: 50px 0; float:right; display: none;" id="readDiv">
@@ -46,6 +46,7 @@
 	<div id="comment"></div>
 	
 	<input type="hidden" id="loginUserId" value="${loginUserId}" name="loginUserId"/>
+	<input type="hidden" id="userId" name="userId"/>
 	<input type="hidden" id="likeYn" name="likeYn"/>
 	</div>
 	
@@ -64,8 +65,6 @@
 	        		
 	        		var boardData = res.data;
 	        		
-	        		console.log(boardData.content);
-	        		
 	        		const viewer = toastui.Editor.factory({
 	        		    el : document.querySelector("#contents"),
 	        		    viewer : true,
@@ -73,6 +72,7 @@
 	        		});
 	        		$('#title').html(boardData.title);
 	        		$('#userId').html(boardData.userId);
+	        		$('#userServeId').html(boardData.userServeId);
 	        		$('#boardSeq').val(boardData.boardSeq);
 	        		if(boardData.userId == '${loginUserId}') {
 	        			$('#readDiv').css('display', 'block');
@@ -80,7 +80,7 @@
 	        		$('#regDate').html(" · " + boardData.regDate);
 	        		
 	        		$('#regUserNm').html(boardData.userName);
-	        		if(boardData.userImg != null){
+	        		if(boardData.userImg != ''){
 	        			$('#regUserImg').attr("src", boardData.userImg);
 	        		} else {
 	        			$('#regUserImg').attr("src", "/img/default_user.png");
@@ -110,7 +110,7 @@
 		        					 	+ "<div class=\"comment_div2\">"
 			        						+ "<img alt=\"\" src=\"" + comment[i].userImg + "\" onerror=\"this.src='/img/default_user.png'\" class=\"card-img-custom2\">"
 			        						+ "<div style=\"padding-left: 1rem\">"
-				        						+ "<span class=\"comment_span\">" + comment[i].userId + "</span>"
+				        						+ "<span class=\"comment_span\">" + comment[i].userServeId + "</span>"
 				        						+ "<span class=\"comment_span2\">" + comment[i].regDate + "</span>"
 			        						+ "</div>"	
 				        				+ "</div>"
@@ -247,7 +247,7 @@
 			    				 		"<div class=\"comment_div2\">"
 			    						+ "<img alt=\"\" src=\"" + data[i].userImg + "\" onerror=\"this.src='/img/default_user.png'\" class=\"card-img-custom2\">"
 			    						+ "<div style=\"padding-left: 1rem\">"
-			    							+ "<span class=\"comment_span\">" + data[i].userId + "</span>"
+			    							+ "<span class=\"comment_span\">" + data[i].userServeId + "</span>"
 			    							+ "<span class=\"comment_span2\">" + data[i].regDate + "</span>"
 			    						+ "</div>"	
 			    						+ "</div>"
