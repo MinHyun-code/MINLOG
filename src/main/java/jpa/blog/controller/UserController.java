@@ -85,15 +85,4 @@ public class UserController {
 			return ajaxResult;
 		}
 	}
-	
-//	----------------  마이페이지  ----------------
-	
-	// 내정보 화면
-	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
-	public ModelAndView myInfoPage(Authentication au, Model model) {
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("myInfo/myInfo");
-		return mv;
-	}
 }

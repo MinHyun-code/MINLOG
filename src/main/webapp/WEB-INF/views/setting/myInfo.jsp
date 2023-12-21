@@ -2,15 +2,15 @@
 <div>
 	<div>
 		<div class="col-md-7" style="margin:0 auto; padding: 5vh;">
-	    <h4 class="mb-3">회원가입</h4>
-	    <form class="needs-validation" id="signUpForm">
+	    <h4 class="mb-3">개인정보 수정</h4>
+	    <form class="needs-validation" id="myInfoForm">
+	   		<input type="hidden" id="status" name=status>
 	      <div class="row g-3" style="align-items: center;">
-	      
 	        <div class="col-12">
 	          <label for="userId" class="form-label">이메일</label>
 	          <div class="input-group has-validation">
 	            <span class="input-group-text">🔒</span>
-	            <input type="text" class="form-control" id="userId" name="userId">
+	            <input type="text" class="form-control" style="color: #21252991;" id="userId" name="userId" readonly="readonly">
 	          </div>
 	        </div>
 	        
@@ -20,9 +20,10 @@
 	          <label for="userName" class="form-label" style="margin-top:10px;">이름</label>
 	          <input type="text" class="form-control" id="userName" name="userName" value="">
 	          <label for="userPw" class="form-label" style="margin-top:10px;">비밀번호</label>
-	          <input type="password" class="form-control" id="userPw" name="userPw">
+	          <input type="password" class="form-control" id="userPw" name="userPw" value="" placeholder="* * * * * * * * * * * * * * * *">
 	          <label for="userPw" class="form-label" style="margin-top:10px;">비밀번호 확인</label>
-	          <input type="password" class="form-control" id="userPwCheck">
+	          <input type="password" class="form-control" id="userPwCheck" value="" placeholder="* * * * * * * * * * * * * * * *">
+	          
 	        </div>
    	        <div class="col-sm-6">
   	        	<div style="width: 100%; padding-top: 55.11%; position: relative;">
@@ -45,11 +46,38 @@
 	      </div>
 	      
 	      <hr class="my-4">
-	      <button class="w-100 btn btn-primary btn-lg" type="button" onclick="signUpAction()" style="background-color: #8fbc8f; border-color: #8fbc8f;">회원가입</button>
+	      <button class="w-100 btn btn-primary btn-lg" type="button" onclick="signUpAction()" style="background-color: #8fbc8f; border-color: #8fbc8f;">수정</button>
 	    </form>
 	  </div>
   </div>
   <script type="text/javascript">
+  $(document).ready(function(){
+		
+		$.ajax({
+	    	type : "POST",
+	        url : "/myInfo",
+	        success : function(res){
+	        	var myInfo = res.data;
+	        	$('#userId').val(myInfo.userId);
+	        	$('#userServeId').val(myInfo.userServeId);
+	        	$('#userName').val(myInfo.userName);
+	        	$('#userIntro').val(myInfo.userIntro);
+	        	$('#status').val(myInfo.status);
+	        	if(myInfo.userImg != "") {
+	                var img = document.createElement("img");
+	                img.className = 'thumbnail';
+	                img.setAttribute("src", myInfo.userImg);
+	                img.setAttribute("onclick", "onClickUpload()");
+	                $(".div-write5").empty();
+	                document.querySelector(".div-write5").appendChild(img);
+	        	}
+       			$('#userImg').val(myInfo.userImg);
+	        },
+	        error : function(XMLHttpRequest, textStatus, errorThrown){
+	            toastr.error("관리자에게 문의 부탁드립니다.")
+	        }
+	    });
+	});
   
 	// 회원가입
 	function signUpAction() {
@@ -60,20 +88,18 @@
 		} else if($('#userServeId').val() == "") {
 			toastr.warning("닉네임은 필수 입력입니다.");
 			return;
-		} else if($('#userPw').val() == "") {
-			toastr.warning("비밀번호는 필수 입력입니다.");
-			return;
 		} else if($('#userName').val() == "") {
 			toastr.warning("이름은 필수 입력입니다.");
 			return;
 		}
 		
 		// 비밀번호 확인
-		if($('#userPwCheck').val() != $('#userPw').val()) {
+		if($('userPw').val() != undefined && ($('#userPwCheck').val() != $('#userPw').val())) {
 			toastr.warning("비밀번호가 다릅니다. 다시 작성하세요.");
 			$('#userPwCheck').focus();
 			return; 
 		}
+		
 		
 		if($('#userId').val().length > 50) {
 			toastr.warning("이메일은 50자 이내로 작성하여야 합니다.");
@@ -101,26 +127,25 @@
 			toastr.warning("올바른 이메일 형식을 입력하세요.");
 			return;
 		}
-		
+
 // 		비밀번호 정규식
 		let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.~_-])[A-Za-z\d@$!%*?&#.~_-]{8,20}$/;
-		if(!regexPassword.test($('#userPw').val())) {
-			toastr.warning("비밀번호는 최소 8자 및 최대 20자 <br/>하나 이상의 대문자, 소문자, 숫자, 특수문자 필수 입력입니다.");
+		if($('userPw').val() != undefined && !regexPassword.test($('#userPw').val())) {
+			toastr.warning("최소 8 자 및 최대 20 자 <br/>하나 이상의 대문자, 소문자, 숫자, 특수문자 필수 입력입니다.");
 			return;
 		}
 		
-		
-		var params = $('#signUpForm').serialize();
+		var params = $('#myInfoForm').serialize();
 		
    		$.ajax({
 	    	type : "POST",
-	        url : "/signUp/action",
+	        url : "/myInfo/update",
 	        data : params,
 	        success : function(res){
 	           	if(res.resultCode == "success") {
-	           		toastr.success(res.resultMessage);
-	            	window.location.href = "/login";
-	            	
+	           		alert("성공적으로 변경하였습니다. 다시 로그인해주세요.");
+	        		location.href="/logout/action";
+	           		
 	           	} else if(res.resultCode == "fail") {
 	           		toastr.error(res.resultMessage);
 	           	}

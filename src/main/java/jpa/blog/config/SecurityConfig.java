@@ -3,6 +3,7 @@ package jpa.blog.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,13 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     AuthSuccessHandler authSuccessHandler;
-
  
 	@Bean
 	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
- 
+	
 	// Spring Security에서 모든 인증 처리는 AuthenticationManager를 통해 이루어짐, AuthenticationManager를 생성하기 위해 AuthenticationManagerBuilder 사용
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.failureHandler(authFailureHandler);
 		http.logout()
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout/action")) // 로그아웃 URL 지정
-			.logoutSuccessUrl("/") // 성공 리턴 URL
+			.logoutSuccessUrl("/login") // 성공 리턴 URL
 			.invalidateHttpSession(true) // 인증 정보 지우고 세션을 무효화
 			.deleteCookies("JSESSIONID", "remember-me"); // JSESSIONID, remember-me 쿠키 삭제
 //		http.sessionManagement()

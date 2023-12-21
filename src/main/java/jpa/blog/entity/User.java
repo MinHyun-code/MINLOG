@@ -11,6 +11,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
+
+import jpa.blog.dto.BoardRequestDto;
+import jpa.blog.dto.UserRequestDto;
 import jpa.blog.security.Role;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,6 +24,7 @@ import lombok.NonNull;
 
 @Getter
 @Table(name="user")
+@DynamicUpdate 	// 변경한 필드만 대응
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name="user")
 public class User {
@@ -51,6 +56,8 @@ public class User {
 	@Column(nullable = false)
 	private LocalDateTime regDate; 	// 생성일
 	
+	private LocalDateTime modDate; 	// 변경일
+	
 	private LocalDateTime delDate;	// 삭제일
 	
 	private Role role;
@@ -64,7 +71,7 @@ public class User {
 	private Set<Comment> comment = new LinkedHashSet<>();
 	
     @Builder
-    public User(String userId, String userPw, String userServeId, String userName, String userImg, String userIntro, int status, LocalDateTime regDate, LocalDateTime delDate, Role role) {
+    public User(String userId, String userPw, String userServeId, String userName, String userImg, String userIntro, int status, LocalDateTime regDate, LocalDateTime modDate, LocalDateTime delDate, Role role) {
         this.userId = userId;
         this.userServeId = userServeId;
         this.userPw = userPw;
@@ -73,7 +80,22 @@ public class User {
         this.userIntro = userIntro;
         this.status = status;
         this.regDate = regDate;
+        this.modDate = modDate;
         this.delDate = delDate;
         this.role = role;
     }
+    
+    // 개인 정보 수정
+ 	public void changeUser(UserRequestDto.Create userDto) {
+        this.userId = userDto.getUserId();
+        this.userServeId = userDto.getUserServeId();
+        this.userPw = userDto.getUserPw();
+        this.userName = userDto.getUserName();
+        this.userImg = userDto.getUserImg();
+        this.userIntro = userDto.getUserIntro();
+        this.status = userDto.getStatus();
+        this.regDate = userDto.getRegDate();
+        this.modDate = userDto.getModDate();
+        this.delDate = userDto.getDelDate();
+ 	}
 }

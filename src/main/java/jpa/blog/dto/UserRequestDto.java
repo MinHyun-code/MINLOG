@@ -24,6 +24,7 @@ public class UserRequestDto {
 		private String userIntro;		// 자기소개
 		private int status; 			// 상태 값
 		private LocalDateTime regDate; 	// 생성일
+		private LocalDateTime modDate;	// 변경일
 		private LocalDateTime delDate;	// 삭제일
 		private Role role;
 		
@@ -38,6 +39,7 @@ public class UserRequestDto {
 				.userIntro(userIntro)
 				.status(status)
 				.regDate(regDate)
+				.modDate(modDate)
 				.delDate(delDate)
 				.role(role.USER)
 				.build();

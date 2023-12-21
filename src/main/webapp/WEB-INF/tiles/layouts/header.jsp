@@ -31,10 +31,10 @@
         </div>
        	<div id="menuDiv" style="display: none; position: absolute; right:1vw; top: 65px; z-index: 100; background-color: white; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;">
 			<ul style="margin: 0 auto; padding-left: 0px;">
-           		<li style="list-style: none;"><button type="button" class="btn me-2 boardWriteMedia" style="width: 100%; text-align: left;">새 글 작성</button></li>
+           		<li style="list-style: none;"><button type="button" class="btn me-2 boardWriteMedia" style="width: 100%; text-align: left;" onclick="writePageMove()">새 글 작성</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">내 민로그</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">읽기 목록</button></li>
-           		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;">설정</button></li>
+           		<li style="list-style: none;"><button type="button" onclick="forwardSetting()" class="btn me-2" style="width: 100%; text-align: left;">설정</button></li>
            		<li style="list-style: none;"><button type="button" class="btn me-2" style="width: 100%; text-align: left;" onclick="forwardLogOut()">로그아웃</button></li>
 			</ul>
 		</div>
@@ -77,6 +77,10 @@
     	
     	function menuDisplay() {
 			$('#menuDiv').toggle();
+    	}
+    	
+    	function forwardSetting() {
+			window.location.href = "/setting";
     	}
     </script>
   </header>

@@ -35,6 +35,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/myInfo/{1}.jsp"/>
 	</definition>
 	
+	<definition name="setting/*" extends="layout-basic">
+		<put-attribute name="body" value="/WEB-INF/views/setting/{1}.jsp"/>
+	</definition>
+	
 	<definition name="signUp/*" extends="layout-basic">
 		<put-attribute name="body" value="/WEB-INF/views/signUp/{1}.jsp"/>
 	</definition>

@@ -47,13 +47,35 @@ public class UserService {
     	return userRepository.existsById(userId);
     }
     
-    // 아이디, 이름, 소개글, 이미지 조회
-    public UserResponseDto.userSimpleInfo userSimpleInfo(String userId) {
+    // 유저 정보 조회
+    public UserResponseDto.userInfo userInfo(String userId) {
     	
     	User userRead = userRepository.findByUserId(userId);
     	
-    	UserResponseDto.userSimpleInfo userSimpleInfo = new UserResponseDto.userSimpleInfo(userRead);
+    	UserResponseDto.userInfo userInfo = new UserResponseDto.userInfo(userRead);
     	
-    	return userSimpleInfo;
+    	return userInfo;
+    }
+    
+    // 유저 정보 수정
+    @Transactional
+    public void userInfoUpdate(UserRequestDto.Create dto) {
+
+        // 현재 날짜 구하기
+        LocalDateTime now = LocalDateTime.now();
+        
+    	User userInfo = userRepository.findByUserId(dto.getUserId());
+    	
+    	// 비밀번호 변경 안했을 경우, 기존 값 넣기
+    	if(dto.getUserPw() == null || dto.getUserPw().equals("")) {
+    		dto.setUserPw(userInfo.getUserPw());
+    	} else {
+    		dto.setUserPw(encoder.encode(dto.getUserPw()));
+    	}
+    	
+    	// 등록일자는 변하지 않아서 기존 값 넣기
+    	dto.setRegDate(userInfo.getRegDate());
+    	dto.setModDate(now);
+    	userInfo.changeUser(dto);
     }
 }
