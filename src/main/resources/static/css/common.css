@@ -695,7 +695,7 @@ blockquote p {
 		justify-content: space-between;
 		margin-bottom: 5vh;
 		border-radius: 4px;
-		width: 80%;
+		width: 85%;
 		min-width: 190px;
 	}
 }
@@ -754,7 +754,7 @@ blockquote p {
 		justify-content: space-between;
 		margin-bottom: 5vh;
 		border-radius: 4px;
-		width: 70%;
+		width: 85%;
 		min-width: 190px;
 	}
 } 
