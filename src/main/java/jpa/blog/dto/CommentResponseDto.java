@@ -36,7 +36,7 @@ public class CommentResponseDto {
 			this.commentSeq = commentList.getCommentSeq();
 			this.commentTxt = commentList.getCommentTxt();
 			this.board_seq = commentList.getBoardSeq();
-			this.regDate = CommonUtil.commentDayDiff(commentList.getRegDate());
+			this.regDate = CommonUtil.dayDiff(commentList.getRegDate());
 			this.depth = commentList.getDepth();
 			this.userId = commentList.getUserId();
 			this.userServeId = commentList.getUserServeId();
@@ -66,7 +66,7 @@ public class CommentResponseDto {
 			this.commentSeq = commentList.getCommentSeq();
 			this.commentTxt = commentList.getCommentTxt();
 			this.board_seq = commentList.getBoardSeq();
-			this.regDate = CommonUtil.commentDayDiff(commentList.getRegDate());
+			this.regDate = CommonUtil.dayDiff(commentList.getRegDate());
 			this.depth = commentList.getDepth();
 			this.userImg = commentList.getUserImg();
 			this.userId = commentList.getUserId();

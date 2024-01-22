@@ -26,7 +26,7 @@ public class BoardResponseDto {
 			this.boardSeq = entity.getBoardSeq();
 			this.title = entity.getTitle();
 			this.userServeId = entity.getUserServeId();
-			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
+			this.regDate = CommonUtil.dayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
 			this.regUserImg = entity.getRegUserImg();
@@ -67,7 +67,7 @@ public class BoardResponseDto {
 			this.userName = entity.getUserId().getUserName();
 			this.userImg = entity.getUserId().getUserImg();
 			this.userIntro = entity.getUserId().getUserIntro();
-			this.regDate = CommonUtil.boardDayDiff(entity.getRegDate());
+			this.regDate = CommonUtil.dayDiff(entity.getRegDate());
 			this.thumbnail = entity.getThumbnail();
 			this.thumbnailTxt = entity.getThumbnailTxt();
 			this.openYn = entity.getOpenYn();
