@@ -44,7 +44,7 @@ public class Comment {
 	private LocalDateTime delDate;		// 삭제일자
 	
 	@Column
-	private LocalDateTime upDate;		// 수정일자
+	private LocalDateTime modDate;		// 수정일자
 	
 	@Column(nullable = false)
 	private LocalDateTime regDate;		// 등록일자
@@ -58,13 +58,13 @@ public class Comment {
 	private Board board;				// 게시글 번호
 	
 	@Builder
-	public Comment(int commentSeq, String commentTxt, Board board, int depth, int groupNum, String delYn, LocalDateTime delDate, LocalDateTime upDate, LocalDateTime regDate, User userId) {
+	public Comment(int commentSeq, String commentTxt, Board board, int depth, int groupNum, String delYn, LocalDateTime delDate, LocalDateTime modDate, LocalDateTime regDate, User userId) {
 		this.commentSeq = commentSeq;
 		this.commentTxt = commentTxt;
 		this.board =board;
 		this.depth = depth;
 		this.delYn = delYn;
-		this.upDate = upDate;
+		this.modDate = modDate;
 		this.delDate = delDate;
 		this.regDate = regDate;
 		this.userId = userId;

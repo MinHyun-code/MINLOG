@@ -133,7 +133,7 @@ public class BoardService {
         // 현재 날짜 구하기
         LocalDateTime now = LocalDateTime.now();
         
-        boardDto.setUpDate(now);
+        boardDto.setModDate(now);
         
 		boardInfo.changeBoard(boardDto);
 	}

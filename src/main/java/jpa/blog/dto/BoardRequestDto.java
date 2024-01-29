@@ -22,7 +22,7 @@ public class BoardRequestDto {
 		private int menuSeq;
 		private User userId;			// 등록자
 		private LocalDateTime regDate;  // 등록일자
-		private LocalDateTime upDate; 	// 수정일자
+		private LocalDateTime modDate; 	// 수정일자
 		private String delYn; 			// 삭제여부
 		private LocalDateTime delDate; 	// 삭제일자
 		private String thumbnail;		// 썸네일 이미지
@@ -37,7 +37,7 @@ public class BoardRequestDto {
 					.menuSeq(menuSeq)
 					.userId(userId)
 					.regDate(regDate)
-					.upDate(upDate)
+					.modDate(modDate)
 					.delYn(delYn)
 					.delDate(delDate)
 					.thumbnail(thumbnail)

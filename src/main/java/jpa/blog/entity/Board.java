@@ -58,7 +58,7 @@ public class Board {
 	@Column(nullable = false)
 	private LocalDateTime regDate;  // 등록일자
 	
-	private LocalDateTime upDate; 	// 수정일자
+	private LocalDateTime modDate; 	// 수정일자
 	
 	@Column(columnDefinition = "varchar(1) default 'N'", nullable = false)
 	private String delYn;			// 삭제여부
@@ -79,14 +79,14 @@ public class Board {
 	private Set<Comment> comment = new LinkedHashSet<>();
 	
 	@Builder
-	public Board(String boardSeq, String title, String content, int menuSeq, User userId, LocalDateTime regDate, LocalDateTime upDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
+	public Board(String boardSeq, String title, String content, int menuSeq, User userId, LocalDateTime regDate, LocalDateTime modDate, String delYn, LocalDateTime delDate, String thumbnail, String thumbnailTxt, String openYn) {
 		this.boardSeq = boardSeq;
 		this.title = title;
 		this.content = content;
 		this.menuSeq = menuSeq;
 		this.userId = userId;
 		this.regDate = regDate;
-		this.upDate = upDate;
+		this.modDate = modDate;
 		this.delYn = delYn;
 		this.delDate = delDate;
 		this.thumbnail = thumbnail;
@@ -106,7 +106,7 @@ public class Board {
 		this.title = boardDto.getTitle();
 		this.content = boardDto.getContent();
 		this.menuSeq = boardDto.getMenuSeq();
-		this.upDate = boardDto.getUpDate();
+		this.modDate = boardDto.getModDate();
 		this.thumbnail = boardDto.getThumbnail();
 		this.thumbnailTxt = boardDto.getThumbnailTxt();
 		this.openYn = boardDto.getOpenYn();
